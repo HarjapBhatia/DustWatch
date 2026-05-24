@@ -1,0 +1,376 @@
+DustWatch — Dev A Complete Brief (Data / ML / Backend)
+
+What Is DustWatch
+A satellite + AI platform that scans Indian cities to identify active construction sites, scores their pollution risk, and publishes verified violation evidence publicly — empowering residents, journalists, and NGOs to demand accountability.
+Your role: Build the entire data pipeline — from pulling satellite imagery to serving predictions via a REST API that the frontend consumes.
+
+Monorepo Structure (Your Part)
+dustwatch/
+├── apps/
+│   └── backend/
+│       ├── main.py                   # FastAPI app entry point
+│       ├── requirements.txt
+│       ├── .env.example
+│       ├── routers/
+│       │   ├── sites.py              # GET /api/sites, GET /api/sites/:id
+│       │   └── stats.py              # GET /api/stats
+│       ├── services/
+│       │   ├── gee_client.py         # GEE auth + image fetch
+│       │   ├── change_detection.py   # bi-temporal diff
+│       │   ├── classifier.py         # load model, run inference
+│       │   ├── risk_scorer.py        # composite score
+│       │   └── permit_lookup.py      # AMC permit cross-reference
+│       ├── models/
+│       │   └── site.py               # Pydantic schemas
+│       └── scripts/
+│           ├── gee_pipeline.py       # standalone GEE run → GeoJSON
+│           ├── train_model.py        # train RF → save .pkl
+│           └── seed_db.py            # load GeoJSON into app
+└── data/
+    ├── raw/                          # .tif files (gitignored)
+    ├── processed/                    # indexed rasters (gitignored)
+    ├── models/                       # .pkl files (gitignored)
+    └── samples/
+        ├── ahmedabad_sites.geojson   # YOUR primary output for frontend
+        └── amc_permits.json          # static permit data
+
+Tech Stack
+Python 3.10+
+FastAPI + Uvicorn          # REST API
+earthengine-api            # Google Earth Engine
+geemap                     # GEE helper library
+geopandas + shapely        # geospatial processing
+scikit-learn               # Random Forest classifier
+numpy + rasterio           # raster processing
+Pydantic                   # data validation
+python-dotenv              # env vars
+Install everything:
+bashpip install fastapi uvicorn earthengine-api geemap geopandas shapely scikit-learn numpy rasterio pydantic python-dotenv
+
+The Pipeline — Layer by Layer
+Layer 1 — GEE Data Ingestion (scripts/gee_pipeline.py)
+Goal: Pull Sentinel-1 + Sentinel-2 imagery for Ahmedabad, compute indices, export as analysis-ready tiles.
+pythonimport ee
+ee.Authenticate()
+ee.Initialize(project='your-project-id')
+
+# Ahmedabad bounding box
+AOI = ee.Geometry.Rectangle([72.43, 22.87, 72.73, 23.13])
+
+# Sentinel-2 — optical, 10m resolution
+s2 = (ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
+        .filterBounds(AOI)
+        .filterDate('2025-11-01', '2026-05-01')
+        .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20))
+        .median())
+
+# Key indices
+ndvi = s2.normalizedDifference(['B8', 'B4']).rename('NDVI')
+ndbi = s2.normalizedDifference(['B11', 'B8']).rename('NDBI')
+bsi  = s2.expression(
+    '((SWIR + RED) - (NIR + BLUE)) / ((SWIR + RED) + (NIR + BLUE))',
+    {'SWIR': s2.select('B11'), 'RED': s2.select('B4'),
+     'NIR': s2.select('B8'),  'BLUE': s2.select('B2')}
+).rename('BSI')
+
+# Sentinel-1 SAR — cloud-proof
+s1 = (ee.ImageCollection('COPERNICUS/S1_GRD')
+        .filterBounds(AOI)
+        .filterDate('2025-11-01', '2026-05-01')
+        .filter(ee.Filter.eq('instrumentMode', 'IW'))
+        .select(['VV', 'VH'])
+        .mean())
+
+# Stack all bands
+composite = ee.Image.cat([s2.select(['B2','B3','B4','B8','B11']),
+                          ndvi, ndbi, bsi, s1])
+GEE Setup Steps:
+
+Create a Google account if needed
+Sign up at earthengine.google.com (free for research)
+Create a Google Cloud project, enable Earth Engine API
+Run earthengine authenticate in terminal
+Use Google Colab if local setup is slow — GEE works there out of the box
+
+
+Layer 2 — Change Detection (services/change_detection.py)
+Goal: Compare the same area across two time periods to find zones that changed from vegetated/built → bare soil.
+pythondef detect_changes(aoi, date_before_start, date_before_end,
+                   date_after_start, date_after_end):
+    """
+    Returns GEE image of change magnitude.
+    High values = likely new construction activity.
+    """
+    def get_bsi(date_start, date_end):
+        return (ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
+                  .filterBounds(aoi)
+                  .filterDate(date_start, date_end)
+                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20))
+                  .median()
+                  .expression(
+                      '((SWIR+RED)-(NIR+BLUE))/((SWIR+RED)+(NIR+BLUE))',
+                      {'SWIR': ee.Image().select('B11'),
+                       'RED':  ee.Image().select('B4'),
+                       'NIR':  ee.Image().select('B8'),
+                       'BLUE': ee.Image().select('B2')}))
+
+    bsi_before = get_bsi(date_before_start, date_before_end)
+    bsi_after  = get_bsi(date_after_start,  date_after_end)
+    change     = bsi_after.subtract(bsi_before)
+
+    # Threshold: pixels that increased BSI significantly = bare soil exposed
+    candidate_zones = change.gt(0.15)
+    return candidate_zones
+
+Layer 3 — ML Classifier (services/classifier.py)
+Goal: Train a Random Forest on labeled image patches to distinguish construction sites from other land use changes.
+Training data labeling approach:
+
+Open Google Earth Engine Code Editor
+Visually inspect Ahmedabad and mark ~300 construction site polygons (positive class)
+Mark ~300 non-construction change areas — agriculture, demolition, flooding (negative class)
+Export as a FeatureCollection to use as training data
+
+pythonfrom sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+import numpy as np
+import joblib
+
+def train_classifier(features: np.ndarray, labels: np.ndarray, 
+                     save_path: str = 'data/models/rf_model.pkl'):
+    """
+    features: (n_samples, n_bands) — pixel values from GEE patches
+    labels:   (n_samples,) — 1=construction, 0=other
+    """
+    X_train, X_test, y_train, y_test = train_test_split(
+        features, labels, test_size=0.2, random_state=42)
+
+    model = RandomForestClassifier(
+        n_estimators=200,
+        max_depth=15,
+        min_samples_split=5,
+        random_state=42,
+        n_jobs=-1
+    )
+    model.fit(X_train, y_train)
+
+    print(classification_report(y_test, model.predict(X_test)))
+    joblib.dump(model, save_path)
+    print(f"Model saved to {save_path}")
+    return model
+
+def run_inference(model_path: str, image_array: np.ndarray) -> np.ndarray:
+    model = joblib.load(model_path)
+    return model.predict_proba(image_array)[:, 1]  # confidence scores
+
+Layer 4 — Permit Cross-Reference (services/permit_lookup.py)
+Goal: Tag each detected site as registered, unregistered, or expired.
+For Day 1–2, use a static JSON file (data/samples/amc_permits.json). Real AMC permit data can be scraped from ahmedabad.gov.in or obtained via RTI later.
+pythonimport json
+import geopandas as gpd
+from shapely.geometry import shape
+
+def load_permits(path: str = 'data/samples/amc_permits.json'):
+    with open(path) as f:
+        return json.load(f)
+
+def tag_permit_status(site_polygon, permits: list) -> str:
+    """
+    Returns: 'registered' | 'unregistered' | 'expired'
+    """
+    site_geom = shape(site_polygon)
+    for permit in permits:
+        permit_geom = shape(permit['geometry'])
+        if site_geom.intersects(permit_geom):
+            if permit['status'] == 'active':
+                return 'registered'
+            else:
+                return 'expired'
+    return 'unregistered'
+Sample amc_permits.json structure:
+json[
+  {
+    "permit_id": "AMC-2024-0471",
+    "status": "active",
+    "issued_date": "2024-11-15",
+    "expiry_date": "2026-11-15",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[[72.505, 23.038], [72.509, 23.038],
+                        [72.509, 23.041], [72.505, 23.041],
+                        [72.505, 23.038]]]
+    }
+  }
+]
+
+Layer 5 — Risk Scoring (services/risk_scorer.py)
+pythondef compute_risk_score(area_m2: float, active_days: int,
+                       nearby_schools: int, nearby_hospitals: int,
+                       permit_status: str) -> dict:
+    """
+    Returns score (0-100) and risk level label.
+    """
+    # Normalize each factor to 0-1
+    area_score      = min(area_m2 / 20000, 1.0)
+    duration_score  = min(active_days / 90, 1.0)
+    proximity_score = min((nearby_schools * 0.6 +
+                           nearby_hospitals * 0.4) / 5, 1.0)
+    permit_score    = {'registered': 0.0,
+                       'expired': 0.6,
+                       'unregistered': 1.0}[permit_status]
+
+    # Weighted composite
+    score = (area_score      * 0.25 +
+             duration_score  * 0.25 +
+             proximity_score * 0.30 +
+             permit_score    * 0.20) * 100
+
+    if score >= 75:   level = 'critical'
+    elif score >= 50: level = 'high'
+    elif score >= 25: level = 'medium'
+    else:             level = 'low'
+
+    return {'score': round(score, 1), 'level': level}
+
+Layer 6 — FastAPI (main.py + routers/)
+python# main.py
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from routers import sites, stats
+
+app = FastAPI(title="DustWatch API", version="0.1.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(sites.router, prefix="/api")
+app.include_router(stats.router, prefix="/api")
+python# routers/sites.py
+from fastapi import APIRouter
+from models.site import ConstructionSite, CityStats
+import json
+
+router = APIRouter()
+
+def load_sites():
+    with open('data/samples/ahmedabad_sites.geojson') as f:
+        return json.load(f)
+
+@router.get("/sites", response_model=list[ConstructionSite])
+def get_sites():
+    return load_sites()['features']
+
+@router.get("/sites/{site_id}", response_model=ConstructionSite)
+def get_site(site_id: str):
+    sites = load_sites()['features']
+    return next(s for s in sites if s['id'] == site_id)
+
+Pydantic Schema (models/site.py)
+This must match the TypeScript types exactly so the frontend consumes it without transformation:
+pythonfrom pydantic import BaseModel
+from typing import Optional, Literal
+from datetime import date
+
+RiskLevel    = Literal['critical', 'high', 'medium', 'low']
+PermitStatus = Literal['registered', 'unregistered', 'expired']
+
+class ConstructionSite(BaseModel):
+    id: str
+    name: str
+    coordinates: list[float]        # [lat, lng]
+    polygon: list[list[float]]
+    riskLevel: RiskLevel
+    riskScore: float
+    permitStatus: PermitStatus
+    areaM2: float
+    activeDays: int
+    nearbySchools: int
+    nearbyHospitals: int
+    detectedAt: str
+    lastUpdated: str
+    satelliteImageBefore: Optional[str] = None
+    satelliteImageAfter: Optional[str] = None
+    ward: Optional[str] = None
+    address: Optional[str] = None
+
+class CityStats(BaseModel):
+    totalSites: int
+    critical: int
+    high: int
+    medium: int
+    low: int
+    unregistered: int
+    populationExposed: int
+    lastUpdated: str
+
+The Most Important File for Day 1–2
+data/samples/ahmedabad_sites.geojson — this is what unblocks Dev B immediately. Create this manually on Day 1 with 5–6 real Ahmedabad construction sites you can spot on Google Maps. Dev B's entire frontend runs off this file until the real ML pipeline is ready.
+json{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": "site-001",
+      "name": "SG Highway Flyover Extension",
+      "coordinates": [23.0395, 72.5070],
+      "polygon": [[23.038,72.505],[23.041,72.505],
+                  [23.041,72.509],[23.038,72.509]],
+      "riskLevel": "critical",
+      "riskScore": 91,
+      "permitStatus": "registered",
+      "areaM2": 12400,
+      "activeDays": 47,
+      "nearbySchools": 3,
+      "nearbyHospitals": 1,
+      "detectedAt": "2026-04-01",
+      "lastUpdated": "2026-05-20",
+      "ward": "Satellite",
+      "address": "SG Highway, Ahmedabad"
+    }
+  ]
+}
+
+Day-by-Day Focus
+Day 1
+
+GEE account setup + authentication
+Pull Sentinel-2 imagery for Ahmedabad in GEE Code Editor (browser-based, no local setup needed)
+Compute NDVI, NDBI, BSI indices
+Create ahmedabad_sites.geojson manually with 5 real sites → share with Dev B immediately
+
+Day 2
+
+Write change detection script
+Label training patches in GEE Code Editor
+Train Random Forest, evaluate accuracy
+Export predictions as GeoJSON
+
+Day 3 (integration with Dev B)
+
+Wrap pipeline output in FastAPI
+Serve /api/sites and /api/stats
+Test end-to-end with Dev B
+
+Day 4
+
+Deploy backend to Render.com (free tier)
+Support Dev B with demo video
+
+
+Run the API
+bashcd dustwatch/apps/backend
+uvicorn main:app --reload --port 8000
+API will be live at http://localhost:8000. Docs auto-generated at http://localhost:8000/docs.
+
+Key Links
+
+GEE Code Editor (browser): code.earthengine.google.com
+GEE Python docs: developers.google.com/earth-engine/guides/python_install
+Sentinel-2 dataset: developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED
+Sentinel-1 dataset: developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD
+Render.com free deploy: render.com
+FastAPI docs: fastapi.tiangolo.com
