@@ -24,8 +24,8 @@ START_DATE = END_DATE - relativedelta(months=6)
 START_DATE_STR = START_DATE.isoformat()
 END_DATE_STR = END_DATE.isoformat()
 
-# this is area of interest, the area we're look currently (for eg. ahmedabad)
-AOI = ee.Geometry.Rectangle([72.43, 22.87, 72.70, 23.13])
+# this is area of interest, the area we're look currently (for eg. vadodara)
+AOI = ee.Geometry.Rectangle([73.05, 22.20, 73.35, 22.40])
 
 # on those with cloud coverage less than 20% and computing the median pixel values across the image collection
 s2 = (
@@ -70,9 +70,9 @@ composite = ee.Image.cat(
 
 task = ee.batch.Export.image.toDrive(
     image=composite,
-    description="ahmedabad_sentinel_stack_export",
-    folder="GEE_Ahmedabad",
-    fileNamePrefix=f"ahmedabad_sentinel_stack_{START_DATE_STR}_to_{END_DATE_STR}",
+    description="vadodara_sentinel_stack_export",
+    folder="GEE_Vadodara",
+    fileNamePrefix=f"vadodara_sentinel_stack_{START_DATE_STR}_to_{END_DATE_STR}",
     region=AOI,
     scale=10,
     crs="EPSG:4326",
