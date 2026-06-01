@@ -1,87 +1,141 @@
+import sys
 import os
-from pathlib import Path
-import ee 
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
+import json
+from datetime import datetime, timezone
+
+import ee
 from dotenv import load_dotenv
-from datetime import date
-from dateutil.relativedelta import relativedelta
+from shapely.geometry import shape
+from shapely.ops import transform
+from pyproj import Transformer
+
+from services import change_detection, classifier, gee_client, permit_lookup, risk_scorer
 
 
-BASE_DIR = Path(__file__).resolve().parents[1]
-load_dotenv(BASE_DIR / ".env")
+BEFORE_START = "2025-10-01"
+BEFORE_END = "2025-12-31"
+AFTER_START = "2026-03-01"
+AFTER_END = "2026-05-31"
+OUTPUT_PATH = "data/samples/vadodara_sites.geojson"
+CONFIDENCE_THRESHOLD = 0.4
 
-GEE_PROJECT_ID = os.getenv("GEE_PROJECT_ID")
 
-if not GEE_PROJECT_ID:
-    raise ValueError("Missing GEE_PROJECT_ID in scripts/apps/backend/.env")
+def build_site_from_feature(feature: dict, index: int) -> dict:
+    geom = feature.get("geometry", {})
+    if not geom or "type" not in geom:
+        geom = {"type": "Polygon", "coordinates": feature.get("polygon", [])}
 
-ee.Initialize(project=GEE_PROJECT_ID)
+    polygon = shape(geom)
+    centroid = polygon.centroid
 
-print("Earth Engine initialized successfully.")
+    transformer = Transformer.from_crs("EPSG:4326", "EPSG:32643", always_xy=True)
+    projected_polygon = transform(transformer.transform, polygon)
 
-END_DATE = date.today()
-START_DATE = END_DATE - relativedelta(months=6)
+    today = datetime.now(timezone.utc)
+    after_date = datetime.fromisoformat(AFTER_START).replace(tzinfo=timezone.utc)
 
-START_DATE_STR = START_DATE.isoformat()
-END_DATE_STR = END_DATE.isoformat()
+    return {
+        "id": f"site-{index:03d}",
+        "name": f"Construction Site {index}",
+        "coordinates": [centroid.y, centroid.x],
+        "polygon": geom.get("coordinates"),
+        "riskScore": 0.0,
+        "riskLevel": "low",
+        "permitStatus": "unregistered",
+        "areaM2": float(projected_polygon.area),
+        "activeDays": (today - after_date).days,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": AFTER_START,
+        "lastUpdated": today.date().isoformat(),
+        "ward": None,
+        "address": None,
+    }
 
-# this is area of interest, the area we're look currently (for eg. ahmedabad)
-AOI = ee.Geometry.Rectangle([72.43, 22.87, 72.70, 23.13])
 
-# on those with cloud coverage less than 20% and computing the median pixel values across the image collection
-s2 = (
-    ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-    .filterBounds(AOI)
-    .filterDate(START_DATE_STR, END_DATE_STR)
-    .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE", 20)) 
-    .median()
-)
+def run_pipeline() -> None:
+    load_dotenv()
 
-# NDVI = (B8 - B4) / (B8 + B4)
-ndvi = s2.normalizedDifference(["B8", "B4"]).rename("NDVI")
+    print("Initialising GEE...")
+    project_id = os.getenv("GEE_PROJECT_ID")
+    if project_id:
+        ee.Initialize(project=project_id)
+    else:
+        ee.Initialize()
 
-# BSI = ((B11+B4) - (B8+B2)) / ((B11+B4) + (B8+B2))
-bsi = s2.expression(
-    "((SWIR + RED) - (NIR + BLUE)) / ((SWIR + RED) + (NIR + BLUE))",
-    {
-        "SWIR": s2.select("B11"),
-        "RED": s2.select("B4"),
-        "NIR": s2.select("B8"),
-        "BLUE": s2.select("B2"),
-    },
-).rename("BSI")
+    print("Running change detection...")
+    os.makedirs("data/processed", exist_ok=True)
+    candidates_path = "data/processed/candidates.geojson"
+    change_detection.run_change_detection(
+        BEFORE_START,
+        BEFORE_END,
+        AFTER_START,
+        AFTER_END,
+        candidates_path,
+    )
 
-s1 = (
-    ee.ImageCollection("COPERNICUS/S1_GRD")
-    .filterBounds(AOI)
-    .filterDate(START_DATE_STR, END_DATE_STR)
-    .filter(ee.Filter.eq("instrumentMode", "IW"))
-    .select(["VV", "VH"])
-    .mean()
-)
+    print("Extracting features for classification...")
+    if not os.path.exists(candidates_path):
+        print(f"Candidates file not found at {candidates_path}")
+        sys.exit(1)
 
-composite = ee.Image.cat(
-    [
-        s2.select(["B2", "B3", "B4", "B8", "B11"]),
-        s1.select(["VV", "VH"]),
-        ndvi, 
-        bsi,
+    with open(candidates_path, "r", encoding="utf-8") as candidates_file:
+        candidates_geojson = json.load(candidates_file)
+
+    if len(candidates_geojson.get("features", [])) == 0:
+        print("No candidate zones detected. Try adjusting the")
+        print("change detection threshold or date range.")
+        print("Exiting pipeline.")
+        sys.exit(0)
+
+    composite = gee_client.get_combined_composite(AFTER_START, AFTER_END)
+    features = classifier.extract_features(candidates_geojson, composite)
+    scores = classifier.run_inference(features)
+
+    candidates = candidates_geojson.get("features", [])
+    filtered_candidates = classifier.filter_by_confidence(
+        candidates,
+        scores,
+        CONFIDENCE_THRESHOLD,
+    )
+
+    print("Building site records...")
+    sites = [
+        build_site_from_feature(feature, index + 1)
+        for index, feature in enumerate(filtered_candidates)
     ]
-).toFloat()
 
-task = ee.batch.Export.image.toDrive(
-    image=composite,
-    description="ahmedabad_sentinel_stack_export",
-    folder="GEE_Ahmedabad",
-    fileNamePrefix=f"ahmedabad_sentinel_stack_{START_DATE_STR}_to_{END_DATE_STR}",
-    region=AOI,
-    scale=10,
-    crs="EPSG:4326",
-    fileFormat="GeoTIFF",
-    maxPixels=1e13,
-)
+    print("Tagging permit status...")
+    sites = permit_lookup.tag_sites_with_permits(sites)
 
-task.start()
+    print("Computing risk scores...")
+    sites = risk_scorer.score_sites(sites)
 
-print("Export task started.")
-print(f"Task ID : {task.id}")
-print("Check status: https://code.earthengine.google.com/tasks")
+    print("Writing output...")
+    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+    output_geojson = {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": site["polygon"],
+                },
+                "properties": {k: v for k, v in site.items() if k != "polygon"},
+            }
+            for site in sites
+        ],
+    }
+
+    with open(OUTPUT_PATH, "w", encoding="utf-8") as output_file:
+        json.dump(output_geojson, output_file, indent=2)
+
+    print(f"Detected {len(sites)} sites")
+    print(f"Output written to {OUTPUT_PATH}")
+
+
+if __name__ == "__main__":
+    run_pipeline()

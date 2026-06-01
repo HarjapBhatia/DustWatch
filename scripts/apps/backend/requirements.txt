@@ -3,3 +3,16 @@ python-dotenv
 python-dateutil
 rasterio
 numpy
+fastapi
+uvicorn[standard]
+earthengine-api
+geemap
+geopandas
+shapely
+scikit-learn
+numpy
+rasterio
+pydantic
+python-dotenv
+pandas
+joblib
