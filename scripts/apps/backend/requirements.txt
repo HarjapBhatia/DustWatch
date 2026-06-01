@@ -3,6 +3,7 @@ python-dotenv
 python-dateutil
 rasterio
 numpy
+<<<<<<< HEAD
 fastapi
 uvicorn[standard]
 earthengine-api
@@ -16,3 +17,8 @@ pydantic
 python-dotenv
 pandas
 joblib
+=======
+scikit-learn
+joblib
+shapely
+>>>>>>> 1efa2da72b12ac5643c2707cb6fccd822b5dda2e

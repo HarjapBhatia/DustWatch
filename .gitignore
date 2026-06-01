@@ -11,8 +11,13 @@ __pycache__/
 data/raw/
 data/processed/
 data/models/
+data/patches/
+data/outputs/
+data/labels.json
 *.tif
 *.tiff
+*.npy
+*.pkl
 
 node_modules/
 dist/
