@@ -58,7 +58,6 @@ s1 = (
     .select(["VV", "VH"])
     .mean()
 )
-
 composite = ee.Image.cat(
     [
         s2.select(["B2", "B3", "B4", "B8", "B11"]),
