@@ -1,0 +1,6311 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.10130456051019,
+              22.283968263982498
+            ],
+            [
+              73.1022028757943,
+              22.283968263982498
+            ],
+            [
+              73.1022028757943,
+              22.284866579266616
+            ],
+            [
+              73.10130456051019,
+              22.284866579266616
+            ],
+            [
+              73.10130456051019,
+              22.283968263982498
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-001",
+        "name": "Construction Site 1",
+        "coordinates": [
+          22.284417421624557,
+          73.10175371815225
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9210.24271366391,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.10651478915807,
+              22.31774491866539
+            ],
+            [
+              73.10651478915807,
+              22.317565255608567
+            ],
+            [
+              73.10633512610124,
+              22.317565255608567
+            ],
+            [
+              73.10633512610124,
+              22.31666694032445
+            ],
+            [
+              73.10777243055584,
+              22.31666694032445
+            ],
+            [
+              73.10777243055584,
+              22.31774491866539
+            ],
+            [
+              73.10651478915807,
+              22.31774491866539
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-002",
+        "name": "Construction Site 2",
+        "coordinates": [
+          22.317196372949343,
+          73.10706715749234
+        ],
+        "riskScore": 66.6,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 17311.1824266936,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.10777243055584,
+              22.44835996097637
+            ],
+            [
+              73.10867074583996,
+              22.44835996097637
+            ],
+            [
+              73.10867074583996,
+              22.44925827626049
+            ],
+            [
+              73.10777243055584,
+              22.44925827626049
+            ],
+            [
+              73.10777243055584,
+              22.44835996097637
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-003",
+        "name": "Construction Site 3",
+        "coordinates": [
+          22.44880911861843,
+          73.10822158819789
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9199.54449580308,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.10795209361267,
+              22.435244557828224
+            ],
+            [
+              73.10885040889679,
+              22.435244557828224
+            ],
+            [
+              73.10885040889679,
+              22.436142873112345
+            ],
+            [
+              73.10795209361267,
+              22.436142873112345
+            ],
+            [
+              73.10795209361267,
+              22.435244557828224
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-004",
+        "name": "Construction Site 4",
+        "coordinates": [
+          22.435693715470286,
+          73.10840125125472
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9200.394403526909,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.10795209361267,
+              22.361223378416778
+            ],
+            [
+              73.10903007195361,
+              22.361223378416778
+            ],
+            [
+              73.10903007195361,
+              22.362121693700896
+            ],
+            [
+              73.10795209361267,
+              22.362121693700896
+            ],
+            [
+              73.10795209361267,
+              22.361223378416778
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-005",
+        "name": "Construction Site 5",
+        "coordinates": [
+          22.361672536058837,
+          73.10849108278313
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11046.228739514698,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.1083114197263,
+              22.305168504687718
+            ],
+            [
+              73.10920973501044,
+              22.305168504687718
+            ],
+            [
+              73.10920973501044,
+              22.30606681997184
+            ],
+            [
+              73.1083114197263,
+              22.30606681997184
+            ],
+            [
+              73.1083114197263,
+              22.305168504687718
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-006",
+        "name": "Construction Site 6",
+        "coordinates": [
+          22.30561766232978,
+          73.10876057736837
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9208.810742068268,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.10920973501044,
+              22.446204004294483
+            ],
+            [
+              73.11010805029456,
+              22.446204004294483
+            ],
+            [
+              73.11010805029456,
+              22.447102319578605
+            ],
+            [
+              73.10920973501044,
+              22.447102319578605
+            ],
+            [
+              73.10920973501044,
+              22.446204004294483
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-007",
+        "name": "Construction Site 7",
+        "coordinates": [
+          22.446653161936542,
+          73.1096588926525
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9199.67141783642,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.1111860286355,
+              22.343257072734385
+            ],
+            [
+              73.1111860286355,
+              22.343077409677562
+            ],
+            [
+              73.11082670252185,
+              22.343077409677562
+            ],
+            [
+              73.11082670252185,
+              22.342179094393444
+            ],
+            [
+              73.11208434391962,
+              22.342179094393444
+            ],
+            [
+              73.11208434391962,
+              22.343257072734385
+            ],
+            [
+              73.1111860286355,
+              22.343257072734385
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-008",
+        "name": "Construction Site 8",
+        "coordinates": [
+          22.342695625681813,
+          73.11147798110282
+        ],
+        "riskScore": 63.4,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 14730.218314625388,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.11549794199927,
+              22.347928312211806
+            ],
+            [
+              73.11639625728338,
+              22.347928312211806
+            ],
+            [
+              73.11639625728338,
+              22.34900629055275
+            ],
+            [
+              73.11549794199927,
+              22.34900629055275
+            ],
+            [
+              73.11549794199927,
+              22.347928312211806
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-009",
+        "name": "Construction Site 9",
+        "coordinates": [
+          22.34846730138228,
+          73.11594709964132
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11047.172239776863,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.11945052924939,
+              22.414942632407126
+            ],
+            [
+              73.12052850759034,
+              22.414942632407126
+            ],
+            [
+              73.12052850759034,
+              22.415840947691244
+            ],
+            [
+              73.11945052924939,
+              22.415840947691244
+            ],
+            [
+              73.11945052924939,
+              22.414942632407126
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-010",
+        "name": "Construction Site 10",
+        "coordinates": [
+          22.415391790049185,
+          73.11998951841986
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11041.92754490059,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.1277150298633,
+              22.348287638325456
+            ],
+            [
+              73.12861334514741,
+              22.348287638325456
+            ],
+            [
+              73.12861334514741,
+              22.349545279723223
+            ],
+            [
+              73.1277150298633,
+              22.349545279723223
+            ],
+            [
+              73.1277150298633,
+              22.348287638325456
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-011",
+        "name": "Construction Site 11",
+        "coordinates": [
+          22.34891645902434,
+          73.12816418750535
+        ],
+        "riskScore": 61.1,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 12888.171928527012,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.13112862794294,
+              22.26007307742492
+            ],
+            [
+              73.13202694322707,
+              22.26007307742492
+            ],
+            [
+              73.13202694322707,
+              22.26097139270904
+            ],
+            [
+              73.13112862794294,
+              22.26097139270904
+            ],
+            [
+              73.13112862794294,
+              22.26007307742492
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-012",
+        "name": "Construction Site 12",
+        "coordinates": [
+          22.26052223506698,
+          73.13157778558501
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9211.511331408683,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.13112862794294,
+              22.44243108010118
+            ],
+            [
+              73.13202694322707,
+              22.44243108010118
+            ],
+            [
+              73.13202694322707,
+              22.4433293953853
+            ],
+            [
+              73.13112862794294,
+              22.4433293953853
+            ],
+            [
+              73.13112862794294,
+              22.44243108010118
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-013",
+        "name": "Construction Site 13",
+        "coordinates": [
+          22.44288023774324,
+          73.13157778558501
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9199.717996365824,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.13184728017025,
+              22.443509058442125
+            ],
+            [
+              73.133104921568,
+              22.443509058442125
+            ],
+            [
+              73.133104921568,
+              22.444766699839892
+            ],
+            [
+              73.13184728017025,
+              22.444766699839892
+            ],
+            [
+              73.13184728017025,
+              22.443509058442125
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-014",
+        "name": "Construction Site 14",
+        "coordinates": [
+          22.44413787914101,
+          73.13247610086913
+        ],
+        "riskScore": 67.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 18031.27139070483,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.13382357379531,
+              22.444407373726243
+            ],
+            [
+              73.13472188907943,
+              22.444407373726243
+            ],
+            [
+              73.13472188907943,
+              22.445305689010365
+            ],
+            [
+              73.13382357379531,
+              22.445305689010365
+            ],
+            [
+              73.13382357379531,
+              22.444407373726243
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-015",
+        "name": "Construction Site 15",
+        "coordinates": [
+          22.444856531368305,
+          73.13427273143736
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9199.565447495614,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.14460335720474,
+              22.250730598470074
+            ],
+            [
+              73.14460335720474,
+              22.25055093541325
+            ],
+            [
+              73.14424403109109,
+              22.25055093541325
+            ],
+            [
+              73.14424403109109,
+              22.25001194624278
+            ],
+            [
+              73.14550167248886,
+              22.25001194624278
+            ],
+            [
+              73.14550167248886,
+              22.250730598470074
+            ],
+            [
+              73.14460335720474,
+              22.250730598470074
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-016",
+        "name": "Construction Site 16",
+        "coordinates": [
+          22.250350542003716,
+          73.14490740237784
+        ],
+        "riskScore": 57.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9580.521243050673,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.14586099860252,
+              22.444766699839892
+            ],
+            [
+              73.14586099860252,
+              22.444407373726243
+            ],
+            [
+              73.14568133554569,
+              22.444407373726243
+            ],
+            [
+              73.14568133554569,
+              22.443509058442125
+            ],
+            [
+              73.14675931388663,
+              22.443509058442125
+            ],
+            [
+              73.14675931388663,
+              22.444766699839892
+            ],
+            [
+              73.14586099860252,
+              22.444766699839892
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-017",
+        "name": "Construction Site 17",
+        "coordinates": [
+          22.444115421258907,
+          73.14624278259825
+        ],
+        "riskScore": 63.4,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 14719.207735627262,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.14855594445487,
+              22.40775611013417
+            ],
+            [
+              73.14945425973899,
+              22.40775611013417
+            ],
+            [
+              73.14945425973899,
+              22.408654425418288
+            ],
+            [
+              73.14855594445487,
+              22.408654425418288
+            ],
+            [
+              73.14855594445487,
+              22.40775611013417
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-018",
+        "name": "Construction Site 18",
+        "coordinates": [
+          22.40820526777623,
+          73.14900510209694
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9201.811360808693,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.14891527056851,
+              22.25324588126561
+            ],
+            [
+              73.14981358585264,
+              22.25324588126561
+            ],
+            [
+              73.14981358585264,
+              22.254503522663377
+            ],
+            [
+              73.14891527056851,
+              22.254503522663377
+            ],
+            [
+              73.14891527056851,
+              22.25324588126561
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-019",
+        "name": "Construction Site 19",
+        "coordinates": [
+          22.25387470196449,
+          73.14936442821059
+        ],
+        "riskScore": 61.1,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 12896.49136010564,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.14945425973899,
+              22.36553529178055
+            ],
+            [
+              73.14945425973899,
+              22.36463697649643
+            ],
+            [
+              73.15071190113676,
+              22.36463697649643
+            ],
+            [
+              73.15071190113676,
+              22.36445731343961
+            ],
+            [
+              73.15161021642088,
+              22.36445731343961
+            ],
+            [
+              73.15161021642088,
+              22.36553529178055
+            ],
+            [
+              73.14945425973899,
+              22.36553529178055
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-020",
+        "name": "Construction Site 20",
+        "coordinates": [
+          22.365044673433072,
+          73.15058060890293
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 23931.98395228786,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.1517898794777,
+              22.25001194624278
+            ],
+            [
+              73.15268819476182,
+              22.25001194624278
+            ],
+            [
+              73.15268819476182,
+              22.25037127235643
+            ],
+            [
+              73.1517898794777,
+              22.25037127235643
+            ],
+            [
+              73.1517898794777,
+              22.25001194624278
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-021",
+        "name": "Construction Site 21",
+        "coordinates": [
+          22.250191609299605,
+          73.15223903711976
+        ],
+        "riskScore": 49.6,
+        "riskLevel": "medium",
+        "permitStatus": "unregistered",
+        "areaM2": 3684.7963974772674,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.15502381450052,
+              22.38763384776989
+            ],
+            [
+              73.15592212978464,
+              22.38763384776989
+            ],
+            [
+              73.15592212978464,
+              22.38853216305401
+            ],
+            [
+              73.15502381450052,
+              22.38853216305401
+            ],
+            [
+              73.15502381450052,
+              22.38763384776989
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-022",
+        "name": "Construction Site 22",
+        "coordinates": [
+          22.388083005411946,
+          73.15547297214258
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9203.05759137899,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.15825774952336,
+              22.411888360441118
+            ],
+            [
+              73.15825774952336,
+              22.411708697384295
+            ],
+            [
+              73.15807808646653,
+              22.411708697384295
+            ],
+            [
+              73.15807808646653,
+              22.41152903432747
+            ],
+            [
+              73.1578984234097,
+              22.41152903432747
+            ],
+            [
+              73.1578984234097,
+              22.41063071904335
+            ],
+            [
+              73.15897640175065,
+              22.41063071904335
+            ],
+            [
+              73.15897640175065,
+              22.410990045156996
+            ],
+            [
+              73.15915606480748,
+              22.410990045156996
+            ],
+            [
+              73.15915606480748,
+              22.411888360441118
+            ],
+            [
+              73.15825774952336,
+              22.411888360441118
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-023",
+        "name": "Construction Site 23",
+        "coordinates": [
+          22.41124728998836,
+          73.15853541061118
+        ],
+        "riskScore": 65.2,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 16194.688599538043,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.15897640175065,
+              22.408654425418288
+            ],
+            [
+              73.15987471703477,
+              22.408654425418288
+            ],
+            [
+              73.15987471703477,
+              22.409732403759232
+            ],
+            [
+              73.15897640175065,
+              22.409732403759232
+            ],
+            [
+              73.15897640175065,
+              22.408654425418288
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-024",
+        "name": "Construction Site 24",
+        "coordinates": [
+          22.409193414588763,
+          73.1594255593927
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11041.985518513062,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.16292898900078,
+              22.365175965666904
+            ],
+            [
+              73.16400696734172,
+              22.365175965666904
+            ],
+            [
+              73.16400696734172,
+              22.366074280951022
+            ],
+            [
+              73.16292898900078,
+              22.366074280951022
+            ],
+            [
+              73.16292898900078,
+              22.365175965666904
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-025",
+        "name": "Construction Site 25",
+        "coordinates": [
+          22.365625123308966,
+          73.16346797817123
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11045.328536299872,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.1683188807055,
+              22.40452217511134
+            ],
+            [
+              73.16921719598962,
+              22.40452217511134
+            ],
+            [
+              73.16921719598962,
+              22.405420490395457
+            ],
+            [
+              73.1683188807055,
+              22.405420490395457
+            ],
+            [
+              73.1683188807055,
+              22.40452217511134
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-026",
+        "name": "Construction Site 26",
+        "coordinates": [
+          22.404971332753398,
+          73.16876803834757
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9201.845596850218,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.16849854376233,
+              22.386555869428946
+            ],
+            [
+              73.16939685904644,
+              22.386555869428946
+            ],
+            [
+              73.16939685904644,
+              22.387813510826714
+            ],
+            [
+              73.16849854376233,
+              22.387813510826714
+            ],
+            [
+              73.16849854376233,
+              22.386555869428946
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-027",
+        "name": "Construction Site 27",
+        "coordinates": [
+          22.387184690127835,
+          73.16894770140438
+        ],
+        "riskScore": 61.1,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 12884.194902858495,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.16921719598962,
+              22.379189684099167
+            ],
+            [
+              73.17029517433056,
+              22.379189684099167
+            ],
+            [
+              73.17029517433056,
+              22.380087999383285
+            ],
+            [
+              73.16921719598962,
+              22.380087999383285
+            ],
+            [
+              73.16921719598962,
+              22.379189684099167
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-028",
+        "name": "Construction Site 28",
+        "coordinates": [
+          22.379638841741226,
+          73.16975618516007
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11044.173398077575,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.17011551127374,
+              22.382423619121997
+            ],
+            [
+              73.17011551127374,
+              22.382243956065174
+            ],
+            [
+              73.16975618516008,
+              22.382243956065174
+            ],
+            [
+              73.16975618516008,
+              22.381345640781053
+            ],
+            [
+              73.1713731526715,
+              22.381345640781053
+            ],
+            [
+              73.1713731526715,
+              22.382243956065174
+            ],
+            [
+              73.17119348961468,
+              22.382243956065174
+            ],
+            [
+              73.17119348961468,
+              22.382423619121997
+            ],
+            [
+              73.17011551127374,
+              22.382423619121997
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-029",
+        "name": "Construction Site 29",
+        "coordinates": [
+          22.381858208913762,
+          73.17057523733091
+        ],
+        "riskScore": 68.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 18774.769716816736,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.1706545004442,
+              22.38404058663341
+            ],
+            [
+              73.1706545004442,
+              22.383860923576588
+            ],
+            [
+              73.17047483738739,
+              22.383860923576588
+            ],
+            [
+              73.17047483738739,
+              22.383681260519765
+            ],
+            [
+              73.17011551127374,
+              22.383681260519765
+            ],
+            [
+              73.17011551127374,
+              22.38260328217882
+            ],
+            [
+              73.17119348961468,
+              22.38260328217882
+            ],
+            [
+              73.17119348961468,
+              22.38296260829247
+            ],
+            [
+              73.17155281572833,
+              22.38296260829247
+            ],
+            [
+              73.17155281572833,
+              22.38404058663341
+            ],
+            [
+              73.1706545004442,
+              22.38404058663341
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-030",
+        "name": "Construction Site 30",
+        "coordinates": [
+          22.3833105013025,
+          73.1708390634026
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 20247.10415767236,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.17568506603527,
+              22.361942030644073
+            ],
+            [
+              73.17658338131939,
+              22.361942030644073
+            ],
+            [
+              73.17658338131939,
+              22.36284034592819
+            ],
+            [
+              73.17568506603527,
+              22.36284034592819
+            ],
+            [
+              73.17568506603527,
+              22.361942030644073
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-031",
+        "name": "Construction Site 31",
+        "coordinates": [
+          22.362391188286132,
+          73.17613422367734
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9204.537837547994,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.1758647290921,
+              22.36086405230313
+            ],
+            [
+              73.17676304437622,
+              22.36086405230313
+            ],
+            [
+              73.17676304437622,
+              22.361762367587247
+            ],
+            [
+              73.1758647290921,
+              22.361762367587247
+            ],
+            [
+              73.1758647290921,
+              22.36086405230313
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-032",
+        "name": "Construction Site 32",
+        "coordinates": [
+          22.361313209945187,
+          73.17631388673416
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9204.605992247707,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.17766135966033,
+              22.36230135675772
+            ],
+            [
+              73.17766135966033,
+              22.362121693700896
+            ],
+            [
+              73.17748169660352,
+              22.362121693700896
+            ],
+            [
+              73.17748169660352,
+              22.361223378416778
+            ],
+            [
+              73.17873933800128,
+              22.361223378416778
+            ],
+            [
+              73.17873933800128,
+              22.36230135675772
+            ],
+            [
+              73.17766135966033,
+              22.36230135675772
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-033",
+        "name": "Construction Site 33",
+        "coordinates": [
+          22.36175141252281,
+          73.17812366337972
+        ],
+        "riskScore": 63.9,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 15095.477216297237,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.17873933800128,
+              22.3696675420875
+            ],
+            [
+              73.1796376532854,
+              22.3696675420875
+            ],
+            [
+              73.1796376532854,
+              22.370745520428443
+            ],
+            [
+              73.17873933800128,
+              22.370745520428443
+            ],
+            [
+              73.17873933800128,
+              22.3696675420875
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-034",
+        "name": "Construction Site 34",
+        "coordinates": [
+          22.370206531257974,
+          73.17918849564333
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11044.806372341072,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.17981731634222,
+              22.358348769507593
+            ],
+            [
+              73.18107495774,
+              22.358348769507593
+            ],
+            [
+              73.18107495774,
+              22.35996573701901
+            ],
+            [
+              73.17981731634222,
+              22.35996573701901
+            ],
+            [
+              73.17981731634222,
+              22.358348769507593
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-035",
+        "name": "Construction Site 35",
+        "coordinates": [
+          22.359157253263298,
+          73.18044613704112
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 23195.86701863571,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.18179360996729,
+              22.38260328217882
+            ],
+            [
+              73.1826919252514,
+              22.38260328217882
+            ],
+            [
+              73.1826919252514,
+              22.383501597462942
+            ],
+            [
+              73.18179360996729,
+              22.383501597462942
+            ],
+            [
+              73.18179360996729,
+              22.38260328217882
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-036",
+        "name": "Construction Site 36",
+        "coordinates": [
+          22.38305243982088,
+          73.18224276760934
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9203.146980313046,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.18197327302411,
+              22.38529822803118
+            ],
+            [
+              73.18197327302411,
+              22.383681260519765
+            ],
+            [
+              73.18305125136506,
+              22.383681260519765
+            ],
+            [
+              73.18305125136506,
+              22.384579575803883
+            ],
+            [
+              73.18287158830823,
+              22.384579575803883
+            ],
+            [
+              73.18287158830823,
+              22.38529822803118
+            ],
+            [
+              73.18197327302411,
+              22.38529822803118
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-037",
+        "name": "Construction Site 37",
+        "coordinates": [
+          22.384453811664102,
+          73.1824763295832
+        ],
+        "riskScore": 68.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 18406.10367924225,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.184129229706,
+              22.42212915468008
+            ],
+            [
+              73.18502754499012,
+              22.42212915468008
+            ],
+            [
+              73.18502754499012,
+              22.4230274699642
+            ],
+            [
+              73.184129229706,
+              22.4230274699642
+            ],
+            [
+              73.184129229706,
+              22.42212915468008
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-038",
+        "name": "Construction Site 38",
+        "coordinates": [
+          22.422578312322138,
+          73.18457838734808
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9200.565123563467,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.184129229706,
+              22.356192812825707
+            ],
+            [
+              73.18538687110377,
+              22.356192812825707
+            ],
+            [
+              73.18538687110377,
+              22.357091128109825
+            ],
+            [
+              73.184129229706,
+              22.357091128109825
+            ],
+            [
+              73.184129229706,
+              22.356192812825707
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-039",
+        "name": "Construction Site 39",
+        "coordinates": [
+          22.356641970467766,
+          73.18475805040488
+        ],
+        "riskScore": 61.1,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 12886.76761345632,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.18808181695613,
+              22.440814112589766
+            ],
+            [
+              73.18898013224025,
+              22.440814112589766
+            ],
+            [
+              73.18898013224025,
+              22.441712427873885
+            ],
+            [
+              73.18808181695613,
+              22.441712427873885
+            ],
+            [
+              73.18808181695613,
+              22.440814112589766
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-040",
+        "name": "Construction Site 40",
+        "coordinates": [
+          22.441263270231826,
+          73.1885309745982
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9199.318250933842,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.19185474114943,
+              22.444048047612597
+            ],
+            [
+              73.19275305643355,
+              22.444048047612597
+            ],
+            [
+              73.19275305643355,
+              22.444946362896715
+            ],
+            [
+              73.19185474114943,
+              22.444946362896715
+            ],
+            [
+              73.19185474114943,
+              22.444048047612597
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-041",
+        "name": "Construction Site 41",
+        "coordinates": [
+          22.444497205254656,
+          73.1923038987915
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9199.075444509375,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.19580732839955,
+              22.363379335098664
+            ],
+            [
+              73.19670564368367,
+              22.363379335098664
+            ],
+            [
+              73.19670564368367,
+              22.364277650382782
+            ],
+            [
+              73.19580732839955,
+              22.364277650382782
+            ],
+            [
+              73.19580732839955,
+              22.363379335098664
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-042",
+        "name": "Construction Site 42",
+        "coordinates": [
+          22.363828492740723,
+          73.19625648604162
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9204.268773088856,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.1961666545132,
+              22.421949491623256
+            ],
+            [
+              73.19706496979732,
+              22.421949491623256
+            ],
+            [
+              73.19706496979732,
+              22.422847806907377
+            ],
+            [
+              73.1961666545132,
+              22.422847806907377
+            ],
+            [
+              73.1961666545132,
+              22.421949491623256
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-043",
+        "name": "Construction Site 43",
+        "coordinates": [
+          22.42239864926532,
+          73.19661581215527
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9200.471831589786,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.2006582309338,
+              22.370386194314797
+            ],
+            [
+              73.20173620927474,
+              22.370386194314797
+            ],
+            [
+              73.20173620927474,
+              22.371284509598915
+            ],
+            [
+              73.2006582309338,
+              22.371284509598915
+            ],
+            [
+              73.2006582309338,
+              22.370386194314797
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-044",
+        "name": "Construction Site 44",
+        "coordinates": [
+          22.37083535195686,
+          73.20119722010426
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11044.526981737376,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.20317351372934,
+              22.43219028586222
+            ],
+            [
+              73.20317351372934,
+              22.431651296691747
+            ],
+            [
+              73.20281418761569,
+              22.431651296691747
+            ],
+            [
+              73.20281418761569,
+              22.43075298140763
+            ],
+            [
+              73.2037125028998,
+              22.43075298140763
+            ],
+            [
+              73.2037125028998,
+              22.431112307521275
+            ],
+            [
+              73.20407182901346,
+              22.431112307521275
+            ],
+            [
+              73.20407182901346,
+              22.43219028586222
+            ],
+            [
+              73.20317351372934,
+              22.43219028586222
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-045",
+        "name": "Construction Site 45",
+        "coordinates": [
+          22.431459916479046,
+          73.20346253690771
+        ],
+        "riskScore": 66.2,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 16927.677629593218,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.20425149207028,
+              22.413146001838886
+            ],
+            [
+              73.20425149207028,
+              22.41296633878206
+            ],
+            [
+              73.20389216595663,
+              22.41296633878206
+            ],
+            [
+              73.20389216595663,
+              22.41206802349794
+            ],
+            [
+              73.20407182901346,
+              22.41206802349794
+            ],
+            [
+              73.20407182901346,
+              22.411888360441118
+            ],
+            [
+              73.2051498073544,
+              22.411888360441118
+            ],
+            [
+              73.2051498073544,
+              22.413146001838886
+            ],
+            [
+              73.20425149207028,
+              22.413146001838886
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-046",
+        "name": "Construction Site 46",
+        "coordinates": [
+          22.41250546398412,
+          73.20455223240455
+        ],
+        "riskScore": 66.2,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 16929.919654182337,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.20712610097947,
+              22.4064984687364
+            ],
+            [
+              73.20802441626358,
+              22.4064984687364
+            ],
+            [
+              73.20802441626358,
+              22.40739678402052
+            ],
+            [
+              73.20712610097947,
+              22.40739678402052
+            ],
+            [
+              73.20712610097947,
+              22.4064984687364
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-047",
+        "name": "Construction Site 47",
+        "coordinates": [
+          22.40694762637846,
+          73.20757525862152
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9201.37860828351,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.20820407932041,
+              22.40739678402052
+            ],
+            [
+              73.20820407932041,
+              22.406139142622752
+            ],
+            [
+              73.20838374237722,
+              22.406139142622752
+            ],
+            [
+              73.20838374237722,
+              22.40595947956593
+            ],
+            [
+              73.20982104683182,
+              22.40595947956593
+            ],
+            [
+              73.20982104683182,
+              22.407217120963697
+            ],
+            [
+              73.20946172071817,
+              22.407217120963697
+            ],
+            [
+              73.20946172071817,
+              22.40739678402052
+            ],
+            [
+              73.20820407932041,
+              22.40739678402052
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-048",
+        "name": "Construction Site 48",
+        "coordinates": [
+          22.406669018449765,
+          73.20900475163887
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 25395.815197416854,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.21628891687747,
+              22.38583721720165
+            ],
+            [
+              73.21718723216159,
+              22.38583721720165
+            ],
+            [
+              73.21718723216159,
+              22.386735532485773
+            ],
+            [
+              73.21628891687747,
+              22.386735532485773
+            ],
+            [
+              73.21628891687747,
+              22.38583721720165
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-049",
+        "name": "Construction Site 49",
+        "coordinates": [
+          22.386286374843714,
+          73.21673807451953
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9202.638085389968,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.21628891687747,
+              22.36787091151926
+            ],
+            [
+              73.21754655827525,
+              22.36787091151926
+            ],
+            [
+              73.21754655827525,
+              22.36876922680338
+            ],
+            [
+              73.21628891687747,
+              22.36876922680338
+            ],
+            [
+              73.21628891687747,
+              22.36787091151926
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-050",
+        "name": "Construction Site 50",
+        "coordinates": [
+          22.36832006916132,
+          73.21691773757635
+        ],
+        "riskScore": 61.1,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 12885.31920496974,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.21970251495713,
+              22.353318203916526
+            ],
+            [
+              73.21970251495713,
+              22.35206056251876
+            ],
+            [
+              73.22060083024125,
+              22.35206056251876
+            ],
+            [
+              73.22060083024125,
+              22.352419888632404
+            ],
+            [
+              73.22078049329808,
+              22.352419888632404
+            ],
+            [
+              73.22078049329808,
+              22.353318203916526
+            ],
+            [
+              73.21970251495713,
+              22.353318203916526
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-051",
+        "name": "Construction Site 51",
+        "coordinates": [
+          22.352711841099747,
+          73.22021904624553
+        ],
+        "riskScore": 63.4,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 14727.651383478955,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.22670937417327,
+              22.384579575803883
+            ],
+            [
+              73.22670937417327,
+              22.383501597462942
+            ],
+            [
+              73.22760768945739,
+              22.383501597462942
+            ],
+            [
+              73.22760768945739,
+              22.383681260519765
+            ],
+            [
+              73.22778735251421,
+              22.383681260519765
+            ],
+            [
+              73.22778735251421,
+              22.384579575803883
+            ],
+            [
+              73.22670937417327,
+              22.384579575803883
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-052",
+        "name": "Construction Site 52",
+        "coordinates": [
+          22.384053419708895,
+          73.22723553026826
+        ],
+        "riskScore": 61.1,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 12883.772530295766,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.22778735251421,
+              22.42949534000986
+            ],
+            [
+              73.22778735251421,
+              22.429315676953035
+            ],
+            [
+              73.22742802640056,
+              22.429315676953035
+            ],
+            [
+              73.22742802640056,
+              22.428417361668917
+            ],
+            [
+              73.22760768945739,
+              22.428417361668917
+            ],
+            [
+              73.22760768945739,
+              22.427878372498444
+            ],
+            [
+              73.22904499391197,
+              22.427878372498444
+            ],
+            [
+              73.22904499391197,
+              22.429136013896212
+            ],
+            [
+              73.22886533085516,
+              22.429136013896212
+            ],
+            [
+              73.22886533085516,
+              22.42949534000986
+            ],
+            [
+              73.22778735251421,
+              22.42949534000986
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-053",
+        "name": "Construction Site 53",
+        "coordinates": [
+          22.42867228897928,
+          73.22826321682689
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 27231.376159092524,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.22886533085516,
+              22.40290520759992
+            ],
+            [
+              73.22976364613928,
+              22.40290520759992
+            ],
+            [
+              73.22976364613928,
+              22.403803522884044
+            ],
+            [
+              73.22886533085516,
+              22.403803522884044
+            ],
+            [
+              73.22886533085516,
+              22.40290520759992
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-054",
+        "name": "Construction Site 54",
+        "coordinates": [
+          22.403354365241984,
+          73.22931448849721
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9201.424790404722,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.23048229836657,
+              22.40290520759992
+            ],
+            [
+              73.23138061365069,
+              22.40290520759992
+            ],
+            [
+              73.23138061365069,
+              22.403803522884044
+            ],
+            [
+              73.23048229836657,
+              22.403803522884044
+            ],
+            [
+              73.23048229836657,
+              22.40290520759992
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-055",
+        "name": "Construction Site 55",
+        "coordinates": [
+          22.403354365241984,
+          73.23093145600862
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9201.41099621305,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.23389589644623,
+              22.444048047612597
+            ],
+            [
+              73.23389589644623,
+              22.443509058442125
+            ],
+            [
+              73.2337162333894,
+              22.443509058442125
+            ],
+            [
+              73.2337162333894,
+              22.44243108010118
+            ],
+            [
+              73.23497387478716,
+              22.44243108010118
+            ],
+            [
+              73.23497387478716,
+              22.442970069271652
+            ],
+            [
+              73.23515353784398,
+              22.442970069271652
+            ],
+            [
+              73.23515353784398,
+              22.443868384555774
+            ],
+            [
+              73.23497387478716,
+              22.443868384555774
+            ],
+            [
+              73.23497387478716,
+              22.444048047612597
+            ],
+            [
+              73.23389589644623,
+              22.444048047612597
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-056",
+        "name": "Construction Site 56",
+        "coordinates": [
+          22.443228507668778,
+          73.2344252114521
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 23916.863405926546,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.23677050535541,
+              22.39643733755426
+            ],
+            [
+              73.23677050535541,
+              22.396257674497438
+            ],
+            [
+              73.23659084229858,
+              22.396257674497438
+            ],
+            [
+              73.23659084229858,
+              22.39535935921332
+            ],
+            [
+              73.23784848369635,
+              22.39535935921332
+            ],
+            [
+              73.23784848369635,
+              22.395539022270142
+            ],
+            [
+              73.23820780980999,
+              22.395539022270142
+            ],
+            [
+              73.23820780980999,
+              22.39643733755426
+            ],
+            [
+              73.23677050535541,
+              22.39643733755426
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-057",
+        "name": "Construction Site 57",
+        "coordinates": [
+          22.39590715539638,
+          73.23738875763918
+        ],
+        "riskScore": 68.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 18771.756063563294,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.24018410343506,
+              22.404881501224985
+            ],
+            [
+              73.24018410343506,
+              22.40470183816816
+            ],
+            [
+              73.24000444037823,
+              22.40470183816816
+            ],
+            [
+              73.24000444037823,
+              22.403803522884044
+            ],
+            [
+              73.241262081776,
+              22.403803522884044
+            ],
+            [
+              73.241262081776,
+              22.40470183816816
+            ],
+            [
+              73.24108241871917,
+              22.40470183816816
+            ],
+            [
+              73.24108241871917,
+              22.404881501224985
+            ],
+            [
+              73.24018410343506,
+              22.404881501224985
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-058",
+        "name": "Construction Site 58",
+        "coordinates": [
+          22.404320054172413,
+          73.24063326107711
+        ],
+        "riskScore": 63.4,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 14722.018111424512,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.24251972317377,
+              22.407576447077343
+            ],
+            [
+              73.24251972317377,
+              22.40739678402052
+            ],
+            [
+              73.24234006011694,
+              22.40739678402052
+            ],
+            [
+              73.24234006011694,
+              22.407217120963697
+            ],
+            [
+              73.24144174483283,
+              22.407217120963697
+            ],
+            [
+              73.24144174483283,
+              22.406139142622752
+            ],
+            [
+              73.24323837540106,
+              22.406139142622752
+            ],
+            [
+              73.24323837540106,
+              22.406318805679575
+            ],
+            [
+              73.24341803845789,
+              22.406318805679575
+            ],
+            [
+              73.24341803845789,
+              22.407576447077343
+            ],
+            [
+              73.24251972317377,
+              22.407576447077343
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-059",
+        "name": "Construction Site 59",
+        "coordinates": [
+          22.406786875222352,
+          73.24248899133511
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 27971.289439543852,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.24593332125342,
+              22.413684991009358
+            ],
+            [
+              73.24701129959436,
+              22.413684991009358
+            ],
+            [
+              73.24701129959436,
+              22.414583306293476
+            ],
+            [
+              73.24593332125342,
+              22.414583306293476
+            ],
+            [
+              73.24593332125342,
+              22.413684991009358
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-060",
+        "name": "Construction Site 60",
+        "coordinates": [
+          22.414134148651417,
+          73.24647231042388
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11040.696536850284,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.24665197348072,
+              22.44243108010118
+            ],
+            [
+              73.24755028876484,
+              22.44243108010118
+            ],
+            [
+              73.24755028876484,
+              22.4433293953853
+            ],
+            [
+              73.24665197348072,
+              22.4433293953853
+            ],
+            [
+              73.24665197348072,
+              22.44243108010118
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-061",
+        "name": "Construction Site 61",
+        "coordinates": [
+          22.442880237743243,
+          73.24710113112278
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9198.71058571636,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.24683163653754,
+              22.40739678402052
+            ],
+            [
+              73.24683163653754,
+              22.40595947956593
+            ],
+            [
+              73.24790961487848,
+              22.40595947956593
+            ],
+            [
+              73.24790961487848,
+              22.406857794850048
+            ],
+            [
+              73.24772995182167,
+              22.406857794850048
+            ],
+            [
+              73.24772995182167,
+              22.40739678402052
+            ],
+            [
+              73.24683163653754,
+              22.40739678402052
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-062",
+        "name": "Construction Site 62",
+        "coordinates": [
+          22.40664818795042,
+          73.24734068186521
+        ],
+        "riskScore": 65.7,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 16561.90080663277,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.24737062570802,
+              22.414223980179827
+            ],
+            [
+              73.24826894099213,
+              22.414223980179827
+            ],
+            [
+              73.24826894099213,
+              22.41512229546395
+            ],
+            [
+              73.24737062570802,
+              22.41512229546395
+            ],
+            [
+              73.24737062570802,
+              22.414223980179827
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-063",
+        "name": "Construction Site 63",
+        "coordinates": [
+          22.414673137821886,
+          73.24781978335008
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9200.534126371589,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.24790961487848,
+              22.44279040621483
+            ],
+            [
+              73.24790961487848,
+              22.442610743158006
+            ],
+            [
+              73.24772995182167,
+              22.442610743158006
+            ],
+            [
+              73.24772995182167,
+              22.441712427873885
+            ],
+            [
+              73.24898759321943,
+              22.441712427873885
+            ],
+            [
+              73.24898759321943,
+              22.44279040621483
+            ],
+            [
+              73.24790961487848,
+              22.44279040621483
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-064",
+        "name": "Construction Site 64",
+        "coordinates": [
+          22.442240461979925,
+          73.2483719185979
+        ],
+        "riskScore": 63.9,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 15085.931831182106,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.24862826710579,
+              22.25216790292467
+            ],
+            [
+              73.2495265823899,
+              22.25216790292467
+            ],
+            [
+              73.2495265823899,
+              22.253066218208787
+            ],
+            [
+              73.24862826710579,
+              22.253066218208787
+            ],
+            [
+              73.24862826710579,
+              22.25216790292467
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-065",
+        "name": "Construction Site 65",
+        "coordinates": [
+          22.252617060566728,
+          73.24907742474785
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9210.992206657927,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.24862826710579,
+              22.41206802349794
+            ],
+            [
+              73.24970624544673,
+              22.41206802349794
+            ],
+            [
+              73.24970624544673,
+              22.41296633878206
+            ],
+            [
+              73.24862826710579,
+              22.41296633878206
+            ],
+            [
+              73.24862826710579,
+              22.41206802349794
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-066",
+        "name": "Construction Site 66",
+        "coordinates": [
+          22.41251718114,
+          73.24916725627625
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11040.795006117965,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.24862826710579,
+              22.25001194624278
+            ],
+            [
+              73.24988590850354,
+              22.25001194624278
+            ],
+            [
+              73.24988590850354,
+              22.250191609299602
+            ],
+            [
+              73.24862826710579,
+              22.250191609299602
+            ],
+            [
+              73.24862826710579,
+              22.25001194624278
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-067",
+        "name": "Construction Site 67",
+        "coordinates": [
+          22.250101777771192,
+          73.24925708780466
+        ],
+        "riskScore": 48.2,
+        "riskLevel": "medium",
+        "permitStatus": "unregistered",
+        "areaM2": 2579.1227270542445,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.24934691933308,
+              22.41691892603219
+            ],
+            [
+              73.24934691933308,
+              22.415840947691244
+            ],
+            [
+              73.25078422378766,
+              22.415840947691244
+            ],
+            [
+              73.25078422378766,
+              22.416739262975362
+            ],
+            [
+              73.25042489767402,
+              22.416739262975362
+            ],
+            [
+              73.25042489767402,
+              22.41691892603219
+            ],
+            [
+              73.24934691933308,
+              22.41691892603219
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-068",
+        "name": "Construction Site 68",
+        "coordinates": [
+          22.416360408268584,
+          73.25004213724863
+        ],
+        "riskScore": 66.2,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 16928.73694103541,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.25060456073085,
+              22.41242734961159
+            ],
+            [
+              73.25060456073085,
+              22.41152903432747
+            ],
+            [
+              73.25078422378766,
+              22.41152903432747
+            ],
+            [
+              73.25078422378766,
+              22.410990045156996
+            ],
+            [
+              73.25240119129909,
+              22.410990045156996
+            ],
+            [
+              73.25240119129909,
+              22.41206802349794
+            ],
+            [
+              73.2518622021286,
+              22.41206802349794
+            ],
+            [
+              73.2518622021286,
+              22.41242734961159
+            ],
+            [
+              73.25060456073085,
+              22.41242734961159
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-069",
+        "name": "Construction Site 69",
+        "coordinates": [
+          22.411682127495606,
+          73.25148389752306
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 26129.967684389234,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.25114354990131,
+              22.40919341458876
+            ],
+            [
+              73.25114354990131,
+              22.40739678402052
+            ],
+            [
+              73.25204186518543,
+              22.40739678402052
+            ],
+            [
+              73.25204186518543,
+              22.408115436247815
+            ],
+            [
+              73.25222152824226,
+              22.408115436247815
+            ],
+            [
+              73.25222152824226,
+              22.40919341458876
+            ],
+            [
+              73.25114354990131,
+              22.40919341458876
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-070",
+        "name": "Construction Site 70",
+        "coordinates": [
+          22.4083335985311,
+          73.25165045638308
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 20610.045446954864,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.25311984352638,
+              22.41063071904335
+            ],
+            [
+              73.25311984352638,
+              22.410451055986528
+            ],
+            [
+              73.25258085435591,
+              22.410451055986528
+            ],
+            [
+              73.25258085435591,
+              22.4102713929297
+            ],
+            [
+              73.25240119129909,
+              22.4102713929297
+            ],
+            [
+              73.25240119129909,
+              22.409373077645583
+            ],
+            [
+              73.25294018046955,
+              22.409373077645583
+            ],
+            [
+              73.25294018046955,
+              22.40919341458876
+            ],
+            [
+              73.25383849575367,
+              22.40919341458876
+            ],
+            [
+              73.25383849575367,
+              22.409373077645583
+            ],
+            [
+              73.2540181588105,
+              22.409373077645583
+            ],
+            [
+              73.2540181588105,
+              22.409552740702406
+            ],
+            [
+              73.25419782186732,
+              22.409552740702406
+            ],
+            [
+              73.25419782186732,
+              22.410451055986528
+            ],
+            [
+              73.2540181588105,
+              22.410451055986528
+            ],
+            [
+              73.2540181588105,
+              22.41063071904335
+            ],
+            [
+              73.25311984352638,
+              22.41063071904335
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-071",
+        "name": "Construction Site 71",
+        "coordinates": [
+          22.409912066816062,
+          73.25332592762099
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 25026.165953044787,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.25294018046955,
+              22.41242734961159
+            ],
+            [
+              73.25294018046955,
+              22.41152903432747
+            ],
+            [
+              73.25311984352638,
+              22.41152903432747
+            ],
+            [
+              73.25311984352638,
+              22.410810382100173
+            ],
+            [
+              73.25437748492415,
+              22.410810382100173
+            ],
+            [
+              73.25437748492415,
+              22.411708697384295
+            ],
+            [
+              73.2540181588105,
+              22.411708697384295
+            ],
+            [
+              73.2540181588105,
+              22.41242734961159
+            ],
+            [
+              73.25294018046955,
+              22.41242734961159
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-072",
+        "name": "Construction Site 72",
+        "coordinates": [
+          22.41158892201308,
+          73.25362888885405
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 22081.64008653294,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.25437748492415,
+              22.437220851453286
+            ],
+            [
+              73.25527580020827,
+              22.437220851453286
+            ],
+            [
+              73.25527580020827,
+              22.43829882979423
+            ],
+            [
+              73.25437748492415,
+              22.43829882979423
+            ],
+            [
+              73.25437748492415,
+              22.437220851453286
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-073",
+        "name": "Construction Site 73",
+        "coordinates": [
+          22.437759840623755,
+          73.2548266425662
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11038.773356261157,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.25473681103779,
+              22.409732403759232
+            ],
+            [
+              73.25563512632192,
+              22.409732403759232
+            ],
+            [
+              73.25563512632192,
+              22.41063071904335
+            ],
+            [
+              73.25473681103779,
+              22.41063071904335
+            ],
+            [
+              73.25473681103779,
+              22.409732403759232
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-074",
+        "name": "Construction Site 74",
+        "coordinates": [
+          22.41018156140129,
+          73.25518596867985
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9200.763191569617,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.25635377854921,
+              22.411349371270646
+            ],
+            [
+              73.25725209383333,
+              22.411349371270646
+            ],
+            [
+              73.25725209383333,
+              22.412247686554764
+            ],
+            [
+              73.25635377854921,
+              22.412247686554764
+            ],
+            [
+              73.25635377854921,
+              22.411349371270646
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-075",
+        "name": "Construction Site 75",
+        "coordinates": [
+          22.411798528912705,
+          73.25680293619126
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9200.644801766864,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.25653344160604,
+              22.388172836940363
+            ],
+            [
+              73.25743175689016,
+              22.388172836940363
+            ],
+            [
+              73.25743175689016,
+              22.389250815281304
+            ],
+            [
+              73.25653344160604,
+              22.389250815281304
+            ],
+            [
+              73.25653344160604,
+              22.388172836940363
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-076",
+        "name": "Construction Site 76",
+        "coordinates": [
+          22.38871182611083,
+          73.25698259924809
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11042.566689799003,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.25653344160604,
+              22.41296633878206
+            ],
+            [
+              73.25743175689016,
+              22.41296633878206
+            ],
+            [
+              73.25743175689016,
+              22.414044317123004
+            ],
+            [
+              73.25653344160604,
+              22.414044317123004
+            ],
+            [
+              73.25653344160604,
+              22.41296633878206
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-077",
+        "name": "Construction Site 77",
+        "coordinates": [
+          22.41350532795253,
+          73.25698259924809
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11040.639195463675,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.25940805051522,
+              22.43829882979423
+            ],
+            [
+              73.26048602885616,
+              22.43829882979423
+            ],
+            [
+              73.26048602885616,
+              22.43919714507835
+            ],
+            [
+              73.25940805051522,
+              22.43919714507835
+            ],
+            [
+              73.25940805051522,
+              22.43829882979423
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-078",
+        "name": "Construction Site 78",
+        "coordinates": [
+          22.43874798743629,
+          73.2599470396857
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11038.644844298013,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.2608453549698,
+              22.390149130565426
+            ],
+            [
+              73.26174367025392,
+              22.390149130565426
+            ],
+            [
+              73.26174367025392,
+              22.391047445849544
+            ],
+            [
+              73.2608453549698,
+              22.391047445849544
+            ],
+            [
+              73.2608453549698,
+              22.390149130565426
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-079",
+        "name": "Construction Site 79",
+        "coordinates": [
+          22.390598288207485,
+          73.26129451261187
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9201.980563978805,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.2622826594244,
+              22.43398691643046
+            ],
+            [
+              73.26318097470852,
+              22.43398691643046
+            ],
+            [
+              73.26318097470852,
+              22.434885231714578
+            ],
+            [
+              73.2622826594244,
+              22.434885231714578
+            ],
+            [
+              73.2622826594244,
+              22.43398691643046
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-080",
+        "name": "Construction Site 80",
+        "coordinates": [
+          22.434436074072522,
+          73.26273181706645
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9199.127151355382,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.26282164859487,
+              22.406318805679575
+            ],
+            [
+              73.26282164859487,
+              22.40595947956593
+            ],
+            [
+              73.26192333331075,
+              22.40595947956593
+            ],
+            [
+              73.26192333331075,
+              22.405061164281808
+            ],
+            [
+              73.26300131165169,
+              22.405061164281808
+            ],
+            [
+              73.26300131165169,
+              22.40470183816816
+            ],
+            [
+              73.26389962693581,
+              22.40470183816816
+            ],
+            [
+              73.26389962693581,
+              22.406139142622752
+            ],
+            [
+              73.26371996387898,
+              22.406139142622752
+            ],
+            [
+              73.26371996387898,
+              22.406318805679575
+            ],
+            [
+              73.26282164859487,
+              22.406318805679575
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-081",
+        "name": "Construction Site 81",
+        "coordinates": [
+          22.405517413886642,
+          73.26304149944073
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 27971.036596072012,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.26318097470852,
+              22.432010622805397
+            ],
+            [
+              73.26407928999264,
+              22.432010622805397
+            ],
+            [
+              73.26407928999264,
+              22.433088601146338
+            ],
+            [
+              73.26318097470852,
+              22.433088601146338
+            ],
+            [
+              73.26318097470852,
+              22.432010622805397
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-082",
+        "name": "Construction Site 82",
+        "coordinates": [
+          22.43254961197587,
+          73.26363013235058
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11039.090421435387,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.26246232248123,
+              22.44566501512401
+            ],
+            [
+              73.26425895304946,
+              22.44566501512401
+            ],
+            [
+              73.26425895304946,
+              22.446563330408132
+            ],
+            [
+              73.26246232248123,
+              22.446563330408132
+            ],
+            [
+              73.26246232248123,
+              22.44566501512401
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-083",
+        "name": "Construction Site 83",
+        "coordinates": [
+          22.446114172766073,
+          73.26336063776535
+        ],
+        "riskScore": 68.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 18396.7281434439,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.26389962693581,
+              22.413684991009358
+            ],
+            [
+              73.26389962693581,
+              22.412786675725236
+            ],
+            [
+              73.26443861610629,
+              22.412786675725236
+            ],
+            [
+              73.26443861610629,
+              22.41206802349794
+            ],
+            [
+              73.26533693139041,
+              22.41206802349794
+            ],
+            [
+              73.26533693139041,
+              22.41296633878206
+            ],
+            [
+              73.26515726833358,
+              22.41296633878206
+            ],
+            [
+              73.26515726833358,
+              22.413684991009358
+            ],
+            [
+              73.26389962693581,
+              22.413684991009358
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-084",
+        "name": "Construction Site 84",
+        "coordinates": [
+          22.412940672631095,
+          73.26466961146505
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 20609.13739192896,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.26569625750405,
+              22.31361266835844
+            ],
+            [
+              73.26569625750405,
+              22.31343300530162
+            ],
+            [
+              73.26551659444723,
+              22.31343300530162
+            ],
+            [
+              73.26551659444723,
+              22.312355026960674
+            ],
+            [
+              73.26659457278818,
+              22.312355026960674
+            ],
+            [
+              73.26659457278818,
+              22.31361266835844
+            ],
+            [
+              73.26569625750405,
+              22.31361266835844
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-085",
+        "name": "Construction Site 85",
+        "coordinates": [
+          22.312970701582234,
+          73.26606653868215
+        ],
+        "riskScore": 63.9,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 15099.410009374682,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.26623524667453,
+              22.416020610748067
+            ],
+            [
+              73.26623524667453,
+              22.415840947691244
+            ],
+            [
+              73.26569625750405,
+              22.415840947691244
+            ],
+            [
+              73.26569625750405,
+              22.414403643236653
+            ],
+            [
+              73.26677423584499,
+              22.414403643236653
+            ],
+            [
+              73.26677423584499,
+              22.4147629693503
+            ],
+            [
+              73.2674928880723,
+              22.4147629693503
+            ],
+            [
+              73.2674928880723,
+              22.416020610748067
+            ],
+            [
+              73.26623524667453,
+              22.416020610748067
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-086",
+        "name": "Construction Site 86",
+        "coordinates": [
+          22.41524851444691,
+          73.2665638708734
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 29073.075155752966,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.26677423584499,
+              22.3982339681225
+            ],
+            [
+              73.26677423584499,
+              22.39679666366791
+            ],
+            [
+              73.26767255112911,
+              22.39679666366791
+            ],
+            [
+              73.26767255112911,
+              22.396976326724733
+            ],
+            [
+              73.26803187724276,
+              22.396976326724733
+            ],
+            [
+              73.26803187724276,
+              22.397155989781556
+            ],
+            [
+              73.26821154029959,
+              22.397155989781556
+            ],
+            [
+              73.26821154029959,
+              22.398054305065678
+            ],
+            [
+              73.26785221418594,
+              22.398054305065678
+            ],
+            [
+              73.26785221418594,
+              22.3982339681225
+            ],
+            [
+              73.26677423584499,
+              22.3982339681225
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-087",
+        "name": "Construction Site 87",
+        "coordinates": [
+          22.397533901728668,
+          73.26744022821082
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 21347.435474046066,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.26731322501547,
+              22.432729275032692
+            ],
+            [
+              73.26821154029959,
+              22.432729275032692
+            ],
+            [
+              73.26821154029959,
+              22.43362759031681
+            ],
+            [
+              73.26731322501547,
+              22.43362759031681
+            ],
+            [
+              73.26731322501547,
+              22.432729275032692
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-088",
+        "name": "Construction Site 88",
+        "coordinates": [
+          22.433178432674755,
+          73.26776238265754
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9199.166705709846,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.26785221418594,
+              22.416020610748067
+            ],
+            [
+              73.26785221418594,
+              22.41512229546395
+            ],
+            [
+              73.26767255112911,
+              22.41512229546395
+            ],
+            [
+              73.26767255112911,
+              22.414223980179827
+            ],
+            [
+              73.26875052947005,
+              22.414223980179827
+            ],
+            [
+              73.26875052947005,
+              22.414403643236653
+            ],
+            [
+              73.26928951864053,
+              22.414403643236653
+            ],
+            [
+              73.26928951864053,
+              22.415840947691244
+            ],
+            [
+              73.26893019252688,
+              22.415840947691244
+            ],
+            [
+              73.26893019252688,
+              22.416020610748067
+            ],
+            [
+              73.26785221418594,
+              22.416020610748067
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-089",
+        "name": "Construction Site 89",
+        "coordinates": [
+          22.41510432915826,
+          73.26849001803765
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 29441.064731980034,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.26857086641324,
+              22.31522963586986
+            ],
+            [
+              73.26946918169736,
+              22.31522963586986
+            ],
+            [
+              73.26946918169736,
+              22.3163076142108
+            ],
+            [
+              73.26857086641324,
+              22.3163076142108
+            ],
+            [
+              73.26857086641324,
+              22.31522963586986
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-090",
+        "name": "Construction Site 90",
+        "coordinates": [
+          22.31576862504033,
+          73.2690200240553
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11048.104408118084,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.27485907340207,
+              22.331758637097657
+            ],
+            [
+              73.27575738868619,
+              22.331758637097657
+            ],
+            [
+              73.27575738868619,
+              22.332656952381775
+            ],
+            [
+              73.27485907340207,
+              22.332656952381775
+            ],
+            [
+              73.27485907340207,
+              22.331758637097657
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-091",
+        "name": "Construction Site 91",
+        "coordinates": [
+          22.332207794739713,
+          73.27530823104414
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9205.639768152154,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.27539806257255,
+              22.41530195852077
+            ],
+            [
+              73.2764760409135,
+              22.41530195852077
+            ],
+            [
+              73.2764760409135,
+              22.41620027380489
+            ],
+            [
+              73.27539806257255,
+              22.41620027380489
+            ],
+            [
+              73.27539806257255,
+              22.41530195852077
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-092",
+        "name": "Construction Site 92",
+        "coordinates": [
+          22.415751116162834,
+          73.27593705174301
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11040.274508142606,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.27629637785667,
+              22.41889521965725
+            ],
+            [
+              73.27629637785667,
+              22.41799690437313
+            ],
+            [
+              73.2764760409135,
+              22.41799690437313
+            ],
+            [
+              73.2764760409135,
+              22.417457915202657
+            ],
+            [
+              73.2780930084249,
+              22.417457915202657
+            ],
+            [
+              73.2780930084249,
+              22.41889521965725
+            ],
+            [
+              73.27629637785667,
+              22.41889521965725
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-093",
+        "name": "Construction Site 93",
+        "coordinates": [
+          22.41819406707835,
+          73.2772261925079
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 28336.19408387157,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.27773368231125,
+              22.419973197998193
+            ],
+            [
+              73.2788116606522,
+              22.419973197998193
+            ],
+            [
+              73.2788116606522,
+              22.420871513282314
+            ],
+            [
+              73.27773368231125,
+              22.420871513282314
+            ],
+            [
+              73.27773368231125,
+              22.419973197998193
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-094",
+        "name": "Construction Site 94",
+        "coordinates": [
+          22.42042235564026,
+          73.27827267148172
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11039.887847032418,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.27791334536808,
+              22.409013751531933
+            ],
+            [
+              73.27899132370902,
+              22.409013751531933
+            ],
+            [
+              73.27899132370902,
+              22.409912066816055
+            ],
+            [
+              73.27791334536808,
+              22.409912066816055
+            ],
+            [
+              73.27791334536808,
+              22.409013751531933
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-095",
+        "name": "Construction Site 95",
+        "coordinates": [
+          22.409462909173993,
+          73.27845233453854
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11040.738520825134,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.27970997593631,
+              22.338226507143318
+            ],
+            [
+              73.27970997593631,
+              22.33804684408649
+            ],
+            [
+              73.27917098676585,
+              22.33804684408649
+            ],
+            [
+              73.27917098676585,
+              22.33696886574555
+            ],
+            [
+              73.27935064982267,
+              22.33696886574555
+            ],
+            [
+              73.27935064982267,
+              22.336789202688724
+            ],
+            [
+              73.28060829122043,
+              22.336789202688724
+            ],
+            [
+              73.28060829122043,
+              22.338226507143318
+            ],
+            [
+              73.27970997593631,
+              22.338226507143318
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-096",
+        "name": "Construction Site 96",
+        "coordinates": [
+          22.33748689422606,
+          73.27992257722023
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 22092.61924265699,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.28042862816362,
+              22.41691892603219
+            ],
+            [
+              73.28042862816362,
+              22.41566128463442
+            ],
+            [
+              73.28060829122043,
+              22.41566128463442
+            ],
+            [
+              73.28060829122043,
+              22.415481621577594
+            ],
+            [
+              73.28150660650455,
+              22.415481621577594
+            ],
+            [
+              73.28150660650455,
+              22.41566128463442
+            ],
+            [
+              73.2818659326182,
+              22.41566128463442
+            ],
+            [
+              73.2818659326182,
+              22.416739262975362
+            ],
+            [
+              73.28150660650455,
+              22.416739262975362
+            ],
+            [
+              73.28150660650455,
+              22.41691892603219
+            ],
+            [
+              73.28042862816362,
+              22.41691892603219
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-097",
+        "name": "Construction Site 97",
+        "coordinates": [
+          22.41621093178284,
+          73.28112139673019
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 21712.370744760083,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.28150660650455,
+              22.257737457686208
+            ],
+            [
+              73.28150660650455,
+              22.25683914240209
+            ],
+            [
+              73.28168626956138,
+              22.25683914240209
+            ],
+            [
+              73.28168626956138,
+              22.25647981628844
+            ],
+            [
+              73.2818659326182,
+              22.25647981628844
+            ],
+            [
+              73.2818659326182,
+              22.256300153231617
+            ],
+            [
+              73.28276424790232,
+              22.256300153231617
+            ],
+            [
+              73.28276424790232,
+              22.25737813157256
+            ],
+            [
+              73.2825845848455,
+              22.25737813157256
+            ],
+            [
+              73.2825845848455,
+              22.257557794629385
+            ],
+            [
+              73.28240492178868,
+              22.257557794629385
+            ],
+            [
+              73.28240492178868,
+              22.257737457686208
+            ],
+            [
+              73.28150660650455,
+              22.257737457686208
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-098",
+        "name": "Construction Site 98",
+        "coordinates": [
+          22.25702430534841,
+          73.28214642698242
+        ],
+        "riskScore": 67.6,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 18052.445311639392,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.28348290012961,
+              22.34990460583687
+            ],
+            [
+              73.28456087847056,
+              22.34990460583687
+            ],
+            [
+              73.28456087847056,
+              22.35080292112099
+            ],
+            [
+              73.28348290012961,
+              22.35080292112099
+            ],
+            [
+              73.28348290012961,
+              22.34990460583687
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-099",
+        "name": "Construction Site 99",
+        "coordinates": [
+          22.350353763478928,
+          73.28402188930008
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11045.273905984213,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.28402188930009,
+              22.25935442519762
+            ],
+            [
+              73.28402188930009,
+              22.25791712074303
+            ],
+            [
+              73.28492020458421,
+              22.25791712074303
+            ],
+            [
+              73.28492020458421,
+              22.25827644685668
+            ],
+            [
+              73.28509986764104,
+              22.25827644685668
+            ],
+            [
+              73.28509986764104,
+              22.2591747621408
+            ],
+            [
+              73.28492020458421,
+              22.2591747621408
+            ],
+            [
+              73.28492020458421,
+              22.25935442519762
+            ],
+            [
+              73.28402188930009,
+              22.25935442519762
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-100",
+        "name": "Construction Site 100",
+        "coordinates": [
+          22.258645754251255,
+          73.28453093462775
+        ],
+        "riskScore": 65.7,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 16578.551470055696,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.28420155235692,
+              22.35224022557558
+            ],
+            [
+              73.28527953069786,
+              22.35224022557558
+            ],
+            [
+              73.28527953069786,
+              22.3531385408597
+            ],
+            [
+              73.28420155235692,
+              22.3531385408597
+            ],
+            [
+              73.28420155235692,
+              22.35224022557558
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-101",
+        "name": "Construction Site 101",
+        "coordinates": [
+          22.352689383217633,
+          73.28474054152738
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11045.085590703264,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.28474054152738,
+              22.35044359500734
+            ],
+            [
+              73.28474054152738,
+              22.3493656166664
+            ],
+            [
+              73.2856388568115,
+              22.3493656166664
+            ],
+            [
+              73.2856388568115,
+              22.349545279723223
+            ],
+            [
+              73.28599818292516,
+              22.349545279723223
+            ],
+            [
+              73.28599818292516,
+              22.35044359500734
+            ],
+            [
+              73.28474054152738,
+              22.35044359500734
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-102",
+        "name": "Construction Site 102",
+        "coordinates": [
+          22.349927063718972,
+          73.28534690434417
+        ],
+        "riskScore": 63.4,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 14727.065352001657,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.28509986764104,
+              22.26258836022045
+            ],
+            [
+              73.28509986764104,
+              22.261869707993156
+            ],
+            [
+              73.28474054152738,
+              22.261869707993156
+            ],
+            [
+              73.28474054152738,
+              22.26097139270904
+            ],
+            [
+              73.28599818292516,
+              22.26097139270904
+            ],
+            [
+              73.28599818292516,
+              22.26115105576586
+            ],
+            [
+              73.28635750903881,
+              22.26115105576586
+            ],
+            [
+              73.28635750903881,
+              22.261330718822684
+            ],
+            [
+              73.28653717209562,
+              22.261330718822684
+            ],
+            [
+              73.28653717209562,
+              22.26258836022045
+            ],
+            [
+              73.28509986764104,
+              22.26258836022045
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-103",
+        "name": "Construction Site 103",
+        "coordinates": [
+          22.26176835960213,
+          73.28567801414441
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 28735.506931833443,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.2856388568115,
+              22.424644437475614
+            ],
+            [
+              73.28671683515245,
+              22.424644437475614
+            ],
+            [
+              73.28671683515245,
+              22.42590207887338
+            ],
+            [
+              73.2856388568115,
+              22.42590207887338
+            ],
+            [
+              73.2856388568115,
+              22.424644437475614
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-104",
+        "name": "Construction Site 104",
+        "coordinates": [
+          22.425273258174496,
+          73.28617784598198
+        ],
+        "riskScore": 64.3,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 15455.204657525854,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.2856388568115,
+              22.42410544830514
+            ],
+            [
+              73.2856388568115,
+              22.42266814385055
+            ],
+            [
+              73.28671683515245,
+              22.42266814385055
+            ],
+            [
+              73.28671683515245,
+              22.4230274699642
+            ],
+            [
+              73.28689649820927,
+              22.4230274699642
+            ],
+            [
+              73.28689649820927,
+              22.42410544830514
+            ],
+            [
+              73.2856388568115,
+              22.42410544830514
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-105",
+        "name": "Construction Site 105",
+        "coordinates": [
+          22.423406758639718,
+          73.2862477149485
+        ],
+        "riskScore": 69.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 19871.241075237325,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.28851346572068,
+              22.330860321813535
+            ],
+            [
+              73.2894117810048,
+              22.330860321813535
+            ],
+            [
+              73.2894117810048,
+              22.331758637097657
+            ],
+            [
+              73.28851346572068,
+              22.331758637097657
+            ],
+            [
+              73.28851346572068,
+              22.330860321813535
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-106",
+        "name": "Construction Site 106",
+        "coordinates": [
+          22.331309479455598,
+          73.28896262336276
+        ],
+        "riskScore": 56.5,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 9205.584560853258,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.2894117810048,
+              22.32600941927929
+            ],
+            [
+              73.2894117810048,
+              22.32547043010882
+            ],
+            [
+              73.28923211794799,
+              22.32547043010882
+            ],
+            [
+              73.28923211794799,
+              22.325290767051996
+            ],
+            [
+              73.28905245489116,
+              22.325290767051996
+            ],
+            [
+              73.28905245489116,
+              22.324392451767878
+            ],
+            [
+              73.28995077017528,
+              22.324392451767878
+            ],
+            [
+              73.28995077017528,
+              22.3245721148247
+            ],
+            [
+              73.29013043323211,
+              22.3245721148247
+            ],
+            [
+              73.29013043323211,
+              22.324931440938347
+            ],
+            [
+              73.29031009628893,
+              22.324931440938347
+            ],
+            [
+              73.29031009628893,
+              22.32600941927929
+            ],
+            [
+              73.2894117810048,
+              22.32600941927929
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-107",
+        "name": "Construction Site 107",
+        "coordinates": [
+          22.325180205170874,
+          73.28970546100153
+        ],
+        "riskScore": 68.9,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 19148.426618101865,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.29013043323211,
+              22.423386796077846
+            ],
+            [
+              73.29013043323211,
+              22.42266814385055
+            ],
+            [
+              73.28977110711845,
+              22.42266814385055
+            ],
+            [
+              73.28977110711845,
+              22.421410502452783
+            ],
+            [
+              73.29120841157305,
+              22.421410502452783
+            ],
+            [
+              73.29120841157305,
+              22.423386796077846
+            ],
+            [
+              73.29013043323211,
+              22.423386796077846
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-108",
+        "name": "Construction Site 108",
+        "coordinates": [
+          22.422335767195424,
+          73.29054365826279
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 29438.972182776233,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.29174740074352,
+              22.3696675420875
+            ],
+            [
+              73.29174740074352,
+              22.36787091151926
+            ],
+            [
+              73.29264571602764,
+              22.36787091151926
+            ],
+            [
+              73.29264571602764,
+              22.368230237632908
+            ],
+            [
+              73.29282537908446,
+              22.368230237632908
+            ],
+            [
+              73.29282537908446,
+              22.3696675420875
+            ],
+            [
+              73.29174740074352,
+              22.3696675420875
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-109",
+        "name": "Construction Site 109",
+        "coordinates": [
+          22.36879400791467,
+          73.29227090171945
+        ],
+        "riskScore": 70.0,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 21351.27344684554,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.29246605297081,
+              22.375416759905864
+            ],
+            [
+              73.29246605297081,
+              22.374338781564923
+            ],
+            [
+              73.29336436825493,
+              22.374338781564923
+            ],
+            [
+              73.29336436825493,
+              22.374518444621746
+            ],
+            [
+              73.29354403131175,
+              22.374518444621746
+            ],
+            [
+              73.29354403131175,
+              22.375416759905864
+            ],
+            [
+              73.29246605297081,
+              22.375416759905864
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-110",
+        "name": "Construction Site 110",
+        "coordinates": [
+          22.374890603810883,
+          73.2929922090658
+        ],
+        "riskScore": 61.1,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 12883.8304129649,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.29803560773236,
+              22.25055093541325
+            ],
+            [
+              73.29803560773236,
+              22.25001194624278
+            ],
+            [
+              73.29929324913012,
+              22.25001194624278
+            ],
+            [
+              73.29929324913012,
+              22.250191609299602
+            ],
+            [
+              73.2991135860733,
+              22.250191609299602
+            ],
+            [
+              73.2991135860733,
+              22.25055093541325
+            ],
+            [
+              73.29803560773236,
+              22.25055093541325
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-111",
+        "name": "Construction Site 111",
+        "coordinates": [
+          22.250271984877653,
+          73.29860769272906
+        ],
+        "riskScore": 53.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 7000.150264482229,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.29803560773236,
+              22.26115105576586
+            ],
+            [
+              73.2991135860733,
+              22.26115105576586
+            ],
+            [
+              73.2991135860733,
+              22.262049371049983
+            ],
+            [
+              73.29803560773236,
+              22.262049371049983
+            ],
+            [
+              73.29803560773236,
+              22.26115105576586
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-112",
+        "name": "Construction Site 112",
+        "coordinates": [
+          22.261600213407924,
+          73.29857459690282
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11052.000900006764,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.29965257524377,
+              22.335351898234133
+            ],
+            [
+              73.30001190135742,
+              22.335351898234133
+            ],
+            [
+              73.30001190135742,
+              22.336250213518255
+            ],
+            [
+              73.29965257524377,
+              22.336250213518255
+            ],
+            [
+              73.29965257524377,
+              22.335351898234133
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-113",
+        "name": "Construction Site 113",
+        "coordinates": [
+          22.335801055876193,
+          73.2998322383006
+        ],
+        "riskScore": 49.6,
+        "riskLevel": "medium",
+        "permitStatus": "unregistered",
+        "areaM2": 3682.081983492257,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.29947291218694,
+              22.378830357985517
+            ],
+            [
+              73.29947291218694,
+              22.37847103187187
+            ],
+            [
+              73.29929324913012,
+              22.37847103187187
+            ],
+            [
+              73.29929324913012,
+              22.377393053530927
+            ],
+            [
+              73.30001190135742,
+              22.377393053530927
+            ],
+            [
+              73.30001190135742,
+              22.378830357985517
+            ],
+            [
+              73.29947291218694,
+              22.378830357985517
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "site-114",
+        "name": "Construction Site 114",
+        "coordinates": [
+          22.378075773146854,
+          73.29967054154943
+        ],
+        "riskScore": 58.8,
+        "riskLevel": "high",
+        "permitStatus": "unregistered",
+        "areaM2": 11042.96721703196,
+        "activeDays": 246,
+        "nearbySchools": 0,
+        "nearbyHospitals": 0,
+        "detectedAt": "2025-10-01",
+        "lastUpdated": "2026-06-04",
+        "ward": null,
+        "address": null
+      }
+    }
+  ]
+}

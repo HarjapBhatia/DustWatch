@@ -1,4 +1,3 @@
-
 import os
 from pathlib import Path
 from dotenv import load_dotenv
@@ -6,7 +5,7 @@ from dotenv import load_dotenv
 
 #PROJECT PATHS
 PIPELINE_DIR = Path(__file__).resolve().parent
-ROOT_DIR = PIPELINE_DIR.parent
+ROOT_DIR = PIPELINE_DIR.parent.parent.parent  # scripts/apps/backend -> project root
 
 load_dotenv(ROOT_DIR / ".env")
 load_dotenv(ROOT_DIR / "scripts" / "apps" / "backend" / ".env")
@@ -52,10 +51,10 @@ CHANGE_EXPORT_PREFIX = "vadodara_change_detection"
 
 #IMAGERY CONFIG
 T1_START = "2025-01-01"
-T1_END = "2025-04-01"
+T1_END = "2025-04-30"
 
 T2_START = "2025-10-01"
-T2_END = "2026-01-01"
+T2_END = "2025-12-31"
 
 CLOUD_COVER_MAX = 20
 EXPORT_SCALE = 10

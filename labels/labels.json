@@ -1,0 +1,802 @@
+[
+  {
+    "patch": "patch_row3072_col3584.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row384_col512.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row3072_col3072.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row0_col768.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row384_col640.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row256_col640.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row3072_col2944.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row0_col896.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row512_col128.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row256_col512.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row128_col768.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2048_col3456.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row384_col384.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row512_col0.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row3072_col3456.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2048_col3328.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row0_col1024.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2944_col3072.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row640_col128.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row512_col384.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row128_col896.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2944_col3584.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2048_col3200.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row128_col640.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row256_col768.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row0_col0.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row512_col256.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1280_col2816.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1280_col2944.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row640_col256.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row0_col640.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1152_col2944.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row0_col128.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row3072_col3200.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1152_col2816.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1408_col1536.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1408_col1664.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2176_col2432.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2176_col2944.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2944_col2944.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row512_col512.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1408_col2688.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2176_col2048.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2048_col2944.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row384_col0.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row384_col128.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1280_col2688.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2048_col2432.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2304_col2432.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2048_col3072.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2048_col3584.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1920_col3456.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1920_col2048.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2176_col2816.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2944_col3200.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2176_col2304.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1280_col2560.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row640_col1792.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row0_col1152.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row384_col256.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2304_col2304.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row640_col0.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row512_col1152.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2304_col2048.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2176_col3200.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row128_col128.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1920_col3328.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1408_col768.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1408_col2816.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2304_col2176.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1920_col2176.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2176_col2176.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row384_col768.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2304_col2816.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1536_col1536.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1024_col128.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1408_col2304.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1408_col2560.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row640_col1536.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2048_col2816.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1408_col1792.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row3072_col2560.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2048_col2304.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row128_col1024.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2432_col2304.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row512_col1408.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2304_col2944.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2176_col3072.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row640_col1024.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row640_col896.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1920_col3584.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row512_col1024.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1408_col2432.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2944_col2304.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row640_col768.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1280_col1792.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row1152_col2688.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row512_col1280.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row512_col640.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2304_col2560.npy",
+    "label": 1
+  },
+  {
+    "patch": "patch_row2176_col256.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row0_col3328.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row256_col1792.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row128_col3584.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row128_col2176.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1664_col2944.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1408_col1152.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row640_col3328.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row2048_col256.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row640_col2560.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1536_col1152.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row3072_col256.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row512_col3072.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row2816_col768.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1792_col1536.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row2304_col1408.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row2816_col128.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row0_col2304.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row384_col1792.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row256_col3200.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1024_col2432.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1792_col1024.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row896_col2688.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row0_col384.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row256_col1152.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1920_col1536.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row896_col3584.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1792_col1664.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1280_col1152.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1664_col1920.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1152_col3200.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1536_col3072.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row2688_col0.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row896_col2560.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row0_col1408.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1920_col1408.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row256_col3328.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row896_col3328.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1152_col2304.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1664_col0.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1024_col512.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row0_col1920.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row0_col3456.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1024_col384.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1792_col1792.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row768_col3328.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row128_col3456.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row768_col2432.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1408_col3328.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row2048_col1280.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1280_col256.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row2560_col2944.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row768_col3200.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1792_col1408.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row2944_col128.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row128_col3328.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row0_col3584.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row256_col2560.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row2816_col0.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row896_col2304.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row896_col3456.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row2176_col1280.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row512_col2944.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1280_col3328.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row0_col2176.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1280_col128.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1152_col384.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1664_col1024.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row0_col1792.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row256_col3072.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1280_col3200.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1664_col1792.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row256_col2944.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row2048_col1408.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row256_col2816.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row256_col1280.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row896_col2432.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1408_col3200.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1536_col0.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row256_col1408.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1024_col2304.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row128_col2944.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1280_col0.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row0_col1664.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row0_col2944.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row384_col2944.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row256_col2688.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row2048_col1664.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row0_col1536.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row128_col2560.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row2048_col1536.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row2176_col1664.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row384_col3072.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row2176_col1408.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row2176_col1536.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row1408_col0.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row0_col2688.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row128_col2816.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row0_col2816.npy",
+    "label": 0
+  },
+  {
+    "patch": "patch_row128_col2688.npy",
+    "label": 0
+  }
+]

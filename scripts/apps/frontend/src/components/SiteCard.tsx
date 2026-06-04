@@ -34,6 +34,9 @@ export const SiteCard = ({ site, onClose }: SiteCardProps) => {
             {site.ward ?? 'Ward N/A'} · {site.address ?? 'Address not available'}
           </div>
           <div style={{ fontSize: 12, color: '#555' }}>Detected: {site.detectedAt}</div>
+          <div style={{ fontSize: 12, color: '#555', fontFamily: 'monospace' }}>
+            {site.coordinates[0].toFixed(5)}, {site.coordinates[1].toFixed(5)}
+          </div>
         </div>
         <button
           onClick={onClose}

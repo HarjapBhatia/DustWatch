@@ -1,0 +1,302 @@
+[
+  {
+    "permit_id": "VMC-2024-0001",
+    "project_name": "Alkapuri Commercial Complex",
+    "status": "active",
+    "issued_date": "2024-02-10",
+    "expiry_date": "2026-02-10",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.1680, 22.3120], [73.1710, 22.3120],
+        [73.1710, 22.3145], [73.1680, 22.3145],
+        [73.1680, 22.3120]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0002",
+    "project_name": "Manjalpur Residential Tower",
+    "status": "active",
+    "issued_date": "2024-03-15",
+    "expiry_date": "2026-09-15",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.1850, 22.2780], [73.1890, 22.2780],
+        [73.1890, 22.2810], [73.1850, 22.2810],
+        [73.1850, 22.2780]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0003",
+    "project_name": "Gotri Road Mixed Use Development",
+    "status": "active",
+    "issued_date": "2024-01-20",
+    "expiry_date": "2025-12-20",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.1530, 22.3310], [73.1570, 22.3310],
+        [73.1570, 22.3340], [73.1530, 22.3340],
+        [73.1530, 22.3310]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0004",
+    "project_name": "Waghodia Road Logistics Hub",
+    "status": "inactive",
+    "issued_date": "2023-06-01",
+    "expiry_date": "2025-05-31",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.2150, 22.3050], [73.2200, 22.3050],
+        [73.2200, 22.3090], [73.2150, 22.3090],
+        [73.2150, 22.3050]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0005",
+    "project_name": "Harni Lake View Apartments",
+    "status": "active",
+    "issued_date": "2024-04-05",
+    "expiry_date": "2026-10-05",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.2010, 22.3380], [73.2055, 22.3380],
+        [73.2055, 22.3415], [73.2010, 22.3415],
+        [73.2010, 22.3380]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0006",
+    "project_name": "Karelibaug Society Extension",
+    "status": "active",
+    "issued_date": "2024-05-12",
+    "expiry_date": "2026-05-12",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.1940, 22.3230], [73.1975, 22.3230],
+        [73.1975, 22.3260], [73.1940, 22.3260],
+        [73.1940, 22.3230]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0007",
+    "project_name": "Fatehgunj Commercial Plaza",
+    "status": "inactive",
+    "issued_date": "2023-09-01",
+    "expiry_date": "2025-08-31",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.1760, 22.3180], [73.1795, 22.3180],
+        [73.1795, 22.3210], [73.1760, 22.3210],
+        [73.1760, 22.3180]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0008",
+    "project_name": "Sama Road IT Park",
+    "status": "active",
+    "issued_date": "2024-06-20",
+    "expiry_date": "2027-06-20",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.2080, 22.3150], [73.2120, 22.3150],
+        [73.2120, 22.3185], [73.2080, 22.3185],
+        [73.2080, 22.3150]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0009",
+    "project_name": "Vasna Barrage Road Residential",
+    "status": "active",
+    "issued_date": "2024-07-08",
+    "expiry_date": "2026-07-08",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.1620, 22.2950], [73.1660, 22.2950],
+        [73.1660, 22.2980], [73.1620, 22.2980],
+        [73.1620, 22.2950]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0010",
+    "project_name": "Tarsali Industrial Shed",
+    "status": "inactive",
+    "issued_date": "2023-03-15",
+    "expiry_date": "2025-03-14",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.1900, 22.2720], [73.1940, 22.2720],
+        [73.1940, 22.2750], [73.1900, 22.2750],
+        [73.1900, 22.2720]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0011",
+    "project_name": "New VIP Road Office Block",
+    "status": "active",
+    "issued_date": "2024-08-01",
+    "expiry_date": "2026-08-01",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.1720, 22.3060], [73.1755, 22.3060],
+        [73.1755, 22.3090], [73.1720, 22.3090],
+        [73.1720, 22.3060]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0012",
+    "project_name": "Subhanpura Housing Project",
+    "status": "active",
+    "issued_date": "2024-09-10",
+    "expiry_date": "2026-12-10",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.1580, 22.3250], [73.1615, 22.3250],
+        [73.1615, 22.3280], [73.1580, 22.3280],
+        [73.1580, 22.3250]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0013",
+    "project_name": "Gorwa Chemical Plant Expansion",
+    "status": "inactive",
+    "issued_date": "2022-11-01",
+    "expiry_date": "2024-10-31",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.1430, 22.3350], [73.1470, 22.3350],
+        [73.1470, 22.3385], [73.1430, 22.3385],
+        [73.1430, 22.3350]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0014",
+    "project_name": "Akota Stadium Area Development",
+    "status": "active",
+    "issued_date": "2024-10-01",
+    "expiry_date": "2027-03-01",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.1640, 22.3155], [73.1675, 22.3155],
+        [73.1675, 22.3185], [73.1640, 22.3185],
+        [73.1640, 22.3155]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0015",
+    "project_name": "Maneja GIDC Warehouse",
+    "status": "active",
+    "issued_date": "2024-11-15",
+    "expiry_date": "2026-11-15",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.2250, 22.2850], [73.2290, 22.2850],
+        [73.2290, 22.2885], [73.2250, 22.2885],
+        [73.2250, 22.2850]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0016",
+    "project_name": "Pratapnagar Road Retail Strip",
+    "status": "inactive",
+    "issued_date": "2023-01-20",
+    "expiry_date": "2025-01-19",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.1980, 22.3420], [73.2015, 22.3420],
+        [73.2015, 22.3450], [73.1980, 22.3450],
+        [73.1980, 22.3420]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0017",
+    "project_name": "Chhani Road Textile Unit",
+    "status": "active",
+    "issued_date": "2024-12-01",
+    "expiry_date": "2027-12-01",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.1340, 22.3500], [73.1380, 22.3500],
+        [73.1380, 22.3535], [73.1340, 22.3535],
+        [73.1340, 22.3500]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0018",
+    "project_name": "Nizampura Industrial Plot",
+    "status": "active",
+    "issued_date": "2024-03-22",
+    "expiry_date": "2026-03-22",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.1790, 22.3400], [73.1825, 22.3400],
+        [73.1825, 22.3430], [73.1790, 22.3430],
+        [73.1790, 22.3400]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0019",
+    "project_name": "Makarpura Defence Colony Housing",
+    "status": "inactive",
+    "issued_date": "2022-07-01",
+    "expiry_date": "2024-06-30",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.1700, 22.2680], [73.1740, 22.2680],
+        [73.1740, 22.2710], [73.1700, 22.2710],
+        [73.1700, 22.2680]
+      ]]
+    }
+  },
+  {
+    "permit_id": "VMC-2024-0020",
+    "project_name": "Diwalipura Road Apartments",
+    "status": "active",
+    "issued_date": "2025-01-10",
+    "expiry_date": "2027-01-10",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [73.1610, 22.3080], [73.1645, 22.3080],
+        [73.1645, 22.3110], [73.1610, 22.3110],
+        [73.1610, 22.3080]
+      ]]
+    }
+  }
+]

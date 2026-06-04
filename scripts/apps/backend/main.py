@@ -4,9 +4,11 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from routers.sites import router as sites_router
 from routers.stats import router as stats_router
+from routers.layers import router as layers_router
 
 
 app = FastAPI(
@@ -23,8 +25,11 @@ app.add_middleware(
 	allow_headers=["*"],
 )
 
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 app.include_router(sites_router, prefix="/api")
 app.include_router(stats_router, prefix="/api")
+app.include_router(layers_router)
 
 
 @app.get("/")

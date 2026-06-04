@@ -15,12 +15,24 @@ VADODARA_AOI = ee.Geometry.Rectangle([73.10, 22.25, 73.30, 22.45])
 
 
 def get_sentinel2_composite(date_start: str, date_end: str) -> ee.Image:
-	collection = (
-		ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-		.filterBounds(VADODARA_AOI)
-		.filterDate(date_start, date_end)
-		.filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE", 20))
-	)
+	collection = None
+	for threshold in [20, 50, 80]:
+		candidate = (
+			ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+			.filterBounds(VADODARA_AOI)
+			.filterDate(date_start, date_end)
+			.filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE", threshold))
+		)
+		if candidate.size().getInfo() > 0:
+			collection = candidate
+			if threshold > 20:
+				print(f"  Warning: used {threshold}% cloud threshold for {date_start}–{date_end}")
+			break
+	if collection is None:
+		raise ValueError(
+			f"No Sentinel-2 images found for {date_start}–{date_end} in the AOI "
+			"even at 80% cloud cover. Use a different date range."
+		)
 
 	median = collection.median()
 
@@ -59,3 +71,19 @@ def get_combined_composite(date_start: str, date_end: str) -> ee.Image:
 	sentinel2 = get_sentinel2_composite(date_start, date_end)
 	sentinel1 = get_sentinel1_composite(date_start, date_end)
 	return ee.Image.cat([sentinel2, sentinel1])
+
+
+def get_monthly_composites(year_month_list: list) -> list:
+	"""Return one Sentinel-2 median composite per (start, end) tuple."""
+	composites = []
+	for date_start, date_end in year_month_list:
+		composites.append(get_sentinel2_composite(date_start, date_end))
+	return composites
+
+
+def get_monthly_sar_composites(year_month_list: list) -> list:
+	"""Return one Sentinel-1 median composite per (start, end) tuple."""
+	composites = []
+	for date_start, date_end in year_month_list:
+		composites.append(get_sentinel1_composite(date_start, date_end))
+	return composites
