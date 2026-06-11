@@ -341,22 +341,6 @@ Near-term priorities for moving from prototype to production:
 
 ---
 
-## Team
-
-Dhairya Sharma (lead developer, ML pipeline)
-Harjap Singh Bhatia (data engineering, satellite processing)
-
-Parul University, Parul Institute of Engineering and Technology
-Vadodara, Gujarat, India
-
----
-
-## Acknowledgements
-
-This project was developed for the Parul University Environment Hackathon under the SDG Olympiad 2026 framework. We acknowledge the European Space Agency Copernicus Programme for free access to Sentinel satellite data, the Google Earth Engine team for the geospatial processing platform, and the OpenStreetMap community for proximity reference data.
-
----
-
 ## License
 
 This project is released under the MIT License. See `LICENSE` for details.
