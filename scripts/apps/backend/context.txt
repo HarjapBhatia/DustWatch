@@ -1,376 +1,940 @@
-DustWatch — Dev A Complete Brief (Data / ML / Backend)
-
-What Is DustWatch
-A satellite + AI platform that scans Indian cities to identify active construction sites, scores their pollution risk, and publishes verified violation evidence publicly — empowering residents, journalists, and NGOs to demand accountability.
-Your role: Build the entire data pipeline — from pulling satellite imagery to serving predictions via a REST API that the frontend consumes.
-
-Monorepo Structure (Your Part)
-dustwatch/
-├── apps/
-│   └── backend/
-│       ├── main.py                   # FastAPI app entry point
-│       ├── requirements.txt
-│       ├── .env.example
-│       ├── routers/
-│       │   ├── sites.py              # GET /api/sites, GET /api/sites/:id
-│       │   └── stats.py              # GET /api/stats
-│       ├── services/
-│       │   ├── gee_client.py         # GEE auth + image fetch
-│       │   ├── change_detection.py   # bi-temporal diff
-│       │   ├── classifier.py         # load model, run inference
-│       │   ├── risk_scorer.py        # composite score
-│       │   └── permit_lookup.py      # AMC permit cross-reference
-│       ├── models/
-│       │   └── site.py               # Pydantic schemas
-│       └── scripts/
-│           ├── gee_pipeline.py       # standalone GEE run → GeoJSON
-│           ├── train_model.py        # train RF → save .pkl
-│           └── seed_db.py            # load GeoJSON into app
-└── data/
-    ├── raw/                          # .tif files (gitignored)
-    ├── processed/                    # indexed rasters (gitignored)
-    ├── models/                       # .pkl files (gitignored)
-    └── samples/
-        ├── ahmedabad_sites.geojson   # YOUR primary output for frontend
-        └── amc_permits.json          # static permit data
-
-Tech Stack
-Python 3.10+
-FastAPI + Uvicorn          # REST API
-earthengine-api            # Google Earth Engine
-geemap                     # GEE helper library
-geopandas + shapely        # geospatial processing
-scikit-learn               # Random Forest classifier
-numpy + rasterio           # raster processing
-Pydantic                   # data validation
-python-dotenv              # env vars
-Install everything:
-bashpip install fastapi uvicorn earthengine-api geemap geopandas shapely scikit-learn numpy rasterio pydantic python-dotenv
-
-The Pipeline — Layer by Layer
-Layer 1 — GEE Data Ingestion (scripts/gee_pipeline.py)
-Goal: Pull Sentinel-1 + Sentinel-2 imagery for Ahmedabad, compute indices, export as analysis-ready tiles.
-pythonimport ee
-ee.Authenticate()
-ee.Initialize(project='your-project-id')
-
-# Ahmedabad bounding box
-AOI = ee.Geometry.Rectangle([72.43, 22.87, 72.73, 23.13])
-
-# Sentinel-2 — optical, 10m resolution
-s2 = (ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
-        .filterBounds(AOI)
-        .filterDate('2025-11-01', '2026-05-01')
-        .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20))
-        .median())
-
-# Key indices
-ndvi = s2.normalizedDifference(['B8', 'B4']).rename('NDVI')
-ndbi = s2.normalizedDifference(['B11', 'B8']).rename('NDBI')
-bsi  = s2.expression(
-    '((SWIR + RED) - (NIR + BLUE)) / ((SWIR + RED) + (NIR + BLUE))',
-    {'SWIR': s2.select('B11'), 'RED': s2.select('B4'),
-     'NIR': s2.select('B8'),  'BLUE': s2.select('B2')}
-).rename('BSI')
-
-# Sentinel-1 SAR — cloud-proof
-s1 = (ee.ImageCollection('COPERNICUS/S1_GRD')
-        .filterBounds(AOI)
-        .filterDate('2025-11-01', '2026-05-01')
-        .filter(ee.Filter.eq('instrumentMode', 'IW'))
-        .select(['VV', 'VH'])
-        .mean())
-
-# Stack all bands
-composite = ee.Image.cat([s2.select(['B2','B3','B4','B8','B11']),
-                          ndvi, ndbi, bsi, s1])
-GEE Setup Steps:
-
-Create a Google account if needed
-Sign up at earthengine.google.com (free for research)
-Create a Google Cloud project, enable Earth Engine API
-Run earthengine authenticate in terminal
-Use Google Colab if local setup is slow — GEE works there out of the box
+================================================================================
+DUSTWATCH — COMPLETE PROJECT CONTEXT
+================================================================================
+Written: June 2026
+Status: Hackathon Prototype (Parul University SDG Olympiad 2026)
+Target City: Vadodara, Gujarat, India
+================================================================================
 
 
-Layer 2 — Change Detection (services/change_detection.py)
-Goal: Compare the same area across two time periods to find zones that changed from vegetated/built → bare soil.
-pythondef detect_changes(aoi, date_before_start, date_before_end,
-                   date_after_start, date_after_end):
-    """
-    Returns GEE image of change magnitude.
-    High values = likely new construction activity.
-    """
-    def get_bsi(date_start, date_end):
-        return (ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
-                  .filterBounds(aoi)
-                  .filterDate(date_start, date_end)
-                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20))
-                  .median()
-                  .expression(
-                      '((SWIR+RED)-(NIR+BLUE))/((SWIR+RED)+(NIR+BLUE))',
-                      {'SWIR': ee.Image().select('B11'),
-                       'RED':  ee.Image().select('B4'),
-                       'NIR':  ee.Image().select('B8'),
-                       'BLUE': ee.Image().select('B2')}))
+================================================================================
+SECTION 1: WHAT IS DUSTWATCH (THE ELEVATOR PITCH)
+================================================================================
 
-    bsi_before = get_bsi(date_before_start, date_before_end)
-    bsi_after  = get_bsi(date_after_start,  date_after_end)
-    change     = bsi_after.subtract(bsi_before)
+DustWatch is a satellite-powered AI platform that detects active construction
+sites in Indian cities using free satellite imagery, scores them by pollution
+risk, and makes the evidence publicly accessible.
 
-    # Threshold: pixels that increased BSI significantly = bare soil exposed
-    candidate_zones = change.gt(0.15)
-    return candidate_zones
+The problem it solves:
+  - Construction activity contributes roughly 30% of urban PM10 dust pollution
+    in Indian cities.
+  - Most construction operates with self-reported compliance. Many sites have
+    no building permit at all — they are invisible to municipal authorities.
+  - There is no independent, scalable way to verify which construction sites
+    exist, how big they are, or whether they follow dust suppression rules.
 
-Layer 3 — ML Classifier (services/classifier.py)
-Goal: Train a Random Forest on labeled image patches to distinguish construction sites from other land use changes.
-Training data labeling approach:
+What DustWatch does:
+  1. Downloads satellite imagery from ESA's Sentinel-1 (radar) and Sentinel-2
+     (optical) satellites via Google Earth Engine — completely free data.
+  2. Runs change detection algorithms to find areas where vegetation was
+     removed and bare soil appeared (a signature of construction activity).
+  3. Feeds those candidate zones into a Random Forest machine learning model
+     that classifies them as "construction" or "not construction."
+  4. Cross-references detected sites against building permit records to flag
+     unregistered/illegal construction.
+  5. Computes a composite risk score for each site based on area, duration,
+     proximity to schools/hospitals, and permit status.
+  6. Serves all this through a REST API that powers a map-based web frontend
+     where anyone can browse, filter, and share detected violations.
 
-Open Google Earth Engine Code Editor
-Visually inspect Ahmedabad and mark ~300 construction site polygons (positive class)
-Mark ~300 non-construction change areas — agriculture, demolition, flooding (negative class)
-Export as a FeatureCollection to use as training data
+Who would use it:
+  - Urban residents concerned about dust near their homes/schools.
+  - Journalists investigating illegal construction.
+  - NGOs filing PILs (Public Interest Litigations) against polluters.
+  - Municipal authorities for independent verification of permit compliance.
 
-pythonfrom sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
-import numpy as np
-import joblib
-
-def train_classifier(features: np.ndarray, labels: np.ndarray, 
-                     save_path: str = 'data/models/rf_model.pkl'):
-    """
-    features: (n_samples, n_bands) — pixel values from GEE patches
-    labels:   (n_samples,) — 1=construction, 0=other
-    """
-    X_train, X_test, y_train, y_test = train_test_split(
-        features, labels, test_size=0.2, random_state=42)
-
-    model = RandomForestClassifier(
-        n_estimators=200,
-        max_depth=15,
-        min_samples_split=5,
-        random_state=42,
-        n_jobs=-1
-    )
-    model.fit(X_train, y_train)
-
-    print(classification_report(y_test, model.predict(X_test)))
-    joblib.dump(model, save_path)
-    print(f"Model saved to {save_path}")
-    return model
-
-def run_inference(model_path: str, image_array: np.ndarray) -> np.ndarray:
-    model = joblib.load(model_path)
-    return model.predict_proba(image_array)[:, 1]  # confidence scores
-
-Layer 4 — Permit Cross-Reference (services/permit_lookup.py)
-Goal: Tag each detected site as registered, unregistered, or expired.
-For Day 1–2, use a static JSON file (data/samples/amc_permits.json). Real AMC permit data can be scraped from ahmedabad.gov.in or obtained via RTI later.
-pythonimport json
-import geopandas as gpd
-from shapely.geometry import shape
-
-def load_permits(path: str = 'data/samples/amc_permits.json'):
-    with open(path) as f:
-        return json.load(f)
-
-def tag_permit_status(site_polygon, permits: list) -> str:
-    """
-    Returns: 'registered' | 'unregistered' | 'expired'
-    """
-    site_geom = shape(site_polygon)
-    for permit in permits:
-        permit_geom = shape(permit['geometry'])
-        if site_geom.intersects(permit_geom):
-            if permit['status'] == 'active':
-                return 'registered'
-            else:
-                return 'expired'
-    return 'unregistered'
-Sample amc_permits.json structure:
-json[
-  {
-    "permit_id": "AMC-2024-0471",
-    "status": "active",
-    "issued_date": "2024-11-15",
-    "expiry_date": "2026-11-15",
-    "geometry": {
-      "type": "Polygon",
-      "coordinates": [[[72.505, 23.038], [72.509, 23.038],
-                        [72.509, 23.041], [72.505, 23.041],
-                        [72.505, 23.038]]]
-    }
-  }
-]
-
-Layer 5 — Risk Scoring (services/risk_scorer.py)
-pythondef compute_risk_score(area_m2: float, active_days: int,
-                       nearby_schools: int, nearby_hospitals: int,
-                       permit_status: str) -> dict:
-    """
-    Returns score (0-100) and risk level label.
-    """
-    # Normalize each factor to 0-1
-    area_score      = min(area_m2 / 20000, 1.0)
-    duration_score  = min(active_days / 90, 1.0)
-    proximity_score = min((nearby_schools * 0.6 +
-                           nearby_hospitals * 0.4) / 5, 1.0)
-    permit_score    = {'registered': 0.0,
-                       'expired': 0.6,
-                       'unregistered': 1.0}[permit_status]
-
-    # Weighted composite
-    score = (area_score      * 0.25 +
-             duration_score  * 0.25 +
-             proximity_score * 0.30 +
-             permit_score    * 0.20) * 100
-
-    if score >= 75:   level = 'critical'
-    elif score >= 50: level = 'high'
-    elif score >= 25: level = 'medium'
-    else:             level = 'low'
-
-    return {'score': round(score, 1), 'level': level}
-
-Layer 6 — FastAPI (main.py + routers/)
-python# main.py
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from routers import sites, stats
-
-app = FastAPI(title="DustWatch API", version="0.1.0")
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-app.include_router(sites.router, prefix="/api")
-app.include_router(stats.router, prefix="/api")
-python# routers/sites.py
-from fastapi import APIRouter
-from models.site import ConstructionSite, CityStats
-import json
-
-router = APIRouter()
-
-def load_sites():
-    with open('data/samples/ahmedabad_sites.geojson') as f:
-        return json.load(f)
-
-@router.get("/sites", response_model=list[ConstructionSite])
-def get_sites():
-    return load_sites()['features']
-
-@router.get("/sites/{site_id}", response_model=ConstructionSite)
-def get_site(site_id: str):
-    sites = load_sites()['features']
-    return next(s for s in sites if s['id'] == site_id)
-
-Pydantic Schema (models/site.py)
-This must match the TypeScript types exactly so the frontend consumes it without transformation:
-pythonfrom pydantic import BaseModel
-from typing import Optional, Literal
-from datetime import date
-
-RiskLevel    = Literal['critical', 'high', 'medium', 'low']
-PermitStatus = Literal['registered', 'unregistered', 'expired']
-
-class ConstructionSite(BaseModel):
-    id: str
-    name: str
-    coordinates: list[float]        # [lat, lng]
-    polygon: list[list[float]]
-    riskLevel: RiskLevel
-    riskScore: float
-    permitStatus: PermitStatus
-    areaM2: float
-    activeDays: int
-    nearbySchools: int
-    nearbyHospitals: int
-    detectedAt: str
-    lastUpdated: str
-    satelliteImageBefore: Optional[str] = None
-    satelliteImageAfter: Optional[str] = None
-    ward: Optional[str] = None
-    address: Optional[str] = None
-
-class CityStats(BaseModel):
-    totalSites: int
-    critical: int
-    high: int
-    medium: int
-    low: int
-    unregistered: int
-    populationExposed: int
-    lastUpdated: str
-
-The Most Important File for Day 1–2
-data/samples/ahmedabad_sites.geojson — this is what unblocks Dev B immediately. Create this manually on Day 1 with 5–6 real Ahmedabad construction sites you can spot on Google Maps. Dev B's entire frontend runs off this file until the real ML pipeline is ready.
-json{
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "id": "site-001",
-      "name": "SG Highway Flyover Extension",
-      "coordinates": [23.0395, 72.5070],
-      "polygon": [[23.038,72.505],[23.041,72.505],
-                  [23.041,72.509],[23.038,72.509]],
-      "riskLevel": "critical",
-      "riskScore": 91,
-      "permitStatus": "registered",
-      "areaM2": 12400,
-      "activeDays": 47,
-      "nearbySchools": 3,
-      "nearbyHospitals": 1,
-      "detectedAt": "2026-04-01",
-      "lastUpdated": "2026-05-20",
-      "ward": "Satellite",
-      "address": "SG Highway, Ahmedabad"
-    }
-  ]
-}
-
-Day-by-Day Focus
-Day 1
-
-GEE account setup + authentication
-Pull Sentinel-2 imagery for Ahmedabad in GEE Code Editor (browser-based, no local setup needed)
-Compute NDVI, NDBI, BSI indices
-Create ahmedabad_sites.geojson manually with 5 real sites → share with Dev B immediately
-
-Day 2
-
-Write change detection script
-Label training patches in GEE Code Editor
-Train Random Forest, evaluate accuracy
-Export predictions as GeoJSON
-
-Day 3 (integration with Dev B)
-
-Wrap pipeline output in FastAPI
-Serve /api/sites and /api/stats
-Test end-to-end with Dev B
-
-Day 4
-
-Deploy backend to Render.com (free tier)
-Support Dev B with demo video
+What makes it unique:
+  - Every detection is traceable to publicly available satellite imagery.
+    Anyone can independently verify a detection by checking the same Sentinel
+    images on Google Earth Engine.
+  - It does NOT claim to measure air quality. It identifies dust SOURCES
+    (construction sites) and estimates their contribution using physics-based
+    dispersion modeling.
 
 
-Run the API
-bashcd dustwatch/apps/backend
-uvicorn main:app --reload --port 8000
-API will be live at http://localhost:8000. Docs auto-generated at http://localhost:8000/docs.
+================================================================================
+SECTION 2: THE TECH STACK
+================================================================================
 
-Key Links
+Backend (Python 3.10+):
+  - FastAPI + Uvicorn — REST API framework
+  - Google Earth Engine (earthengine-api, geemap) — satellite data access
+  - scikit-learn — Random Forest classifier
+  - rasterio — GeoTIFF raster processing
+  - geopandas + shapely — geospatial polygon operations
+  - numpy + pandas — data processing
+  - Pydantic — API data validation
+  - python-dotenv — environment variable management
+  - requests — HTTP client for weather/OSM APIs
+  - joblib — model serialization
+  - pyproj — coordinate system transformations
+  - matplotlib + Pillow — dust dispersion heatmap rendering
 
-GEE Code Editor (browser): code.earthengine.google.com
-GEE Python docs: developers.google.com/earth-engine/guides/python_install
-Sentinel-2 dataset: developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED
-Sentinel-1 dataset: developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD
-Render.com free deploy: render.com
-FastAPI docs: fastapi.tiangolo.com
+Frontend (TypeScript):
+  - React 19 + TypeScript 6
+  - Vite 8 — build tool and dev server
+  - Leaflet.js + react-leaflet — interactive map
+  - Axios — HTTP client for API calls
+  - Tailwind CSS — styling (installed but lightly used; most styling is inline)
+  - date-fns — date formatting
+
+Data Sources:
+  - Sentinel-2 SR Harmonized (Copernicus/ESA) — 10m optical imagery
+  - Sentinel-1 GRD (Copernicus/ESA) — radar imagery (works through clouds)
+  - OpenStreetMap (Nominatim API) — school/hospital locations
+  - Open-Meteo Archive API — historical wind speed/direction data
+  - VMC permit data — placeholder/sample only (20 fake permits)
+
+
+================================================================================
+SECTION 3: PROJECT FOLDER STRUCTURE (WHAT EACH FOLDER DOES)
+================================================================================
+
+DustWatch/
+├── .git/                          Git version control
+├── .gitignore                     Excludes .tif, .npy, .pkl, node_modules, etc.
+├── .venv/                         Python virtual environment (local only)
+├── .vscode/                       VS Code editor settings
+│   └── settings.json              Python interpreter path configuration
+├── README.md                      Project documentation (has merge conflict markers!)
+├── package.json                   Empty — root-level npm config placeholder
+│
+├── data/                          ALL DATA ARTIFACTS (most are gitignored)
+│   ├── raw/                       Downloaded satellite GeoTIFF files (~1GB total)
+│   │   ├── ahmedabad_sentinel_stack_...tif    Ahmedabad imagery (301MB, UNUSED)
+│   │   ├── vadodara_change_detection.tif      Main 8-band change detection raster (498MB)
+│   │   └── vadodara_sentinel_stack_...tif     Vadodara imagery stack (246MB)
+│   ├── patches/                   726 numpy patch files + index (~1.5GB total)
+│   │   ├── patch_row*_col*.npy    256x256 pixel patches (2MB each)
+│   │   └── patches_index.json     Index with priority scores for all patches
+│   ├── models/                    Trained ML model
+│   │   └── rf_construction_model.pkl  Random Forest classifier (248KB)
+│   ├── outputs/                   Pipeline output files
+│   │   ├── construction_sites.geojson  Detected construction sites (from data-pipeline)
+│   │   └── feature_importance.json     Feature importance rankings
+│   ├── samples/                   Sample/seed data
+│   │   └── vmc_permits.json       20 fake VMC building permits (placeholder)
+│   ├── labels.json                200 labeled patches (100 positive, 100 negative)
+│   ├── labeling_queue.json        Empty — was meant for active learning workflow
+│   ├── pseudo_labels.json         Empty — was meant for semi-supervised learning
+│   └── training_log.json          Training run metadata
+│
+├── labels/                        Alternative labels location
+│   ├── labels.json                Another copy of patch labels
+│   └── construction_sites.geojson Another copy of detected sites
+│
+├── data-pipeline/                 STANDALONE ML PIPELINE (runs independently)
+│   ├── config.py                  Pipeline configuration (paths, GEE settings)
+│   ├── change_detection.py        GEE change detection + Drive export
+│   ├── extract_patches.py         Raster → numpy patch extraction
+│   ├── create_starter_labels.py   Auto-generate weak labels from heuristics
+│   ├── suggest_patches.py         Active learning — suggest patches to label
+│   ├── train_model.py             Train Random Forest on labeled patches
+│   ├── generate_geojson.py        Run model on full raster → GeoJSON output
+│   └── requirements.txt           Python dependencies for this pipeline
+│
+└── scripts/
+    ├── .gitignore                 Ignores node_modules
+    ├── README.md                  Scripts documentation
+    └── apps/
+        ├── backend/               FASTAPI BACKEND APPLICATION
+        │   ├── main.py            App entry point (FastAPI, CORS, router mounts)
+        │   ├── config.py          Shared configuration (paths, GEE, imagery dates)
+        │   ├── requirements.txt   Python dependencies
+        │   ├── .env               GEE_PROJECT_ID (gitignored)
+        │   ├── .env.example       Template for .env
+        │   ├── context.txt        THIS FILE — project documentation
+        │   ├── models/
+        │   │   └── site.py        Pydantic schemas (ConstructionSite, CityStats)
+        │   ├── routers/
+        │   │   ├── sites.py       GET /api/sites, GET /api/sites/{id}
+        │   │   ├── stats.py       GET /api/stats, GET /api/stats/population_exposure
+        │   │   └── layers.py      GET /api/layers/modeled_dust, /available_periods, /aqi_stations
+        │   ├── services/
+        │   │   ├── gee_client.py       GEE authentication + image compositing
+        │   │   ├── change_detection.py  Multi-band change detection + temporal features
+        │   │   ├── classifier.py       RF model loading, feature extraction, inference
+        │   │   ├── risk_scorer.py      Composite risk scoring + city stats
+        │   │   ├── permit_lookup.py    Permit geospatial cross-reference
+        │   │   ├── dust_dispersion.py  Gaussian plume model for PM10/PM2.5
+        │   │   ├── population_exposure.py Zone-based population exposure (Voronoi zones)
+        │   │   └── weather_client.py   Open-Meteo wind data fetcher + caching
+        │   ├── scripts/
+        │   │   ├── gee_pipeline.py           Main pipeline orchestrator
+        │   │   ├── train_model.py            Synthetic data model trainer
+        │   │   ├── build_real_training_data.py  GEE-based real training data builder
+        │   │   ├── retrain_with_labels.py    Retrain model on real labeled data
+        │   │   ├── enrich_proximity.py       OSM school/hospital proximity enrichment
+        │   │   ├── build_dust_dispersion.py  Dust heatmap PNG generator
+        │   │   ├── diagnose_gee.py           GEE connection diagnostics
+        │   │   ├── create_starter_labels.py  Weak label generation
+        │   │   └── extract_patches.py        Raster patch extraction
+        │   ├── data/                   Backend-local data copies
+        │   │   ├── labels/             Training labels
+        │   │   ├── models/             Model files
+        │   │   ├── processed/          Intermediate pipeline outputs
+        │   │   ├── samples/            GeoJSON output + permit data
+        │   │   └── weather/            Cached wind summary JSONs
+        │   └── static/                 Served PNG overlays for dust heatmaps
+        │       ├── dust_*_pm10.png     PM10 heatmaps (3 time periods)
+        │       └── dust_*_pm25.png     PM2.5 heatmaps (3 time periods)
+        │
+        └── frontend/              REACT FRONTEND APPLICATION
+            ├── index.html         HTML entry point
+            ├── package.json       NPM dependencies
+            ├── vite.config.ts     Vite config (proxy /api → localhost:8000)
+            ├── tailwind.config.js Tailwind CSS config
+            ├── tsconfig.json      TypeScript config
+            └── src/
+                ├── main.tsx       React DOM entry point
+                ├── App.tsx        Root component (layout + state management)
+                ├── App.css        Empty — unused
+                ├── index.css      Tailwind imports
+                ├── components/
+                │   ├── Map.tsx       Leaflet map + dust overlay + wind arrow
+                │   ├── Sidebar.tsx   Site list with risk/permit filters
+                │   ├── SiteCard.tsx  Selected site detail panel
+                │   └── StatsBar.tsx  City-wide statistics header bar
+                ├── hooks/
+                │   └── useSites.ts   Data fetching hook (GET /api/sites + /api/stats)
+                ├── types/
+                │   └── index.ts      TypeScript interfaces matching Pydantic schemas
+                └── utils/
+                    └── riskColors.ts  Color constants for risk levels + permits
+
+
+================================================================================
+SECTION 4: EVERY FILE EXPLAINED IN DETAIL
+================================================================================
+
+--- ROOT FILES ---
+
+README.md:
+  The project README. IMPORTANT: It currently has unresolved Git merge conflict
+  markers (<<<<<<< HEAD / >>>>>>> 3d5a2a6). The "HEAD" version is a technical
+  architecture doc; the other version is the hackathon presentation README.
+  Both contain valid information but need to be merged properly.
+
+.gitignore:
+  Excludes .env files, Python caches, data artifacts (.tif, .npy, .pkl),
+  node_modules, and build outputs from version control.
+
+package.json (root):
+  Empty file. Not used for anything. Could be removed.
+
+
+--- data-pipeline/ (STANDALONE ML PIPELINE) ---
+
+This folder contains the original "from-scratch" pipeline that was built first.
+It runs as a sequence of standalone Python scripts, completely separate from the
+backend web app. It works directly with local GeoTIFF raster files.
+
+  config.py:
+    Central configuration for the standalone pipeline. Defines:
+    - All file paths (data dirs, model paths, output paths)
+    - GEE project ID and AOI bounding box for Vadodara
+    - Imagery date ranges (T1: Jan-Apr 2025 "before", T2: Oct 2025-Jan 2026 "after")
+    - Patch extraction parameters (256x256 pixels, stride 128)
+    - Band names for the 8-band change detection stack
+    - ensure_dirs() helper to create output directories
+
+  change_detection.py:
+    Connects to Google Earth Engine and builds an 8-band change detection
+    GeoTIFF. Computes:
+    - Sentinel-2 median composites for "before" and "after" periods
+    - NDVI (vegetation index) for both periods
+    - BSI (bare soil index) for both periods
+    - DELTA_NDVI and DELTA_BSI (temporal differences)
+    - Sentinel-1 SAR VV and VH bands (radar backscatter)
+    Exports the stacked image to Google Drive as a GeoTIFF.
+    This is the FIRST script you run. Takes 10-30 min on GEE.
+
+  extract_patches.py:
+    Takes the downloaded GeoTIFF and slices it into 256x256 pixel patches
+    with 128-pixel overlap (stride). Each patch is saved as a .npy numpy file.
+    Also creates a patches_index.json ranking patches by "construction likelihood"
+    (high BSI change + negative NDVI change = more likely construction).
+    Currently produces 725 patches from the Vadodara raster.
+
+  create_starter_labels.py:
+    Generates weak/heuristic labels automatically. Takes the top 100 patches
+    from patches_index (by priority score) as positive labels (likely
+    construction) and the bottom 100 as negative labels (likely not construction).
+    Saves to labels.json. These are WEAK labels — they're not manually verified.
+
+  suggest_patches.py:
+    An active learning helper. Reads the patches index, filters out already-
+    labeled patches, and suggests up to 400 new patches to label manually.
+    Uses heuristics: high BSI + NDVI drop = suggest as positive; NDVI increase
+    = suggest as negative; known river/road areas = hard negatives.
+    Saves suggestions to labeling_queue.json.
+    NOTE: References config.LABELING_QUEUE_JSON which doesn't exist in config.py.
+    This script would crash if run. It's incomplete.
+
+  train_model.py:
+    Trains a Random Forest classifier on the labeled patches. Loads patches
+    from .npy files, extracts mean band values as features (8 features per
+    patch), splits train/test, trains with 200 estimators, evaluates, and
+    saves the model + feature importance rankings.
+
+  generate_geojson.py:
+    The final inference step. Loads the trained model, scans the entire GeoTIFF
+    with a sliding window, classifies each patch, builds a binary prediction
+    map, vectorizes it into polygons using rasterio.features.shapes, merges
+    overlapping polygons with shapely.unary_union, and saves as GeoJSON.
+
+  requirements.txt:
+    Dependencies: numpy, rasterio, shapely, scikit-learn, joblib, python-dotenv,
+    earthengine-api. No version pins for most packages.
+
+
+--- scripts/apps/backend/ (FASTAPI WEB APPLICATION) ---
+
+This is the SECOND, more complete version of the pipeline that also includes
+a web server. It duplicates and extends the data-pipeline functionality.
+
+  main.py:
+    FastAPI application entry point. Sets up:
+    - CORS middleware allowing localhost:3000 and localhost:5173
+    - Static file serving from /static directory
+    - Three router modules mounted at /api prefix
+    - Root endpoint (/) returning version info
+    - Health check endpoint (/health)
+
+  config.py:
+    Same as data-pipeline/config.py but with paths adjusted for the
+    scripts/apps/backend/ location. ROOT_DIR goes up 3 levels instead of 1.
+    Loads .env from both project root and backend directory.
+    RAISES ValueError if GEE_PROJECT_ID is not set — the backend will not
+    start without it, even if you're not using GEE features.
+
+  requirements.txt:
+    FastAPI, uvicorn, earthengine-api, geemap, geopandas, shapely,
+    scikit-learn, numpy, rasterio, pydantic, python-dotenv, pandas, joblib.
+    No version pins.
+
+  models/site.py:
+    Pydantic data models that define the API response shapes:
+    - ConstructionSite: id, name, coordinates, polygon, riskLevel, riskScore,
+      permitStatus, areaM2, activeDays, nearbySchools, nearbyHospitals,
+      detectedAt, lastUpdated, satelliteImageBefore/After, ward, address
+    - CityStats: totalSites, critical/high/medium/low counts, unregistered
+      count, populationExposed, lastUpdated
+    These schemas MUST match the frontend TypeScript types exactly.
+
+  routers/sites.py:
+    API endpoints for construction site data:
+    - GET /api/sites → returns all sites from vadodara_sites.geojson
+    - GET /api/sites/{site_id} → returns a single site by ID
+    Reads from data/samples/vadodara_sites.geojson (relative path).
+    Returns 404 if the file doesn't exist (pipeline hasn't been run yet).
+
+  routers/stats.py:
+    API endpoint for city-level statistics:
+    - GET /api/stats → aggregates all sites into counts by risk level,
+      permit status, and estimated population exposed.
+      Calls compute_city_stats() from risk_scorer service.
+      Returns zero-stats if the GeoJSON file doesn't exist.
+    - GET /api/stats/population_exposure → calculates estimated residents exposed
+      to modeled dust plumes across 4 zones in Vadodara (Voronoi zones).
+
+  routers/layers.py:
+    API endpoints for the dust dispersion overlay layer:
+    - GET /api/layers/modeled_dust?period=...&pollutant=... → returns the URL
+      of a pre-rendered PNG heatmap, map bounds, wind data, and legend info.
+    - GET /api/layers/available_periods → lists the 3 time periods available.
+    - GET /api/layers/aqi_stations → returns real-time AQI measurement stations
+      for Vadodara using the WAQI (World Air Quality Index) API. Uses WAQI_TOKEN.
+    Validates period (oct_dec_2025, jan_mar_2026, apr_may_2026) and pollutant
+    (pm10, pm25). The PNGs must be pre-generated by build_dust_dispersion.py.
+
+  services/gee_client.py:
+    Google Earth Engine helper functions:
+    - Initializes GEE connection on import (side effect)
+    - get_sentinel2_composite() — fetches S2 imagery, tries cloud thresholds
+      of 20%, 50%, 80% progressively, computes NDVI, NDBI, BSI
+    - get_sentinel1_composite() — fetches S1 SAR mean VV/VH
+    - get_combined_composite() — stacks S2 + S1
+    - get_monthly_composites() — builds one S2 composite per month
+    - get_monthly_sar_composites() — builds one S1 composite per month
+
+  services/change_detection.py:
+    The core detection logic. Two approaches:
+    1. detect_construction_candidates() — simple bi-temporal comparison:
+       BSI increase > 0.08, NDVI decrease > 0.05, after BSI > 0.02,
+       after NDVI < 0.25, SAR VV > -16. Morphological cleanup, vectorize,
+       filter by area (2000-30000 m²).
+    2. compute_temporal_features() — advanced 21-band temporal feature stack
+       from 3 monthly composites. Includes BSI trends, NDVI trends, NDBI
+       (built-up index), MNDWI (water index to filter rivers), SAR trends,
+       VH/VV ratio change, and VV-VH double-bounce proxy.
+
+  services/classifier.py:
+    ML model management:
+    - 21 temporal feature names defined
+    - extract_features() — uses GEE reduceRegions to sample temporal image
+      at candidate polygon centroids
+    - train_classifier() — trains RF with 200 trees, max_depth 15
+    - load_classifier() — loads from .pkl, tries two file paths
+    - run_inference() — runs model.predict_proba, handles shape mismatches
+      by padding with zeros, returns confidence scores
+    - filter_by_confidence() — filters candidates above a threshold
+
+  services/risk_scorer.py:
+    Composite risk scoring algorithm:
+    - Area factor: area_m2 / 20000, capped at 1.0
+    - Duration factor: active_days / 90, capped at 1.0
+    - Proximity factor: (schools*0.6 + hospitals*0.4) / 5, capped at 1.0
+    - Permit factor: registered=0, expired=0.6, unregistered=1.0
+    - Weights: area 25%, duration 25%, proximity 30%, permit 20%
+    - Score = weighted sum × 100 → risk level (critical ≥75, high ≥50,
+      medium ≥25, low <25)
+    - compute_city_stats() — counts sites by risk level, sums population
+      exposed using heuristic formula (areaM2 × 0.012 for critical/high sites)
+
+  services/permit_lookup.py:
+    Cross-references detected site polygons against permit geometries:
+    - load_permits() — reads vmc_permits.json
+    - get_permit_status() — checks if site polygon intersects any permit polygon
+    - tag_sites_with_permits() — tags all sites with permit status
+    Currently uses 20 permit entries. Almost every site gets tagged
+    as "unregistered" because the permit data is not real.
+
+  services/dust_dispersion.py:
+    Gaussian plume air dispersion model:
+    - Computes PM10/PM2.5 concentration grids at 50m resolution
+    - Uses EPA AP-42 emission factors for construction dust
+    - Briggs urban sigma parameterization for plume spread
+    - Builds concentration from all construction sites with given wind
+    - Saves as GeoTIFF and semi-transparent PNG overlay
+    - PNG uses viridis colormap with log-scale normalization
+
+  services/weather_client.py:
+    Fetches historical wind data from Open-Meteo Archive API:
+    - 3 predefined periods (Oct-Dec 2025, Jan-Mar 2026, Apr-May 2026)
+    - Computes vector-averaged wind speed and direction
+    - Caches results as JSON files to avoid repeated API calls
+    - Used by dust dispersion model
+
+  services/population_exposure.py:
+    Zone-level population exposure calculation:
+    - Defines 4 geographical zones of Vadodara (North, East, West, South) with
+      wards, population (2011 Census), area, and centroids.
+    - Uses Voronoi partitioning (nearest centroid by Euclidean distance) to assign
+      each grid cell of the dust dispersion GeoTIFF to a zone.
+    - Computes population exposure by multiplying the exposed area (where dust
+      concentration is above a threshold) with the zone's population density.
+
+  scripts/gee_pipeline.py:
+    THE MAIN PIPELINE ORCHESTRATOR. Run this to generate all detections.
+    Execution flow:
+    1. Initialize GEE
+    2. Run change detection (bi-temporal, saves candidates.geojson)
+    3. Build monthly S2/S1 composites (Oct/Nov/Dec 2025)
+    4. Compute 21-band temporal feature image
+    5. Extract features for each candidate zone
+    6. Run Random Forest inference
+    7. Filter by confidence threshold (0.45)
+    8. Build site records with IDs, coordinates, areas
+    9. Tag permit status
+    10. Compute risk scores
+    11. Filter by area (1000-50000 m²)
+    12. Write output to data/samples/vadodara_sites.geojson
+    Takes 5-15 minutes depending on GEE load.
+
+  scripts/train_model.py:
+    SIMPLE SYNTHETIC DATA TRAINER. Generates fake training data with
+    hardcoded statistical distributions for 5 features (not 21!).
+    Construction class: low NDVI, high BSI, specific SAR ranges.
+    Non-construction: opposite distributions.
+    Trains a basic RF model. This was used as a placeholder before real
+    training data was available.
+    BUG: Line 6 imports numpy as "npe" instead of "np" — this script will
+    crash if run.
+
+  scripts/build_real_training_data.py:
+    Builds REAL training data by sampling GEE imagery at labeled coordinates.
+    Uses a CSV of positive examples (manually verified construction sites)
+    and the pipeline's false positive outputs as negatives.
+    Samples all 21 temporal feature bands at each point.
+    Saves as vadodara_real_training_data.csv.
+
+  scripts/retrain_with_labels.py:
+    Retrains the RF classifier on real labeled data (from build_real_training_data).
+    Key improvements over the simple trainer:
+    - Uses all 21 temporal features
+    - Clips VH/VV ratio outliers
+    - Uses class_weight="balanced" for imbalanced data
+    - 400 estimators, max_depth 10
+    - Runs 5-fold cross-validation
+    - Prints feature importance rankings
+    - Saves to both primary and secondary model paths
+
+  scripts/enrich_proximity.py:
+    Enriches detected sites with proximity data:
+    - Contains hardcoded coordinates for 15 known Vadodara schools and
+      14 known hospitals (manually verified from OSM/Google Maps)
+    - Queries Nominatim (OpenStreetMap) API for additional school/hospital
+      locations
+    - Counts how many schools/hospitals are within 500m of each site
+    - Re-runs risk scoring with updated proximity data
+    - Writes enriched GeoJSON back to the same file
+
+  scripts/build_dust_dispersion.py:
+    Generates dust dispersion heatmap images:
+    - Loads detected sites from GeoJSON
+    - For each of 3 time periods, fetches wind data from weather_client
+    - Runs Gaussian plume model for both PM10 and PM2.5
+    - Saves GeoTIFF rasters and transparent PNG overlays
+    - PNGs are served as static files through the /static endpoint
+
+  scripts/diagnose_gee.py:
+    Diagnostic script for troubleshooting GEE connectivity:
+    - Counts available Sentinel-2 images at various cloud thresholds
+    - Shows monthly image counts for Oct/Nov/Dec 2025
+    - Computes BSI statistics for T1 and T2 periods
+    - Useful for debugging "no images found" errors
+
+  scripts/create_starter_labels.py:
+    Duplicate of data-pipeline/create_starter_labels.py. Same functionality.
+
+  scripts/extract_patches.py:
+    Duplicate of data-pipeline/extract_patches.py. Same functionality.
+
+
+--- scripts/apps/frontend/ (REACT WEB APPLICATION) ---
+
+  index.html:
+    Standard Vite HTML entry point. Loads main.tsx.
+
+  vite.config.ts:
+    Vite configuration. Key settings:
+    - Dev server runs on port 3000
+    - Proxies /api/* to http://localhost:8000 (backend)
+    - Proxies /static/* to http://localhost:8000 (for dust PNGs)
+
+  package.json:
+    Dependencies: React 19, react-leaflet 5, axios, date-fns, leaflet.
+    Dev tools: Vite 8, TypeScript 6, ESLint.
+    Note: Tailwind CSS packages are installed but tailwind.config.js is minimal.
+
+  src/main.tsx:
+    React DOM render entry point. Mounts <App /> to #root.
+
+  src/App.tsx:
+    Root application component. Layout:
+    - StatsBar at the top (city-wide statistics)
+    - Sidebar on the left (site list with filters)
+    - MapView in the center (Leaflet map with polygons)
+    - SiteCard at the bottom (selected site details)
+    Uses useSites() hook to fetch data on mount.
+    Manages selectedSite state for click interactions.
+
+  src/components/Map.tsx:
+    The most complex frontend component:
+    - Leaflet MapContainer centered on Vadodara [22.3072, 73.1812]
+    - OpenStreetMap tile layer as base
+    - Dust dispersion ImageOverlay (fetched from /api/layers/modeled_dust)
+    - Period selector (Oct-Dec 2025, Jan-Mar 2026, Apr-May 2026)
+    - Pollutant selector (PM10, PM2.5)
+    - Color-coded construction site polygons (click to select)
+    - Wind arrow SVG indicator showing wind direction and speed
+    - Viridis gradient legend with log-scale tick labels
+    - LayersControl for toggling dust overlay visibility
+
+  src/components/Sidebar.tsx:
+    Scrollable site list with filter buttons:
+    - All, Critical, High, Medium, Low, Unregistered
+    - Each site shows name, risk score, permit status, active days
+    - Color-coded left border by risk level
+    - Click to select site (highlights in sidebar + map)
+
+  src/components/SiteCard.tsx:
+    Detailed info panel for the selected site:
+    - Name, ward, address, detection date, coordinates
+    - Risk level badge with background color
+    - Permit status badge
+    - 4-column stats grid: area, active days, nearby schools, hospitals
+    - "Share violation" button — copies site summary to clipboard
+    - "Export evidence" button — shows "Coming soon" alert (NOT IMPLEMENTED)
+
+  src/components/StatsBar.tsx:
+    Top header bar showing:
+    - "DustWatch · Vadodara" branding
+    - Risk level badges with counts (Critical, High, Medium, Low)
+    - Population exposed count
+    - Last updated timestamp
+
+  src/hooks/useSites.ts:
+    Data fetching hook that runs on component mount:
+    - Parallel fetches to GET /api/sites and GET /api/stats
+    - Returns { sites, stats, loading, error }
+    - Handles unmount cleanup to prevent state updates on unmounted components
+    - No polling/refresh — data is fetched once on page load
+
+  src/types/index.ts:
+    TypeScript interfaces that mirror the backend Pydantic schemas exactly:
+    - RiskLevel: 'critical' | 'high' | 'medium' | 'low'
+    - PermitStatus: 'registered' | 'unregistered' | 'expired'
+    - ConstructionSite: 23 fields including coordinates, polygon, scores
+    - CityStats: 8 fields for city-level aggregates
+
+  src/utils/riskColors.ts:
+    Color constant maps for consistent styling:
+    - RISK_COLORS: border/polygon colors per risk level
+    - RISK_BG: background colors for badges
+    - RISK_TEXT: text colors for badges
+    - PERMIT_COLORS: colors per permit status
+
+
+================================================================================
+SECTION 5: HOW THE DATA FLOWS (END TO END)
+================================================================================
+
+Step 1: Satellite Imagery Acquisition
+  - GEE downloads Sentinel-2 optical and Sentinel-1 radar imagery for Vadodara
+  - "Before" period: Jan-Apr 2025 (baseline)
+  - "After" period: Oct-Dec 2025 (construction activity period)
+  - Cloud-filtered, median-composited
+
+Step 2: Change Detection
+  - Computes spectral indices (NDVI, BSI, NDBI) for both time periods
+  - Calculates temporal differences (DELTA_NDVI, DELTA_BSI)
+  - Thresholds: BSI increase + NDVI decrease = likely construction
+  - Morphological cleanup to remove noise
+  - Vectorizes binary mask into polygons
+  - Filters by area (2000-30000 m²)
+
+Step 3: Feature Extraction
+  - Builds 21-band temporal feature stack from 3 monthly composites
+  - Samples feature values at each candidate polygon
+  - Features include BSI trends, NDVI trends, NDBI, SAR backscatter, etc.
+
+Step 4: Classification
+  - Random Forest model classifies each candidate
+  - Confidence threshold: 0.45 (candidates below this are dropped)
+  - Model was trained on ~200 labeled examples (67 positives, 134 negatives)
+
+Step 5: Enrichment
+  - Permit cross-referencing against VMC data (currently fake)
+  - Proximity computation to schools/hospitals via OSM
+  - Risk scoring (area × 0.25 + duration × 0.25 + proximity × 0.30 + permit × 0.20)
+  - Dust dispersion modeling (Gaussian plume with real wind data)
+
+Step 6: API Serving
+  - FastAPI reads the GeoJSON output file
+  - Serves sites, stats, and dust layer data to frontend
+  - Static PNG overlays served for dust heatmaps
+
+Step 7: Frontend Display
+  - React app fetches data from API on load
+  - Leaflet map renders site polygons color-coded by risk
+  - Sidebar allows filtering by risk level or permit status
+  - SiteCard shows detailed info when a site is clicked
+  - Dust dispersion overlay can be toggled by time period and pollutant
+
+
+================================================================================
+SECTION 6: WHAT WORKS RIGHT NOW
+================================================================================
+
+1. The full GEE pipeline (gee_pipeline.py) — fetches real satellite data,
+   runs change detection, classifies, scores, and outputs GeoJSON. This is
+   the core value of the project and it works end-to-end.
+
+2. The FastAPI backend — serves the pre-computed GeoJSON to the frontend.
+   All 3 API endpoints work correctly (/api/sites, /api/stats, /api/layers).
+
+3. The React frontend — displays detected sites on a Leaflet map with
+   functional filtering, selection, risk badges, and statistics.
+
+4. Dust dispersion modeling — generates realistic PM10/PM2.5 concentration
+   maps using Gaussian plume physics with real Open-Meteo wind data.
+
+5. The retrain pipeline (retrain_with_labels.py) — properly trains the
+   model on real GEE-sampled data with cross-validation and balanced classes.
+
+6. Proximity enrichment (enrich_proximity.py) — successfully enriches sites
+   with school/hospital counts from both hardcoded and live OSM data.
+
+7. The entire data-pipeline standalone flow — change detection export to
+   Google Drive, patch extraction, labeling, training, and GeoJSON generation.
+
+
+================================================================================
+SECTION 7: WHAT IS BROKEN OR USELESS RIGHT NOW
+================================================================================
+
+BROKEN:
+
+1. README.md has unresolved Git merge conflict markers. The file is not valid
+   markdown until these are resolved.
+
+2. suggest_patches.py references config.LABELING_QUEUE_JSON which is not defined
+   in config.py. This script crashes if run.
+
+4. Backend config.py RAISES ValueError on import if GEE_PROJECT_ID is not set.
+   This means even the basic API server cannot start without a .env file with
+   a valid GEE project ID — even though the API just reads a static JSON file
+   and doesn't need GEE at all for serving.
+
+5. gee_client.py calls ee.Initialize() on import as a side effect. If GEE
+   authentication fails, the entire backend crashes on startup.
+
+USELESS / DEAD CODE:
+
+1. Root package.json — empty file, does nothing.
+
+2. data/labeling_queue.json — empty file (contains just "[]").
+
+3. data/pseudo_labels.json — empty file (contains just "[]"). The semi-
+   supervised learning feature was never implemented.
+
+4. src/App.css — empty file, no styles defined.
+
+5. ahmedabad_sentinel_stack*.tif in data/raw/ — 301MB file for Ahmedabad.
+   The project was pivoted to Vadodara. This file is completely unused and
+   wastes disk space.
+
+6. The old context.txt (this file before rewrite) — referenced Ahmedabad,
+   AMC permits, Dev A/Dev B workflow, and code examples that don't match
+   the actual implementation. Completely outdated.
+
+7. labels/ folder at project root — duplicates data from data/outputs/ and
+   data/labels.json. Confusing redundancy.
+
+8. data-pipeline/ scripts partially duplicate scripts/apps/backend/scripts/.
+   Two parallel implementations of the same pipeline exist.
+
+9. scripts/train_model.py (synthetic data trainer) — generates completely
+   fake training data with only 5 features instead of the 21 features used
+   by the real pipeline. The model it produces is incompatible with the
+   inference pipeline. Made obsolete by retrain_with_labels.py.
+
+10. The "Export evidence" button in SiteCard.tsx — just shows a "Coming soon"
+    alert. The PIL-ready evidence export feature was never built.
+
+
+================================================================================
+SECTION 8: WHAT THE PROJECT CANNOT DO
+================================================================================
+
+1. CANNOT measure actual air quality. It models dust contribution using
+   physics approximations, but cannot tell you real PM10/PM2.5 levels.
+
+2. CANNOT verify permits against real data. The VMC permit data is fake
+   (20 hardcoded entries). Almost every site shows as "unregistered."
+
+3. CANNOT detect construction in real-time. The pipeline uses historical
+   imagery with a weeks-to-months delay from satellite revisit cycles.
+
+4. CANNOT work for cities other than Vadodara without reconfiguration.
+   The AOI bounding box, model training data, school/hospital coordinates,
+   and permit data are all Vadodara-specific.
+
+5. CANNOT run without a Google Earth Engine account. GEE access requires
+   a Google Cloud project with Earth Engine API enabled. The backend crashes
+   without GEE credentials even for basic API serving.
+
+6. CANNOT provide ground-truth accuracy metrics. The model was trained on
+   ~200 labeled examples (small dataset). False positive rates are known to
+   be significant, especially near riverbeds and highways.
+
+7. CANNOT attribute health impacts. The "population exposed" metric uses a
+   crude heuristic (areaM2 × 0.012), not census data or epidemiological
+   models.
+
+8. CANNOT track individual sites over time. Each pipeline run is a snapshot.
+   There is no temporal tracking, change history, or site status updates.
+
+9. CANNOT send alerts or notifications. There is no email, SMS, or push
+   notification system. Data is only viewable through the web interface.
+
+10. CANNOT be deployed publicly as-is. The backend requires GEE credentials
+    that cannot be shared publicly, and the pipeline is run manually.
+
+
+================================================================================
+SECTION 9: WHAT CAN BE IMPLEMENTED FOR PRODUCTION SCALE
+================================================================================
+
+NEAR-TERM (1-3 months, realistic with current architecture):
+
+1. Decouple GEE from API serving. The backend should serve pre-computed
+   GeoJSON without requiring GEE credentials. GEE should only be needed
+   for the pipeline scripts. This is the #1 blocker for deployment.
+
+2. Add a real database. Replace JSON file reads with PostgreSQL + PostGIS.
+   Store sites, historical detections, and user data properly.
+
+3. Scheduled pipeline runs. Use a cron job or task queue (Celery) to run
+   the GEE pipeline weekly/monthly and update the database automatically.
+
+4. Multi-city support. Parameterize the AOI, model, and permit data per
+   city. Start with other Gujarat cities (Ahmedabad, Surat, Rajkot).
+
+5. Real permit data integration. File RTI requests or partner with
+   municipal corporations to get real building permit data feeds.
+
+6. User authentication. Add login/signup so journalists and NGOs can
+   save bookmarks, generate reports, and track specific sites.
+
+7. Evidence export (PDF). Implement the "Export evidence" button to generate
+   court-formatted documentation with satellite images, detection dates,
+   confidence scores, and coordinates.
+
+8. Better ML model. Scale from 200 to 1000+ labeled examples. Consider
+   switching from Random Forest to a CNN or transformer-based model that
+   operates on image patches directly instead of mean pixel values.
+
+9. Automated ground truth validation. Build a feedback loop where users
+   can confirm or deny detected sites, improving the training data.
+
+10. Mobile-responsive frontend. The current layout is desktop-only. Making
+    it work on phones would significantly increase accessibility.
+
+MEDIUM-TERM (3-12 months, requires additional resources):
+
+11. Sentinel-5P integration. Add aerosol optical depth data for ambient
+    air quality context alongside the construction-source estimates.
+
+12. Citizen reporting module. Allow residents to submit dust complaints
+    with photos and GPS coordinates, creating a crowdsourced overlay.
+
+13. Temporal tracking. Link detections across pipeline runs to show how
+    each site evolves over time (start date, expansion, completion).
+
+14. Ward-level analytics dashboard. Aggregate statistics by municipal
+    ward to help city planners identify problem areas.
+
+15. Webhook/email alerts. Notify subscribed users when a new high-risk
+    site is detected near their registered location.
+
+LONG-TERM (12+ months, requires partnerships):
+
+16. Geographic expansion to all major Indian cities. Requires city-specific
+    model training and permit data agreements.
+
+17. Carbon credit verification. Link dust suppression compliance to
+    voluntary carbon markets.
+
+18. Integration with CPCB/SPCB monitoring networks. Cross-reference
+    satellite detections with ground-based air quality monitoring stations.
+
+19. Real-time monitoring using commercial satellite constellations (Planet,
+    Maxar) with daily revisit times instead of Sentinel's 5-day cycle.
+
+20. Policy impact tracking. Measure whether detected violations lead to
+    enforcement actions when reported through official channels.
+
+
+================================================================================
+SECTION 10: HOW TO RUN THE PROJECT
+================================================================================
+
+PREREQUISITES:
+  - Python 3.10+
+  - Node.js 18+
+  - Google Cloud account with Earth Engine API enabled
+  - Authenticated with: python -c "import ee; ee.Authenticate()"
+
+BACKEND SETUP:
+  cd DustWatch
+  python -m venv .venv
+  .\.venv\Scripts\activate
+  pip install -r scripts\apps\backend\requirements.txt
+
+  Create scripts\apps\backend\.env:
+    GEE_PROJECT_ID=your-project-id
+
+  Start backend:
+    cd scripts\apps\backend
+    uvicorn main:app --reload --port 8000
+
+FRONTEND SETUP:
+  cd scripts\apps\frontend
+  npm install
+  npm run dev
+  → Opens at http://localhost:3000
+
+RUNNING THE FULL PIPELINE (if you want fresh detections):
+  cd scripts\apps\backend
+  python scripts\gee_pipeline.py         # 5-15 min, needs GEE
+  python scripts\enrich_proximity.py     # 1-2 min, needs internet
+  python scripts\build_dust_dispersion.py # 1-2 min
+
+
+================================================================================
+SECTION 11: KEY NUMBERS AND METRICS
+================================================================================
+
+Current Detection Results (Vadodara):
+  - Total detected construction sites: 138 (from last pipeline run)
+  - Critical risk: 0
+  - High risk: 131
+  - Medium risk: 7
+  - Low risk: 0
+  - Unregistered: 136 out of 138 (because permit data is fake)
+  - Estimated population exposed: 585,196 (heuristic, not real)
+
+Model Performance:
+  - Training data: ~200 labeled examples (67 positive, 134 negative)
+  - 5-fold cross-validation accuracy: ~85-90% (but on limited data)
+  - Known false positive sources: riverbeds, quarries, agricultural land
+  - Confidence threshold: 0.45 (relatively permissive)
+
+Data Scale:
+  - Vadodara AOI: ~20km × ~22km area
+  - Sentinel-2 resolution: 10m per pixel
+  - Sentinel-1 resolution: 10m per pixel
+  - Change detection raster: 498MB GeoTIFF
+  - Extracted patches: 725 patches × 2MB each ≈ 1.5GB
+  - Trained model size: 248KB (.pkl file)
+
+Feature Stack (21 bands used in classification):
+  BSI_month1, BSI_month2, BSI_month3, BSI_trend, BSI_consistency, BSI_variance,
+  NDVI_trend, NDBI_month1, NDBI_month2, NDBI_month3, NDBI_trend, MNDWI_min,
+  VV_month1, VV_month2, VV_month3, VV_trend, VV_consistency,
+  VH_VV_ratio_change, VV_VH_diff_month1, VV_VH_diff_month3, VV_VH_diff_trend
+
+Risk Score Weights:
+  - Site area: 25% (normalized against 20,000 m²)
+  - Activity duration: 25% (normalized against 90 days)
+  - Proximity to schools/hospitals: 30% (weighted count)
+  - Permit status: 20% (0 for registered, 100 for unregistered)
+
+
+================================================================================
+SECTION 12: API REFERENCE
+================================================================================
+
+GET /api/sites
+  Returns array of ConstructionSite objects.
+  Response: [{ id, name, coordinates, polygon, riskLevel, riskScore, ... }]
+
+GET /api/sites/{site_id}
+  Returns single ConstructionSite by ID.
+  404 if site not found.
+
+GET /api/stats
+  Returns CityStats aggregate.
+  Response: { totalSites, critical, high, medium, low, unregistered, ... }
+
+GET /api/layers/modeled_dust?period=oct_dec_2025&pollutant=pm10
+  Returns dust overlay URL, bounds, wind data, and legend.
+  Valid periods: oct_dec_2025, jan_mar_2026, apr_may_2026
+  Valid pollutants: pm10, pm25
+
+GET /api/layers/available_periods
+  Returns { period_key: "Human Label" } for all available periods.
+
+GET /
+  Returns { status: "ok", project: "DustWatch", version: "0.1.0" }
+
+GET /health
+  Returns { status: "healthy" }
+
+
+================================================================================
+END OF CONTEXT
+================================================================================

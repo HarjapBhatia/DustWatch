@@ -1,176 +1,78 @@
 # DustWatch
 
-<<<<<<< HEAD
-DustWatch is a geospatial machine learning and web application project designed to detect and monitor likely construction activity using satellite imagery. The system uses Google Earth Engine for geospatial data processing, a machine learning pipeline to identify construction patches, and a web interface for visualization.
+DustWatch is a geospatial machine learning and web platform designed to detect, monitor, and analyze urban construction activity. By leveraging public satellite imagery and automated change detection algorithms, the platform generates transparent and reproducible evidence of active construction zones. This enables municipal compliance tracking, public accountability, and dust pollution risk analysis.
 
-## Architecture Overview
-
-The repository is structured into three primary components:
-
-* Data Pipeline: A Python based geospatial machine learning pipeline that extracts data from Google Earth Engine, creates labeled patches, trains a Random Forest model, and generates GeoJSON outputs of detected construction sites. Located in the `data-pipeline` directory.
-* Backend Service: A FastAPI application providing the REST API for the frontend. It integrates with Google Earth Engine and serves the processed geospatial data. Located in the `scripts/apps/backend` directory.
-* Frontend Application: A React single page application built with Vite, TypeScript, and Leaflet. It provides a map based interface to visualize the output of the data pipeline and interact with the backend service. Located in the `scripts/apps/frontend` directory.
-
-## Repository Structure
-
-* `data-pipeline/`: Machine learning pipeline scripts, including change detection, patch extraction, model training, and GeoJSON generation. Contains its own detailed README.
-* `scripts/apps/backend/`: Source code for the backend API server.
-* `scripts/apps/frontend/`: Source code for the user interface.
-
-## Prerequisites
-
-To run this project locally, ensure the following software is installed:
-
-* Python 3.10 or higher
-* Node.js 18 or higher
-* Google Cloud account with Earth Engine API enabled
-
-## Setup and Installation
-
-### 1. Python Environment
-
-Both the data pipeline and the backend service share a Python environment. It is recommended to use a virtual environment.
-
-Create and activate a virtual environment at the repository root:
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\activate
-```
-
-Install the required Python dependencies:
-
-```powershell
-pip install -r scripts\apps\backend\requirements.txt
-```
-
-### 2. Node Environment
-
-Navigate to the frontend directory and install the required Node.js dependencies:
-
-```powershell
-cd scripts\apps\frontend
-npm install
-```
-
-## Configuration
-
-The project requires authentication with Google Earth Engine. You must provide a valid Google Cloud Project ID.
-
-Create a `.env` file in the `scripts/apps/backend` directory:
-
-```env
-GEE_PROJECT_ID=your_google_cloud_project_id
-```
-
-## Usage Guidelines
-
-### Data Pipeline
-
-The data pipeline scripts are designed to be executed sequentially from the repository root. Please refer to `data-pipeline/README.md` for specific execution steps.
-
-Example command to start the change detection process:
-
-```powershell
-.\.venv\Scripts\python.exe data-pipeline\change_detection.py
-```
-
-### Backend Server
-
-The FastAPI backend must be running to serve data to the frontend application.
-
-Start the backend server:
-
-```powershell
-cd scripts\apps\backend
-uvicorn main:app --reload
-```
-
-The API will be available at `http://localhost:8000`.
-
-### Frontend Application
-
-To launch the web interface, start the Vite development server.
-
-Start the frontend server:
-
-```powershell
-cd scripts\apps\frontend
-npm run dev
-```
-
-The web application will be accessible at `http://localhost:5173`.
-
-## Data Management and Version Control
-
-Generated data artifacts, including `.tif` rasters, `.npy` arrays, compiled `.pkl` models, and localized `node_modules` are excluded from version control via `.gitignore`. Ensure that raw or processed datasets remain local to your development environment.
-=======
-A satellite-AI platform for urban construction dust accountability in Indian cities.
-
-DustWatch detects active construction zones from satellite imagery, scores them by pollution risk, and makes the underlying evidence publicly accessible so residents, journalists, and environmental organisations can hold builders accountable for dust suppression compliance.
-
-This repository contains the prototype built for the Parul University Environment Hackathon (SDG Olympiad 2026).
+The project was originally developed as a prototype for the Parul University Environment Hackathon (SDG Olympiad 2026), focusing on construction dust accountability in Vadodara, Gujarat, India.
 
 ---
 
-## Project Background
+## Technical Overview
 
-India's cities experience year-round particulate pollution far above WHO safe limits. Construction activity contributes roughly 30 percent of urban PM10 loading, yet operates with self-reported compliance and minimal independent oversight. A substantial proportion of construction proceeds without permit registration, making it invisible to municipal authorities by definition.
+Particulate pollution contributes significantly to air quality degradation in developing cities. Urban construction activity accounts for a substantial fraction of particulate matter loading, yet compliance oversight is frequently constrained by manual reporting methods and unregistered sites.
 
-DustWatch addresses this accountability gap. It uses free Sentinel-1 and Sentinel-2 satellite data, machine learning based change detection, and OpenStreetMap proximity analysis to identify active construction zones at city scale. Each detected site is risk-scored based on area, activity duration, proximity to schools and hospitals, and permit status, then made available through a public web platform.
+DustWatch addresses this gap using satellite imagery and machine learning to construct a dynamic inventory of active construction projects. The platform consists of three core layers:
 
-The platform is positioned as an independent verification layer between construction activity and public accountability. It does not claim to measure ambient air quality directly or replace regulatory enforcement. It generates satellite-verified evidence that anyone can independently reproduce.
+1. **Data Ingestion and Processing Layer**: Integrates with Google Earth Engine to retrieve, cloud-mask, and composite optical and radar satellite imagery.
+2. **Analysis and Inference Layer**: Combines multi-spectral temporal change detection with a Random Forest machine learning classifier to identify construction zones and assess their particulate exposure risk.
+3. **Visualization and API Layer**: Serves site metrics, geographical boundaries, and simulated dust dispersion models through a FastAPI backend to an interactive React and Leaflet mapping client.
 
 ---
 
-## Architecture
+## System Architecture
+
+The pipeline processes geospatial and optical data through a series of stages:
 
 ```
-Sentinel-1 SAR + Sentinel-2 MSI
-            |
-Google Earth Engine processing
-            |
-13-band temporal feature stack
-   (3 monthly composites: Mar, Apr, May 2026)
-            |
-Change detection
-   (BSI, NDVI, NDBI, SAR backscatter)
-            |
-Random Forest classifier
-            |
-Permit cross-referencing
-            |
-Composite risk scoring
-            |
-FastAPI backend
-            |
-React frontend with Leaflet map
+[Satellite Data Ingestion]
+  - Sentinel-1 SAR (Radar)
+  - Sentinel-2 MSI (Optical)
+       |
+       v
+[Google Earth Engine Compositing]
+  - Cloud filtering and median stacking
+  - Spectral index calculation (BSI, NDVI, NDBI)
+       |
+       v
+[Stage 1: Change Detection Candidates]
+  - Spatial thresholding on BSI increase and NDVI drop
+  - Extraction of candidate polygon boundaries
+       |
+       v
+[Stage 2: Precision Classification]
+  - Extraction of 21 temporal feature bands across a 3-month composite
+  - Random Forest inference (predicting confidence score)
+  - Confidence threshold filtering (cutoff at 0.45)
+       |
+       v
+[Geospatial Enrichment & Modeling]
+  - Proximity calculations for schools and hospitals (OpenStreetMap)
+  - Cross-referencing municipal permit databases
+  - Gaussian plume dispersion modeling (Open-Meteo wind data)
+       |
+       v
+[API & UI Serving]
+  - FastAPI endpoint serialization
+  - React, Tailwind, and Leaflet dashboard rendering
 ```
 
 ---
 
-## Tech Stack
+## Technology Stack
 
-Backend
-- Python 3.10+
-- FastAPI, Uvicorn
-- Google Earth Engine, geemap
-- scikit-learn (Random Forest)
-- geopandas, shapely, rasterio
-- Pydantic for schema validation
+### Backend
+* **Language**: Python 3.10 or higher
+* **Framework**: FastAPI and Uvicorn for the REST API
+* **Geospatial Processing**: Google Earth Engine (earthengine-api, geemap), rasterio, geopandas, shapely, pyproj
+* **Machine Learning**: scikit-learn (Random Forest classifier), joblib
+* **Data Processing**: numpy, pandas, Pydantic
+* **External APIs**: OpenStreetMap (Overpass API) for school and hospital features, Open-Meteo Archive API for wind vectors
 
-Frontend
-- React 18 with TypeScript
-- Vite build tooling
-- Leaflet.js for mapping
-- Esri World Imagery as satellite basemap
-- Tailwind CSS
-
-Data Sources
-- Sentinel-1 GRD (Copernicus, ESA)
-- Sentinel-2 SR Harmonized (Copernicus, ESA)
-- OpenStreetMap (Overpass API)
-- Sample VMC permit data (placeholder pending RTI response)
+### Frontend
+* **Framework**: React 19 with TypeScript
+* **Build Tooling**: Vite 8
+* **Mapping Library**: Leaflet.js with react-leaflet
+* **Basemaps**: Esri World Imagery and OpenStreetMap
+* **Styling**: Tailwind CSS
 
 ---
 
@@ -178,281 +80,205 @@ Data Sources
 
 ```
 DustWatch/
-├── apps/
-│   ├── backend/
-│   │   ├── main.py                       FastAPI entry point
-│   │   ├── requirements.txt
-│   │   ├── config.py                     Pipeline constants
-│   │   ├── routers/
-│   │   │   ├── sites.py                  GET /api/sites
-│   │   │   └── stats.py                  GET /api/stats
-│   │   ├── services/
-│   │   │   ├── gee_client.py             GEE auth and image fetch
-│   │   │   ├── change_detection.py       Temporal feature stack
-│   │   │   ├── classifier.py             RF inference
-│   │   │   ├── risk_scorer.py            Composite scoring
-│   │   │   └── permit_lookup.py          Geospatial permit overlay
-│   │   ├── models/
-│   │   │   └── site.py                   Pydantic schemas
-│   │   └── scripts/
-│   │       ├── gee_pipeline.py           Main pipeline orchestrator
-│   │       ├── train_model.py            Classifier training
-│   │       ├── enrich_proximity.py       OSM schools and hospitals
-│   │       └── build_real_training_data.py
-│   └── frontend/
-│       ├── src/
-│       │   ├── App.tsx
-│       │   ├── components/
-│       │   │   ├── Map.tsx
-│       │   │   ├── Sidebar.tsx
-│       │   │   ├── SiteCard.tsx
-│       │   │   └── StatsBar.tsx
-│       │   ├── hooks/useSites.ts
-│       │   ├── types/index.ts
-│       │   └── utils/riskColors.ts
-│       └── vite.config.ts
-└── data/
-    ├── samples/
-    │   ├── vadodara_sites.geojson        Pipeline output
-    │   └── vmc_permits.json              Sample permit data
-    ├── labels/
-    │   └── construction_positives.csv    Manually verified sites
-    └── models/
-        └── rf_construction_model.pkl     Trained classifier
+├── data-pipeline/                 Original standalone pipeline for local raster processing
+│   ├── change_detection.py        GEE script to export multi-band TIFFs to Google Drive
+│   ├── extract_patches.py         Slices GeoTIFF rasters into numpy array patches
+│   ├── create_starter_labels.py   Generates weak labels based on index heuristics
+│   ├── suggest_patches.py         Active learning patch recommendation script
+│   ├── train_model.py             Placeholder Random Forest trainer on local patches
+│   ├── generate_geojson.py        Local classifier inference and polygon generation
+│   └── requirements.txt           Standalone pipeline Python dependencies
+│
+├── scripts/
+│   └── apps/
+│       ├── backend/               FastAPI backend and pipeline scripts
+│       │   ├── main.py            REST API entry point and router definitions
+│       │   ├── config.py          Path resolving logic and Earth Engine settings
+│       │   ├── requirements.txt   Backend Python dependencies
+│       │   ├── models/            Pydantic validation schemas
+│       │   ├── routers/           API route handlers (sites, stats, layers)
+│       │   ├── services/          Domain services (change detection, ML, scoring, plume model)
+│       │   ├── scripts/           Updated operational scripts (gee_pipeline, retrain_with_labels)
+│       │   ├── data/              Local copies of inputs, models, and processed outputs
+│       │   └── static/            Generated dust dispersion overlays
+│       │
+│       └── frontend/              React frontend application
+│           ├── src/
+│           │   ├── App.tsx        Root component managing layout and active state
+│           │   ├── components/    UI components (Map, Sidebar, SiteCard, StatsBar)
+│           │   ├── hooks/         Custom hooks for API ingestion
+│           │   └── types/         TypeScript interfaces matching Pydantic backend models
+│           └── vite.config.ts     Vite build config with backend reverse-proxy
 ```
 
 ---
 
-## Setup
+## Getting Started
 
 ### Prerequisites
+* Python 3.10 or higher
+* Node.js 18 or higher
+* A Google Cloud Project with the Earth Engine API enabled
 
-- Python 3.10 or higher
-- Node.js 18 or higher
-- A Google Earth Engine account with an approved Cloud project
-- Git
+### Backend Installation
 
-### Backend Setup
+1. Navigate to the root directory and create a virtual environment:
+   ```bash
+   python -m venv .venv
+   ```
+2. Activate the virtual environment:
+   * **Windows**:
+     ```powershell
+     .\.venv\Scripts\activate
+     ```
+   * **macOS / Linux**:
+     ```bash
+     source .venv/bin/activate
+     ```
+3. Install the Python dependencies:
+   ```bash
+   pip install -r scripts/apps/backend/requirements.txt
+   ```
+4. Create a `.env` file inside `scripts/apps/backend/` and configure your Google Earth Engine project:
+   ```env
+   GEE_PROJECT_ID=your-google-cloud-project-id
+   ```
+5. Authenticate with Google Earth Engine:
+   ```bash
+   python -c "import ee; ee.Authenticate()"
+   ```
 
-```bash
-git clone https://github.com/dhairyasharmaa/DustWatch.git
-cd DustWatch
+### Frontend Installation
 
-python -m venv .venv
-source .venv/bin/activate
-
-pip install -r apps/backend/requirements.txt
-```
-
-Create a `.env` file in `apps/backend/`:
-
-```
-GEE_PROJECT_ID=your-gee-project-id
-```
-
-Authenticate with Google Earth Engine:
-
-```bash
-python -c "import ee; ee.Authenticate()"
-```
-
-### Frontend Setup
-
-```bash
-cd apps/frontend
-npm install
-```
+1. Navigate to the frontend directory:
+   ```bash
+   cd scripts/apps/frontend
+   ```
+2. Install the Node packages:
+   ```bash
+   npm install
+   ```
 
 ---
 
-## Running the Pipeline
+## Pipeline Execution and Operations
 
-The pipeline is a sequence of three scripts. Run them in order from the `apps/backend` directory.
+To run the data collection, machine learning classification, and enrichment processes, run the operational scripts in sequence from the `scripts/apps/backend/` directory with the virtual environment active.
 
-### Step 1. Train the Classifier
-
+### Step 1: Model Training
+Train the Random Forest classifier using pre-labeled real training data:
 ```bash
-python scripts/train_model.py
+python scripts/retrain_with_labels.py
 ```
+This evaluates a 21-band feature set over the sample coordinates, performs cross-validation, and writes the serialized classifier to `data/models/rf_construction_model.pkl`.
 
-This trains a Random Forest classifier on the labelled dataset and saves the model to `data/models/rf_construction_model.pkl`.
-
-### Step 2. Run the GEE Pipeline
-
+### Step 2: Running Earth Engine Ingestion
+Orchestrate the remote collection and candidate detection:
 ```bash
 python scripts/gee_pipeline.py
 ```
+This contacts Google Earth Engine, pulls the Sentinel-1 and Sentinel-2 stack for the Vadodara area of interest, performs baseline change detection, runs inference on candidate patches, and filters them using a confidence score threshold of 0.45. It outputs candidate polygons to `data/processed/candidates.geojson` and sites to `data/samples/vadodara_sites.geojson`.
 
-This fetches Sentinel-1 and Sentinel-2 imagery for Vadodara, computes the 13-band temporal feature stack, runs change detection, applies the classifier, computes risk scores, and writes output to `data/samples/vadodara_sites.geojson`. The pipeline takes 5 to 15 minutes depending on GEE processing load.
-
-### Step 3. Enrich with Proximity Data
-
+### Step 3: Geographic Proximity Enrichment
+Query OpenStreetMap for sensitive infrastructure:
 ```bash
 python scripts/enrich_proximity.py
 ```
+This queries live schools and hospitals within the bounding box, counts features within a 500-meter radius of each detected site, updates the risk score, and writes the output back to `data/samples/vadodara_sites.geojson`.
 
-This queries OpenStreetMap for schools and hospitals within the Vadodara bounding box, computes proximity for each detected site, and re-scores the risk index with proximity weighting.
+### Step 4: Dust Dispersion Rendering
+Generate spatial particulate overlays:
+```bash
+python scripts/build_dust_dispersion.py
+```
+This evaluates the physical footprint of active sites, extracts wind speed and direction data for historical intervals via Open-Meteo, computes concentrations using a Gaussian plume model, and generates transparent heatmaps inside `static/`.
 
-### Step 4. Start the API Server
+---
 
+## Starting the Application Servers
+
+With the backend data pre-computed, start the services:
+
+### Start the FastAPI Backend
+From `scripts/apps/backend/`:
 ```bash
 uvicorn main:app --reload --port 8000
 ```
+The REST API is served at `http://localhost:8000`. Interactive documentation is available at `http://localhost:8000/docs`.
 
-The API will be available at `http://localhost:8000`. Auto-generated documentation is at `http://localhost:8000/docs`.
-
-### Step 5. Start the Frontend
-
-In a separate terminal:
-
+### Start the React Frontend
+In a separate terminal, from `scripts/apps/frontend/`:
 ```bash
-cd apps/frontend
 npm run dev
 ```
+The client opens at `http://localhost:3000` and automatically proxies `/api` calls to the FastAPI backend.
 
-The frontend will be available at `http://localhost:3000` and will fetch live data from the backend API.
+---
+
+## Core Algorithms and Logic
+
+### Feature Space
+The classification model evaluates a 21-dimensional feature space derived from Sentinel-1 and Sentinel-2 over a 3-month period:
+* **Soil Indices**: Bare Soil Index (BSI) values, trends, variances, and consistencies.
+* **Vegetation Indices**: Normalized Difference Vegetation Index (NDVI) temporal trend.
+* **Urban Indexes**: Normalized Difference Built-Up Index (NDBI) monthly composites.
+* **Water Indexes**: Modified Normalized Difference Water Index (MNDWI) minimums to filter riverbed anomalies.
+* **Radar Backscatter**: Sentinel-1 SAR VV/VH monthly averages, ratios, and double-bounce indicators.
+
+### Weighted Risk Score
+Risk is evaluated as a composite index from 0 to 100:
+* **Area Factor** (25% weight): Normalized surface area relative to a 20,000 square meter baseline.
+* **Duration Factor** (25% weight): Cumulative days of detected activity relative to a 90-day baseline.
+* **Proximity Factor** (30% weight): Spatial count of schools and hospitals within 500 meters.
+* **Permit Factor** (20% weight): Deductions based on permit registration status (0 for registered, 100 for unregistered).
+
+Sites are classified into risk categories based on their score:
+* **Critical**: Score greater than or equal to 75
+* **High**: Score greater than or equal to 50
+* **Medium**: Score greater than or equal to 25
+* **Low**: Score less than 25
+
+### Air Dispersion Modeling
+Plume dispersion is calculated using the Gaussian Plume equation:
+$$C(x,y,z) = \frac{Q}{2\pi u \sigma_y \sigma_z} \exp\left( \frac{-y^2}{2\sigma_y^2} \right) \left[ \exp\left( \frac{-(z-H)^2}{2\sigma_z^2} \right) + \exp\left( \frac{-(z+H)^2}{2\sigma_z^2} \right) \right]$$
+* **Q**: Emission rate (derived from site area using EPA AP-42 construction emission factors)
+* **u**: Mean wind speed at release height
+* **$\sigma_y, \sigma_z$**: Dispersion coefficients parameterizing crosswind and vertical spread (Briggs urban coefficients)
+* **H**: Effective emission height
 
 ---
 
 ## API Reference
 
 ### GET /api/sites
-
-Returns the full list of detected construction sites for the configured city.
-
-Response shape:
-
-```json
-[
-  {
-    "id": "site-001",
-    "name": "Construction Site 1",
-    "coordinates": [22.3072, 73.1812],
-    "polygon": [[lat, lng]],
-    "riskLevel": "high",
-    "riskScore": 67.4,
-    "permitStatus": "unregistered",
-    "areaM2": 4200,
-    "activeDays": 92,
-    "nearbySchools": 2,
-    "nearbyHospitals": 1,
-    "detectedAt": "2026-03-01",
-    "lastUpdated": "2026-05-20"
-  }
-]
-```
+Returns a list of all detected construction sites.
+* **Response Format**: JSON array of site objects containing boundaries, area, risk scores, permit registration, and geographical ward descriptors.
 
 ### GET /api/sites/{site_id}
-
-Returns a single construction site by ID.
+Returns metrics for a single site by ID.
 
 ### GET /api/stats
+Returns city-wide statistics.
+* **Response Format**: Aggregated statistics including total site count, site counts by risk levels, unregistered counts, and estimated population exposure.
 
-Returns city-level summary statistics.
-
-```json
-{
-  "totalSites": 138,
-  "critical": 0,
-  "high": 131,
-  "medium": 7,
-  "low": 0,
-  "unregistered": 136,
-  "populationExposed": 585196,
-  "lastUpdated": "2026-05-20T06:00:00Z"
-}
-```
+### GET /api/layers/modeled_dust
+Returns the path and boundaries of the modeled dust dispersion layer.
+* **Query Parameters**:
+  * `period`: `oct_dec_2025`, `jan_mar_2026`, or `apr_may_2026`
+  * `pollutant`: `pm10` or `pm25`
+* **Response Format**: Image URL, bounding coordinates, and averaged wind vectors.
 
 ---
 
-## Pipeline Configuration
+## System Scope and Constraints
 
-Constants in `apps/backend/config.py`:
-
-```python
-AOI_BOUNDS = [73.10, 22.25, 73.30, 22.45]
-MONTHLY_PERIODS = [
-    ('2026-03-01', '2026-03-31'),
-    ('2026-04-01', '2026-04-30'),
-    ('2026-05-01', '2026-05-31'),
-]
-CONFIDENCE_THRESHOLD = 0.6
-MIN_AREA_M2 = 1000
-MAX_AREA_M2 = 50000
-```
-
-These can be adjusted for different cities or detection sensitivities.
-
----
-
-## Risk Scoring
-
-The composite risk score is calculated as a weighted sum:
-
-```
-score = (area_factor * 0.25)
-      + (duration_factor * 0.25)
-      + (proximity_factor * 0.30)
-      + (permit_factor * 0.20)
-      * 100
-```
-
-Risk tiers:
-
-```
-critical: score >= 75
-high:     score >= 50
-medium:   score >= 25
-low:      score < 25
-```
-
----
-
-## Known Limitations
-
-This is a research prototype built within a four-day hackathon window. Several components are known to have limitations:
-
-1. The classifier was trained on a limited labelled dataset. Ground truth validation showed substantial false positive rates in the current model. Production accuracy requires significantly more labelled examples from the target city.
-
-2. VMC permit data in `data/samples/vmc_permits.json` is sample data. Real permit cross-referencing requires a data sharing agreement with Vadodara Municipal Corporation or successful RTI filing.
-
-3. The `populationExposed` metric uses a heuristic formula based on site area, not census-derived population density.
-
-4. The current pipeline targets Vadodara only. Extension to other cities requires updating the AOI bounding box, retraining the classifier on local imagery, and obtaining city-specific permit data.
-
-5. Pollution attribution claims are limited to construction-source dust. The platform does not measure ambient air quality directly and is not a substitute for ground-based monitoring.
-
----
-
-## Validation and Reproducibility
-
-Every detected site is traceable to public satellite imagery. The detection metadata includes the Sentinel-2 image date, spectral values, and confidence score. Any third party can reproduce a detection by accessing the same imagery through Google Earth Engine using the published coordinates and date.
-
-Manual verification is possible by taking site coordinates and viewing them on Google Maps satellite view. We encourage independent ground-truth validation of platform outputs.
-
----
-
-## Future Development
-
-Near-term priorities for moving from prototype to production:
-
-1. Real labelled training data at scale (target: 1000+ labelled examples from Vadodara and additional Indian cities)
-2. Integration with live VMC building permit feeds
-3. Sentinel-5P aerosol optical depth integration for ambient air quality context
-4. Citizen reporting module for community-submitted dust complaints
-5. Geographic expansion to additional Indian cities
-6. PIL-ready evidence export with court-formatted documentation
-7. Carbon credit verification module linking dust suppression compliance to voluntary carbon markets
+* **Data Frequency**: The system relies on Sentinel imagery updates, limiting temporal tracking granularity to 5-day intervals.
+* **Atmospheric Modeling**: The dispersion model is a physical approximation of source emissions and wind transport. It does not measure ambient air quality values directly or replace ground-based monitoring stations.
+* **Permit Cross-Referencing**: Permit lookup is dependent on municipal database availability. In this prototype, a static sample dataset containing representative municipal records is used.
+* **Model Validation**: The machine learning model is trained on a localized sample of verified sites. In highly reflective environments (such as dry sandy beds or fallow agricultural soil), manual validation may be required to resolve false-positive classifications.
 
 ---
 
 ## License
 
-This project is released under the MIT License. See `LICENSE` for details.
-
----
-
-## Contact
-
-For questions, collaboration, or feedback, open an issue on this repository or reach out via the team's institutional email.
->>>>>>> 3d5a2a6f17272aa80dd9fd7a6e2678d72c530595
+This software is released under the MIT License. See the `LICENSE` file for details.

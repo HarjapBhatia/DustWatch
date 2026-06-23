@@ -100,7 +100,7 @@ importances = model.feature_importances_
 ranked = sorted(zip(TEMPORAL_FEATURE_NAMES, importances), key=lambda x: x[1], reverse=True)
 print("Feature importances (ranked):")
 for name, imp in ranked:
-    bar = "█" * int(imp * 60)
+    bar = "#" * int(imp * 60)
     print(f"  {name:<25} {imp:.4f}  {bar}")
 
 # ---------------------------------------------------------------------------
@@ -111,5 +111,5 @@ os.makedirs("data/models", exist_ok=True)
 joblib.dump(model, MODEL_PRIMARY)
 shutil.copy2(MODEL_PRIMARY, MODEL_SECONDARY)
 
-print(f"\nModel saved  → {MODEL_PRIMARY}")
-print(f"Model copied → {MODEL_SECONDARY}")
+print(f"\nModel saved  -> {MODEL_PRIMARY}")
+print(f"Model copied -> {MODEL_SECONDARY}")

@@ -2,7 +2,10 @@ import json
 
 import ee
 
-from . import gee_client
+try:
+    from services import gee_client
+except ImportError:
+    import gee_client
 
 
 def _s2_composite(date_start: str, date_end: str) -> ee.Image:

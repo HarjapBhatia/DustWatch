@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { MapContainer, TileLayer, Polygon, Popup, ImageOverlay, LayersControl } from 'react-leaflet'
+import { MapContainer, TileLayer, Polygon, Popup, ImageOverlay, LayersControl, useMap } from 'react-leaflet'
 import axios from 'axios'
+
+const MapContainerAny = MapContainer as any
+const TileLayerAny = TileLayer as any
+const LayersControlAny = LayersControl as any
+const ImageOverlayAny = ImageOverlay as any
 
 import type { ConstructionSite } from '../types'
 import { RISK_COLORS } from '../utils/riskColors'
@@ -31,9 +36,22 @@ const PERIOD_LABELS: Record<Period, string> = {
   apr_may_2026: 'Apr–May 2026',
 }
 
-const toLatLngs = (polygon: number[][] | number[][][]) => {
-  const rings = Array.isArray(polygon[0][0]) ? (polygon as number[][][]) : [polygon as number[][]]
-  return rings.map(ring => ring.map(([lng, lat]) => [lat, lng]))
+const toLatLngs = (polygon: any) => {
+  if (!polygon) return []
+  if (Array.isArray(polygon[0]) && Array.isArray(polygon[0][0])) {
+    return polygon[0].map(([lng, lat]: any) => [lat, lng])
+  }
+  return polygon.map(([lng, lat]: any) => [lat, lng])
+}
+
+const ChangeMapFocus = ({ selectedSite }: { selectedSite: ConstructionSite | undefined }) => {
+  const map = useMap()
+  useEffect(() => {
+    if (selectedSite && selectedSite.coordinates) {
+      map.setView(selectedSite.coordinates as [number, number], 16)
+    }
+  }, [selectedSite, map])
+  return null
 }
 
 function compassLabel(deg: number): string {
@@ -65,11 +83,12 @@ const WindArrow = ({ wind }: { wind: Wind }) => {
 }
 
 export const MapView = ({ sites, selectedId, onSiteClick }: MapViewProps) => {
-  const [period, setPeriod]     = useState<Period>('oct_dec_2025')
+  const [period, setPeriod] = useState<Period>('oct_dec_2025')
   const [pollutant, setPollutant] = useState<Pollutant>('pm10')
   const [dustLayer, setDustLayer] = useState<DustLayer | null>(null)
   const [loading, setLoading]   = useState(false)
   const abortRef = useRef<AbortController | null>(null)
+  const selectedSite = sites.find(s => s.id === selectedId)
 
   useEffect(() => {
     if (abortRef.current) abortRef.current.abort()
@@ -135,25 +154,26 @@ export const MapView = ({ sites, selectedId, onSiteClick }: MapViewProps) => {
         </div>
       </div>
 
-      <MapContainer
+      <MapContainerAny
         center={[22.3072, 73.1812]}
         zoom={12}
         style={{ width: '100%', height: '100%' }}
       >
-        <TileLayer
+        <TileLayerAny
           attribution="&copy; OpenStreetMap contributors"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <ChangeMapFocus selectedSite={selectedSite} />
 
-        <LayersControl position="topright">
-          <LayersControl.Overlay name="Modeled dust contribution" checked>
-            <ImageOverlay
+        <LayersControlAny position="topright">
+          <LayersControlAny.Overlay name="Modeled dust contribution" checked>
+            <ImageOverlayAny
               url={overlayUrl}
               bounds={overlayBounds as [[number,number],[number,number]]}
               opacity={overlayOpacity}
             />
-          </LayersControl.Overlay>
-        </LayersControl>
+          </LayersControlAny.Overlay>
+        </LayersControlAny>
 
         {sites.map(site => {
           const isSelected = selectedId === site.id
@@ -180,7 +200,7 @@ export const MapView = ({ sites, selectedId, onSiteClick }: MapViewProps) => {
             </Polygon>
           )
         })}
-      </MapContainer>
+      </MapContainerAny>
 
       {/* ── Legend + wind arrow ── */}
       {dustLayer && (

@@ -76,12 +76,17 @@ def train_classifier(
 	return model
 
 
+_BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 def load_classifier(
 	model_path: str = "data/models/rf_model.pkl",
 ) -> Optional[RandomForestClassifier]:
+	primary_path = os.path.join(_BASE_DIR, "data/models/rf_construction_model.pkl")
+	resolved_model_path = model_path if os.path.isabs(model_path) else os.path.join(_BASE_DIR, model_path)
+	
 	candidates = [
-		"data/models/rf_construction_model.pkl",
-		model_path,
+		primary_path,
+		resolved_model_path,
 	]
 	for path in candidates:
 		if os.path.exists(path):

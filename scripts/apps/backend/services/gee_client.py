@@ -5,11 +5,15 @@ import ee
 
 load_dotenv()
 
-GEE_PROJECT_ID = os.getenv("GEE_PROJECT_ID")
-if GEE_PROJECT_ID:
-	ee.Initialize(project=GEE_PROJECT_ID)
-else:
-	ee.Initialize()
+try:
+	GEE_PROJECT_ID = os.getenv("GEE_PROJECT_ID")
+	if GEE_PROJECT_ID:
+		ee.Initialize(project=GEE_PROJECT_ID)
+	else:
+		ee.Initialize()
+except Exception as e:
+	print(f"Warning: Google Earth Engine failed to initialize on import: {e}")
+	print("GEE-dependent pipeline features will fail unless authenticated later.")
 
 VADODARA_AOI = ee.Geometry.Rectangle([73.10, 22.25, 73.30, 22.45])
 

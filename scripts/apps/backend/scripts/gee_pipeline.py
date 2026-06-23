@@ -61,6 +61,7 @@ def build_site_from_feature(feature: dict, index: int) -> dict:
         "lastUpdated": today.date().isoformat(),
         "ward": None,
         "address": None,
+        "confidenceScore": feature.get("confidenceScore"),
     }
 
 
