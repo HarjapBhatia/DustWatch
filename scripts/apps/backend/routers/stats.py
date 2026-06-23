@@ -2,13 +2,32 @@ import json
 import os
 from datetime import datetime, timezone
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException, Query
 
 from models.site import CityStats
 from services.risk_scorer import compute_city_stats
+from services.population_exposure import compute_zone_exposure, ZONES
 
 
 router = APIRouter()
+
+
+@router.get("/stats/population_exposure")
+def get_population_exposure(
+    period: str = Query("oct_dec_2025"),
+    pollutant: str = Query("pm10"),
+    threshold: float = Query(0.1, ge=0.0),
+):
+    valid_periods = {"oct_dec_2025", "jan_mar_2026", "apr_may_2026"}
+    valid_pollutants = {"pm10", "pm25"}
+    if period not in valid_periods:
+        raise HTTPException(400, detail=f"Invalid period. Choose from {sorted(valid_periods)}")
+    if pollutant not in valid_pollutants:
+        raise HTTPException(400, detail=f"Invalid pollutant. Choose from {sorted(valid_pollutants)}")
+    try:
+        return compute_zone_exposure(period, pollutant, threshold)
+    except FileNotFoundError as e:
+        raise HTTPException(404, detail=str(e))
 
 
 @router.get("/stats", response_model=CityStats)

@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import { MapContainer, TileLayer, Polygon, Popup, ImageOverlay, LayersControl } from 'react-leaflet'
+import { MapContainer, TileLayer, Polygon, Popup, ImageOverlay, LayersControl, CircleMarker } from 'react-leaflet'
 import axios from 'axios'
 
 import type { ConstructionSite } from '../types'
+import type { Period, Pollutant } from '../App'
 import { RISK_COLORS } from '../utils/riskColors'
-
-type Period = 'oct_dec_2025' | 'jan_mar_2026' | 'apr_may_2026'
-type Pollutant = 'pm10' | 'pm25'
 
 interface Wind { speed_m_s: number; direction_deg: number }
 
@@ -14,15 +12,26 @@ interface DustLayer {
   url: string
   bounds: [[number, number], [number, number]]
   wind: Wind | null
-  period: Period
-  pollutant: Pollutant
-  legend: { min_ug_m3: number; max_ug_m3: number; label: string; citation: string; scale: string }
+  legend: { min_ug_m3: number; max_ug_m3: number; label: string; citation: string }
+}
+
+interface AqiStation {
+  uid: number
+  lat: number
+  lon: number
+  aqi: number
+  band: string
+  color: string
+  name: string
+  time: string
 }
 
 interface MapViewProps {
   sites: ConstructionSite[]
   selectedId: string | null
   onSiteClick: (site: ConstructionSite) => void
+  period: Period
+  pollutant: Pollutant
 }
 
 const PERIOD_LABELS: Record<Period, string> = {
@@ -42,7 +51,6 @@ function compassLabel(deg: number): string {
 }
 
 const WindArrow = ({ wind }: { wind: Wind }) => {
-  // Meteorological direction = "coming FROM". Arrow points TO where wind goes = +180°.
   const arrowDeg = (wind.direction_deg + 180) % 360
   return (
     <div style={{ textAlign: 'center', marginTop: 10 }}>
@@ -64,12 +72,18 @@ const WindArrow = ({ wind }: { wind: Wind }) => {
   )
 }
 
-export const MapView = ({ sites, selectedId, onSiteClick }: MapViewProps) => {
-  const [period, setPeriod]     = useState<Period>('oct_dec_2025')
-  const [pollutant, setPollutant] = useState<Pollutant>('pm10')
+export const MapView = ({ sites, selectedId, onSiteClick, period, pollutant }: MapViewProps) => {
   const [dustLayer, setDustLayer] = useState<DustLayer | null>(null)
-  const [loading, setLoading]   = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [aqiStations, setAqiStations] = useState<AqiStation[]>([])
   const abortRef = useRef<AbortController | null>(null)
+
+  // Fetch AQI stations once on mount
+  useEffect(() => {
+    axios.get<{ stations: AqiStation[] }>('/api/layers/aqi_stations')
+      .then(r => setAqiStations(r.data.stations))
+      .catch(() => {})   // silently skip if token not yet set
+  }, [])
 
   useEffect(() => {
     if (abortRef.current) abortRef.current.abort()
@@ -77,9 +91,7 @@ export const MapView = ({ sites, selectedId, onSiteClick }: MapViewProps) => {
     abortRef.current = ctrl
     setLoading(true)
     axios
-      .get<DustLayer>(`/api/layers/modeled_dust?period=${period}&pollutant=${pollutant}`, {
-        signal: ctrl.signal,
-      })
+      .get<DustLayer>(`/api/layers/modeled_dust?period=${period}&pollutant=${pollutant}`, { signal: ctrl.signal })
       .then(r => { setDustLayer(r.data); setLoading(false) })
       .catch(e => { if (!axios.isCancel(e)) setLoading(false) })
   }, [period, pollutant])
@@ -90,51 +102,6 @@ export const MapView = ({ sites, selectedId, onSiteClick }: MapViewProps) => {
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-      {/* ── Period + pollutant controls ── */}
-      <div style={{
-        position: 'absolute', top: 10, left: 10, zIndex: 1000,
-        background: 'rgba(15,15,20,0.88)', borderRadius: 8, padding: '8px 12px',
-        border: '1px solid rgba(255,255,255,0.12)', display: 'flex', flexDirection: 'column', gap: 6,
-      }}>
-        <div style={{ fontSize: 10, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: 1 }}>Period</div>
-        <div style={{ display: 'flex', gap: 4 }}>
-          {(Object.keys(PERIOD_LABELS) as Period[]).map(p => (
-            <button
-              key={p}
-              onClick={() => setPeriod(p)}
-              style={{
-                fontSize: 11, padding: '3px 8px', borderRadius: 4, border: 'none', cursor: 'pointer',
-                background: period === p ? '#3b82f6' : 'rgba(255,255,255,0.1)',
-                color: period === p ? '#fff' : '#94a3b8',
-                fontWeight: period === p ? 600 : 400,
-                transition: 'all 0.15s',
-              }}
-            >
-              {PERIOD_LABELS[p]}
-            </button>
-          ))}
-        </div>
-
-        <div style={{ fontSize: 10, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: 1, marginTop: 2 }}>Pollutant</div>
-        <div style={{ display: 'flex', gap: 4 }}>
-          {(['pm10', 'pm25'] as Pollutant[]).map(pol => (
-            <button
-              key={pol}
-              onClick={() => setPollutant(pol)}
-              style={{
-                fontSize: 11, padding: '3px 10px', borderRadius: 4, border: 'none', cursor: 'pointer',
-                background: pollutant === pol ? '#f59e0b' : 'rgba(255,255,255,0.1)',
-                color: pollutant === pol ? '#000' : '#94a3b8',
-                fontWeight: pollutant === pol ? 700 : 400,
-                transition: 'all 0.15s',
-              }}
-            >
-              {pol.toUpperCase()}
-            </button>
-          ))}
-        </div>
-      </div>
-
       <MapContainer
         center={[22.3072, 73.1812]}
         zoom={12}
@@ -152,6 +119,38 @@ export const MapView = ({ sites, selectedId, onSiteClick }: MapViewProps) => {
               bounds={overlayBounds as [[number,number],[number,number]]}
               opacity={overlayOpacity}
             />
+          </LayersControl.Overlay>
+
+          <LayersControl.Overlay name="AQI monitoring stations" checked>
+            <>
+              {aqiStations.map(station => (
+                <CircleMarker
+                  key={station.uid}
+                  center={[station.lat, station.lon]}
+                  radius={14}
+                  pathOptions={{
+                    color: '#fff',
+                    weight: 2,
+                    fillColor: station.color,
+                    fillOpacity: 0.9,
+                  }}
+                >
+                  <Popup>
+                    <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4 }}>{station.name}</div>
+                    <div style={{ fontSize: 20, fontWeight: 800, color: station.color }}>
+                      AQI {station.aqi}
+                    </div>
+                    <div style={{ fontSize: 12, color: '#555', marginTop: 2 }}>{station.band}</div>
+                    <div style={{ fontSize: 11, color: '#999', marginTop: 6 }}>
+                      Updated: {station.time}
+                    </div>
+                    <div style={{ fontSize: 10, color: '#bbb', marginTop: 4 }}>
+                      Source: WAQI / IQAir · Real measurement
+                    </div>
+                  </Popup>
+                </CircleMarker>
+              ))}
+            </>
           </LayersControl.Overlay>
         </LayersControl>
 
@@ -174,7 +173,7 @@ export const MapView = ({ sites, selectedId, onSiteClick }: MapViewProps) => {
                 <div style={{ fontSize: 12, fontWeight: 600 }}>{site.name}</div>
                 <div style={{ fontSize: 12 }}>Risk score: {site.riskScore}</div>
                 <div style={{ fontSize: 11, color: '#888', marginTop: 4 }}>
-                  Estimated PM10 contribution from detected construction sites. Not a measurement.
+                  Estimated PM contribution from detected construction sites. Not a measurement.
                 </div>
               </Popup>
             </Polygon>
@@ -182,7 +181,7 @@ export const MapView = ({ sites, selectedId, onSiteClick }: MapViewProps) => {
         })}
       </MapContainer>
 
-      {/* ── Legend + wind arrow ── */}
+      {/* Legend + wind arrow */}
       {dustLayer && (
         <div style={{
           position: 'absolute', bottom: 32, left: 12, zIndex: 1000,
@@ -190,28 +189,28 @@ export const MapView = ({ sites, selectedId, onSiteClick }: MapViewProps) => {
           color: '#fff', fontSize: 12, minWidth: 210, pointerEvents: 'none',
           border: '1px solid rgba(255,255,255,0.12)',
         }}>
-          <div style={{ fontWeight: 600, marginBottom: 6 }}>{dustLayer.legend.label}</div>
+          <div style={{ fontWeight: 600, marginBottom: 2, fontSize: 11 }}>{dustLayer.legend.label}</div>
+          <div style={{ fontSize: 10, color: '#64748b', marginBottom: 6 }}>
+            {PERIOD_LABELS[period]} · Log scale
+          </div>
 
-          {/* Viridis gradient bar */}
           <div style={{
             height: 10, borderRadius: 4, marginBottom: 3,
             background: 'linear-gradient(to right, #440154, #3b528b, #21918c, #5ec962, #fde725)',
           }} />
-
-          {/* Log-scale ticks */}
-          {dustLayer.pollutant === 'pm10'
-            ? <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: '#94a3b8', marginBottom: 8 }}>
+          {pollutant === 'pm10'
+            ? <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: '#94a3b8', marginBottom: 6 }}>
                 <span>0.1</span><span>1</span><span>10+ µg/m³</span>
               </div>
-            : <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: '#94a3b8', marginBottom: 8 }}>
+            : <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: '#94a3b8', marginBottom: 6 }}>
                 <span>0.025</span><span>0.25</span><span>2.5+ µg/m³</span>
               </div>
           }
 
-          <div style={{ fontSize: 10, color: '#94a3b8', fontStyle: 'italic', lineHeight: 1.4 }}>
-            Log scale · {dustLayer.legend.citation}
+          <div style={{ fontSize: 9, color: '#475569', fontStyle: 'italic' }}>
+            Gaussian plume · EPA AP-42 · Briggs urban σ
           </div>
-          <div style={{ fontSize: 9, color: '#64748b', marginTop: 3 }}>
+          <div style={{ fontSize: 9, color: '#334155', marginTop: 2 }}>
             Not a measurement — modeled estimate only
           </div>
 

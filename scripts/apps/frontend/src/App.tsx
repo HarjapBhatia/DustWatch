@@ -7,6 +7,9 @@ import { SiteCard } from './components/SiteCard'
 import { useSites } from './hooks/useSites'
 import type { CityStats, ConstructionSite } from './types'
 
+export type Period = 'oct_dec_2025' | 'jan_mar_2026' | 'apr_may_2026'
+export type Pollutant = 'pm10' | 'pm25'
+
 const emptyStats: CityStats = {
 	totalSites: 0,
 	critical: 0,
@@ -21,6 +24,8 @@ const emptyStats: CityStats = {
 function App() {
 	const { sites, stats, loading, error } = useSites()
 	const [selectedSite, setSelectedSite] = useState<ConstructionSite | null>(null)
+	const [period, setPeriod] = useState<Period>('oct_dec_2025')
+	const [pollutant, setPollutant] = useState<Pollutant>('pm10')
 
 	const selectedId = selectedSite?.id ?? null
 	const statsValue = useMemo(() => stats ?? emptyStats, [stats])
@@ -44,6 +49,10 @@ function App() {
 						sites={sites}
 						selectedId={selectedId}
 						onSelect={setSelectedSite}
+						period={period}
+						pollutant={pollutant}
+						onPeriodChange={setPeriod}
+						onPollutantChange={setPollutant}
 					/>
 				</div>
 				<div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
@@ -52,6 +61,8 @@ function App() {
 							sites={sites}
 							selectedId={selectedId}
 							onSiteClick={setSelectedSite}
+							period={period}
+							pollutant={pollutant}
 						/>
 					</div>
 					{selectedSite && (
