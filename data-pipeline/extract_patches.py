@@ -7,10 +7,7 @@ from rasterio.windows import Window
 import config
 
 
-# -----------------------------
 # Setup
-# -----------------------------
-
 config.ensure_dirs()
 
 patch_size = config.PATCH_SIZE
@@ -28,10 +25,8 @@ if not config.CHANGE_DETECTION_TIF.exists():
     )
 
 
-# -----------------------------
-# Patch Extraction
-# -----------------------------
 
+# Patch Extraction
 patches_index = []
 
 with rasterio.open(config.CHANGE_DETECTION_TIF) as src:
@@ -76,10 +71,7 @@ with rasterio.open(config.CHANGE_DETECTION_TIF) as src:
             )
 
 
-# -----------------------------
 # Sort and Save Index
-# -----------------------------
-
 print("Sorting patches by construction-likelihood priority...")
 patches_index.sort(key=lambda item: item["priority_score"], reverse=True)
 

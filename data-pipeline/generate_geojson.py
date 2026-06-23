@@ -32,18 +32,14 @@ if not config.MODEL_PATH.exists():
     raise FileNotFoundError(f"Missing trained model: {config.MODEL_PATH}")
 
 
-# -----------------------------
-# Load Model
-# -----------------------------
 
+# Load Model
 print("Loading Random Forest model...")
 model = joblib.load(config.MODEL_PATH)
 
 
-# -----------------------------
-# Sliding Window Prediction
-# -----------------------------
 
+# Sliding Window Prediction
 with rasterio.open(config.CHANGE_DETECTION_TIF) as src:
     print(f"Raster size: {src.width} x {src.height}")
     print(f"Band count: {src.count}")
@@ -92,9 +88,7 @@ with rasterio.open(config.CHANGE_DETECTION_TIF) as src:
         polygons = []
 
 
-# -----------------------------
 # Build GeoJSON
-# -----------------------------
 
 features = []
 

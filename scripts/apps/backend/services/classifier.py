@@ -9,6 +9,7 @@ from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 
 
+# 21 features (layer 2)
 TEMPORAL_FEATURE_NAMES = [
 	"BSI_month1", "BSI_month2", "BSI_month3",
 	"BSI_trend", "BSI_consistency", "BSI_variance",
@@ -22,7 +23,7 @@ TEMPORAL_FEATURE_NAMES = [
 	"VV_VH_diff_month1", "VV_VH_diff_month3",
 	"VV_VH_diff_trend",
 ]
-N_FEATURES = len(TEMPORAL_FEATURE_NAMES)  # 21
+N_FEATURES = len(TEMPORAL_FEATURE_NAMES)  
 
 
 def extract_features(

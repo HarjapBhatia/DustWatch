@@ -59,8 +59,8 @@ def detect_construction_candidates(
     ndvi_diff = after_s2.select("NDVI").subtract(before_s2.select("NDVI"))
 
     construction_mask = (
-        bsi_diff.gt(0.08)                     # BSI increased — soil more exposed
-        .And(ndvi_diff.lt(-0.05))              # NDVI decreased — vegetation removed
+        bsi_diff.gt(0.08)                     # BSI increased : soil more exposed
+        .And(ndvi_diff.lt(-0.05))              # NDVI decreased : vegetation removed
         .And(after_s2.select("BSI").gt(0.02)) # after period is actually bare
         .And(after_s2.select("NDVI").lt(0.25)) # not vegetated in after period
         .And(after_s1.select("VV").gt(-16))   # SAR confirms surface disturbance

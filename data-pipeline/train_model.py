@@ -11,10 +11,7 @@ from sklearn.model_selection import train_test_split
 import config
 
 
-# -----------------------------
 # Setup
-# -----------------------------
-
 config.ensure_dirs()
 
 print("Starting Random Forest training...")
@@ -30,10 +27,8 @@ if not config.LABELS_JSON.exists():
     )
 
 
-# -----------------------------
-# Load Labels
-# -----------------------------
 
+# Load Labels
 with open(config.LABELS_JSON, "r", encoding="utf-8") as f:
     labels = json.load(f)
 
@@ -43,9 +38,7 @@ if not labels:
 print(f"Loaded labels: {len(labels)}")
 
 
-# -----------------------------
 # Feature Extraction
-# -----------------------------
 
 features = []
 targets = []
@@ -87,9 +80,7 @@ if min(class_counts.values()) < 2:
     raise ValueError("Need at least 2 samples per class for a stratified train/test split.")
 
 
-# -----------------------------
 # Train/Test Split
-# -----------------------------
 
 print("Splitting train/test data...")
 test_count = max(len(class_counts), math.ceil(len(y) * 0.2))
@@ -109,9 +100,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 
-# -----------------------------
 # Train Model
-# -----------------------------
 
 print("Training RandomForestClassifier...")
 model = RandomForestClassifier(
@@ -124,18 +113,14 @@ model = RandomForestClassifier(
 model.fit(X_train, y_train)
 
 
-# -----------------------------
 # Evaluate
-# -----------------------------
 
 print("Evaluating model...")
 y_pred = model.predict(X_test)
 print(classification_report(y_test, y_pred, target_names=["non_construction", "construction"]))
 
 
-# -----------------------------
 # Feature Importance
-# -----------------------------
 
 importances = [
     {"feature": name, "importance": float(score)}
@@ -148,9 +133,7 @@ for item in importances:
     print(f"  {item['feature']}: {item['importance']:.4f}")
 
 
-# -----------------------------
 # Save Outputs
-# -----------------------------
 
 joblib.dump(model, config.MODEL_PATH)
 

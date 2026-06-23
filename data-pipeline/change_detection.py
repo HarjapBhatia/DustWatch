@@ -3,19 +3,13 @@ import ee
 import config
 
 
-# -----------------------------
-# Earth Engine Setup
-# -----------------------------
-
+# GEE
 print("Initializing Earth Engine...")
 ee.Initialize(project=config.GEE_PROJECT_ID)
 print("Earth Engine initialized.")
 
 
-# -----------------------------
 # Config
-# -----------------------------
-
 aoi = ee.Geometry.Rectangle(config.AOI_BBOX)
 
 drive_folder = getattr(config, "GEE_DRIVE_FOLDER", "GEE_Vadodara")
@@ -32,10 +26,8 @@ print(f"T1: {config.T1_START} to {config.T1_END}")
 print(f"T2: {config.T2_START} to {config.T2_END}")
 
 
-# -----------------------------
-# Sentinel-2 Helpers
-# -----------------------------
 
+# Sentinel-2 Helpers
 def get_sentinel2_composite(start_date: str, end_date: str) -> ee.Image:
     print(f"Building Sentinel-2 composite: {start_date} to {end_date}")
 
@@ -65,10 +57,7 @@ def compute_bsi(image: ee.Image, name: str) -> ee.Image:
     ).rename(name)
 
 
-# -----------------------------
 # Sentinel-1 Helper
-# -----------------------------
-
 def get_sentinel1_composite(start_date: str, end_date: str) -> ee.Image:
     print(f"Building Sentinel-1 composite: {start_date} to {end_date}")
 
@@ -83,10 +72,8 @@ def get_sentinel1_composite(start_date: str, end_date: str) -> ee.Image:
     )
 
 
-# -----------------------------
-# Build Change Detection Stack
-# -----------------------------
 
+# Build Change Detection Stack
 print("Fetching Sentinel-2 T1...")
 s2_t1 = get_sentinel2_composite(config.T1_START, config.T1_END)
 
@@ -120,10 +107,8 @@ change_stack = ee.Image.cat(
 ).toFloat()
 
 
-# -----------------------------
-# Export to Google Drive
-# -----------------------------
 
+# Export to Google Drive
 print("Starting Google Drive export...")
 
 task = ee.batch.Export.image.toDrive(

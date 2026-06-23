@@ -17,7 +17,7 @@ N_LAT = int((BBOX[3] - BBOX[1]) * _m_per_deg_lat / GRID_M)
 # EPA AP-42 construction emission factors (kg PM / hectare / hour)
 _EMISSION_FACTORS = {
     "pm10": 0.11,
-    "pm25": 0.11 * 0.25,   # PM2.5 ≈ 25% of PM10 (AP-42 Table 13.2.2-2)
+    "pm25": 0.11 * 0.25,   # PM2.5 = 25% of PM10 (AP-42 Table 13.2.2-2)
 }
 
 
@@ -61,7 +61,7 @@ def build_dust_raster(sites: list, wind: dict, pollutant: str = "pm10") -> np.nd
         Q = emission_rate_g_s(float(area), pollutant)
         total += _plume_concentration(Q, u, x_down, y_cross)
 
-    return total * 1e6   # g/m³ → µg/m³
+    return total * 1e6   # g/m^3 → µg/m^3
 
 
 def save_geotiff(raster: np.ndarray, path: str | Path) -> None:
@@ -82,7 +82,7 @@ def save_png_overlay(raster: np.ndarray, path: str | Path,
     import matplotlib.cm as cm
     from PIL import Image
 
-    # Log normalization: maps [vmin, vmax] → [0, 1] logarithmically
+    # Log normalization: maps [vmin, vmax] -> [0, 1] logarithmically
     # so near-field (high) and far-field (low) cells both get meaningful color
     log_raster = np.log10(np.clip(raster, vmin, vmax * 10))
     log_min = np.log10(vmin)

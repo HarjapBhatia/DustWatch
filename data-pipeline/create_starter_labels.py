@@ -3,9 +3,7 @@ import json
 import config
 
 
-# -----------------------------
 # Setup
-# -----------------------------
 
 config.ensure_dirs()
 
@@ -23,10 +21,8 @@ if not config.PATCHES_INDEX_JSON.exists():
     )
 
 
-# -----------------------------
-# Load Ranked Patches
-# -----------------------------
 
+# Load Ranked Patches
 with open(config.PATCHES_INDEX_JSON, "r", encoding="utf-8") as f:
     patches = json.load(f)
 
@@ -36,9 +32,7 @@ if len(patches) < positive_count + negative_count:
     )
 
 
-# -----------------------------
 # Build Weak Labels
-# -----------------------------
 
 # The index is sorted by high DELTA_BSI and low DELTA_NDVI, so the top patches
 # are likely exposed-soil change candidates. These are weak positives.
@@ -67,9 +61,7 @@ for item in negative_candidates:
     )
 
 
-# -----------------------------
 # Save Labels
-# -----------------------------
 
 with open(config.LABELS_JSON, "w", encoding="utf-8") as f:
     json.dump(labels, f, indent=2)
